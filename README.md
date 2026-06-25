@@ -7,10 +7,21 @@ Statische Lern-/Selbsttest-Website zur Vorbereitung auf die Schulaufgabe im Fach
 2. **Arrays** — ein- und mehrdimensionale Arrays, Index & Länge, SA-Aufgabe „Chaos-Lager"
 3. **UML-Aktivitätsdiagramm** — Notation, Entscheidung/Vereinigung, Ticketkauf modellieren, Diagramm → Code
 
+Umfang: **57 Aufgaben** (davon **18 Programmieraufgaben** aus den Übungs-Arbeitsblättern, nach Quelle getaggt),
+**7 Diagramme**, zwei UML-Zeichenaufgaben mit togglebarer Musterlösung sowie eine **Probe-SA** mit Timer.
+
 ## Nutzung
 
 `index.html` im Browser öffnen. Multiple-Choice- und Multi-Select-Fragen werden **automatisch ausgewertet**
-(Punktestand oben rechts). Rechen-/Szenario-/Modellieraufgaben bieten aufdeckbare **Musterlösungen**.
+(Punktestand oben rechts). Rechen-/Szenario-/Modellier-/Zeichenaufgaben bieten aufdeckbare **Musterlösungen**.
+
+### Speichern, Drucken, Probe-SA
+- **Fortschritt** (beantwortete Fragen, Code-Eingaben) wird lokal im Browser gespeichert (`localStorage`);
+  je Themenseite gibt es einen Button „Fortschritt zurücksetzen".
+- **Drucken/PDF:** `Strg/Cmd + P` blendet Bedienelemente aus, deckt alle Lösungen auf und macht die
+  Zeichenaufgaben sauber druckbar (Print-Stylesheet).
+- **Probe-SA** (`pruefung.html`): 15 Auswahlfragen über alle Themen, 30-Minuten-Countdown, automatische
+  Auswertung mit gespeichertem Versuchsverlauf.
 
 ### Programmieraufgaben (statisch, kein Server)
 Diese Seite ist rein statisch (GitHub Pages) und **führt keinen Code aus**. Bei Programmieraufgaben:

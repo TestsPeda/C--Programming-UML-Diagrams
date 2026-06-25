@@ -6,6 +6,7 @@
 <title>01 · Grundlagen — AEuP C#</title>
 <link rel="stylesheet" href="assets/style.css">
 <link rel="stylesheet" href="assets/code.css">
+<link rel="stylesheet" href="assets/print.css">
 </head>
 <body>
 <header class="topbar">
@@ -15,6 +16,7 @@
     <a href="02-arrays.html">02 Arrays</a>
     <a href="03-uml-aktivitaetsdiagramm.html">03 UML</a>
     <a href="lernseite.html">Lernen</a>
+    <a href="pruefung.html">Probe-SA</a>
   </nav>
   <div class="spacer"></div>
   <span class="scorechip" id="scorechip">Auto-Fragen: 0/0 richtig</span>
@@ -28,9 +30,9 @@
     <p class="lede">Datentypen &amp; Variablen, Typkonvertierung und Ein-/Ausgabe, Operatoren sowie Verzweigungen
       (<code>if</code>/<code>switch</code>) und Schleifen. Das Fundament jeder C#-Konsolenanwendung.</p>
     <div class="hero-meta">
-      <span class="pill"><b>15</b> Aufgaben</span>
+      <span class="pill"><b>24</b> Aufgaben</span>
       <span class="pill"><b>1</b> Diagramm</span>
-      <span class="pill">MC · Multi-Select · Rechnen · Programmieren</span>
+      <span class="pill">MC · Multi-Select · Rechnen · 10× Programmieren</span>
     </div>
   </section>
 
@@ -342,7 +344,9 @@ while (!beenden)
       <p class="q-text"><strong>Zahlenraten.</strong> Schreiben Sie ein C#-Programm: Das Programm wählt eine Zufallszahl zwischen 1 und 20.
         Der Benutzer rät so lange, bis er richtig liegt; nach jedem Tipp gibt das Programm „zu hoch" oder „zu niedrig" aus.
         Am Ende wird die Anzahl der Versuche gemeldet.</p>
-      <textarea class="code-input" rows="12" placeholder="// Dein C#-Code …" data-task="zahlenraten"></textarea>
+      <p class="q-text"><strong>Erweiterung (schwerer):</strong> Erlauben Sie <strong>höchstens 5 Versuche</strong> — danach „Leider verloren! Die Zahl war …".
+        Fangen Sie außerdem <strong>Fehleingaben</strong> (kein gültiger Zahlenwert) mit <code>int.TryParse</code> ab, ohne dass das Programm abstürzt.</p>
+      <textarea class="code-input" rows="16" placeholder="// Dein C#-Code …" data-task="zahlenraten"></textarea>
     </div>
     <div class="q-foot">
       <button class="q-copyprompt">KI-Bewertungs-Prompt kopieren</button>
@@ -360,7 +364,10 @@ Bewerte den folgenden Code anhand dieser Kriterien und gib konkretes, freundlich
 - Vergleich liefert korrektes "zu hoch"/"zu niedrig"-Feedback
 - Versuchszähler korrekt hochgezählt und am Ende ausgegeben
 - sinnvolle Variablennamen und Kommentare
-- (optional) Robustheit bei Fehleingaben
+
+Erweiterung (schwerer), falls umgesetzt:
+- maximal 5 Versuche, danach "Leider verloren" + Auflösung der Zahl
+- Fehleingaben mit int.TryParse abgefangen (kein Absturz bei nicht-numerischer Eingabe)
 
 Hier ist mein Code:
 ```csharp
@@ -389,6 +396,31 @@ do
 while (tipp != zahl);
 
 Console.WriteLine($"Richtig! Du hast die Zahl in {versuche} Versuchen erraten.");</code></pre>
+      <p><strong>Erweiterung (schwerer) — max. 5 Versuche + Fehleingaben abfangen:</strong></p>
+<pre><code>using System;
+
+int zahl = new Random().Next(1, 21);
+int maxVersuche = 5;
+bool geraten = false;
+
+for (int versuch = 1; versuch &lt;= maxVersuche; versuch++)
+{
+    Console.Write($"Tipp {versuch}/{maxVersuche}: ");
+
+    // Fehleingaben abfangen: int.TryParse statt Convert (kein Absturz)
+    if (!int.TryParse(Console.ReadLine(), out int tipp))
+    {
+        Console.WriteLine("Bitte eine ganze Zahl eingeben!");
+        versuch--;            // Fehleingabe zählt nicht als Versuch
+        continue;
+    }
+
+    if (tipp == zahl) { geraten = true; Console.WriteLine($"Richtig in {versuch} Versuchen!"); break; }
+    Console.WriteLine(tipp &lt; zahl ? "zu niedrig." : "zu hoch.");
+}
+
+if (!geraten)
+    Console.WriteLine($"Leider verloren! Die Zahl war {zahl}.");</code></pre>
       <span class="rubric-label">Bewertungs-Checkliste</span>
       <ul class="rubric">
         <li><code>Random().Next(1, 21)</code> → Zufallszahl 1–20 (Obergrenze exklusiv)</li>
@@ -396,7 +428,333 @@ Console.WriteLine($"Richtig! Du hast die Zahl in {versuche} Versuchen erraten.")
         <li>Eingabe gelesen und nach <code>int</code> konvertiert</li>
         <li>Feedback „zu hoch" / „zu niedrig" korrekt</li>
         <li>Versuchszähler hochgezählt und am Ende ausgegeben</li>
+        <li><em>Erweiterung:</em> max. 5 Versuche → sonst „verloren" + Auflösung</li>
+        <li><em>Erweiterung:</em> <code>int.TryParse</code> fängt Fehleingaben ab (kein Absturz)</li>
       </ul>
+    </div>
+  </article>
+
+  <!-- ============ Abschnitt E: Programmieraufgaben der Übungsblätter ============ -->
+  <div class="sec-head"><span class="ix">E</span><h2>Programmieraufgaben (Übungs-Arbeitsblätter)</h2></div>
+  <p class="sec-sub">Alle Programmieraufträge der Arbeitsblätter — getaggt nach Quelle. Code eintippen, Musterlösung
+    aufdecken oder per „KI-Bewertungs-Prompt kopieren" Feedback holen. (Zahlenraten siehe Aufgabe 14.)</p>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">15</span><span class="q-type">Programmieren</span><span class="q-src">AB Typkonvertierung</span><span class="q-pts">Selbsttest</span></div>
+    <div class="q-body">
+      <p class="q-text"><strong>Temperatur-Umrechner.</strong> Lesen Sie eine Temperatur in °C ein und geben Sie sie in °F
+        (<code>°F = °C · 1,8 + 32</code>) und Kelvin (<code>K = °C + 273,15</code>) aus.</p>
+      <textarea class="code-input" rows="10" placeholder="// Dein C#-Code …" data-task="temperatur"></textarea>
+    </div>
+    <div class="q-foot"><button class="q-copyprompt">KI-Bewertungs-Prompt kopieren</button><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <template class="prompt-tpl">Bewerte als Informatik-Lehrkraft diesen C#-Code. Aufgabe: Temperatur in Grad Celsius einlesen und nach Fahrenheit (F = C*1,8+32) und Kelvin (K = C+273,15) umrechnen und ausgeben. Kriterien: Eingabe als double konvertiert, beide Formeln korrekt, formatierte Ausgabe. Code:
+```csharp
+{{CODE}}
+```
+Sag, ob die Aufgabe erfüllt ist, dann nenne Verbesserungen.</template>
+    <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
+<pre><code>using System;
+
+Console.Write("Temperatur in Grad Celsius: ");
+double c = Convert.ToDouble(Console.ReadLine());
+
+double f = c * 1.8 + 32;
+double k = c + 273.15;
+
+Console.WriteLine($"{c} Grad Celsius entsprechen {f} Grad Fahrenheit.");
+Console.WriteLine($"{c} Grad Celsius entsprechen {k} Kelvin.");</code></pre>
+      <span class="rubric-label">Bewertungs-Checkliste</span>
+      <ul class="rubric"><li>Eingabe nach <code>double</code> konvertiert</li><li>beide Formeln korrekt</li><li>formatierte Ausgabe</li></ul>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">16</span><span class="q-type">Programmieren</span><span class="q-src">AB Typkonvertierung</span><span class="q-pts">Selbsttest</span></div>
+    <div class="q-body">
+      <p class="q-text"><strong>Brutto-Netto-Rechner.</strong> Lesen Sie einen Bruttolohn ein und berechnen Sie den Nettolohn.
+        Lohnsteuer 14 % (vom Brutto); Soli 5,5 % und Kirchensteuer 8 % <em>von der Lohnsteuer</em>; Pflege 1,7 %, Rente 9,3 %,
+        Arbeitslosen 1,3 %, Kranken 7,5 % <em>vom Gehalt</em>. Geben Sie alle Posten aus.</p>
+      <textarea class="code-input" rows="12" placeholder="// Dein C#-Code …" data-task="brutto-netto"></textarea>
+    </div>
+    <div class="q-foot"><button class="q-copyprompt">KI-Bewertungs-Prompt kopieren</button><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <template class="prompt-tpl">Bewerte als Informatik-Lehrkraft diesen C#-Code. Aufgabe: Brutto-Netto-Rechner. Lohnsteuer 14% vom Brutto; Soli 5,5% und Kirchensteuer 8% von der Lohnsteuer; Pflege 1,7%, Rente 9,3%, Arbeitslosen 1,3%, Kranken 7,5% vom Gehalt. Alle Posten + Netto ausgeben. Kriterien: decimal für Geld, Soli/Kirche basieren auf der Lohnsteuer (nicht Brutto!), Netto korrekt. Code:
+```csharp
+{{CODE}}
+```
+Sag, ob die Aufgabe erfüllt ist, dann nenne Verbesserungen.</template>
+    <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
+<pre><code>using System;
+
+Console.Write("Bruttolohn: ");
+decimal brutto = Convert.ToDecimal(Console.ReadLine());
+
+decimal lohnsteuer = brutto * 0.14m;
+decimal soli       = lohnsteuer * 0.055m;   // von der Lohnsteuer
+decimal kirche     = lohnsteuer * 0.08m;    // von der Lohnsteuer
+decimal pflege     = brutto * 0.017m;
+decimal rente      = brutto * 0.093m;
+decimal alv        = brutto * 0.013m;
+decimal kv         = brutto * 0.075m;
+
+decimal netto = brutto - lohnsteuer - soli - kirche - pflege - rente - alv - kv;
+
+Console.WriteLine($"Lohnsteuer:  {lohnsteuer} EUR");
+Console.WriteLine($"Soli:        {soli} EUR");
+Console.WriteLine($"Kirche:      {kirche} EUR");
+Console.WriteLine($"Pflege:      {pflege} EUR");
+Console.WriteLine($"Rente:       {rente} EUR");
+Console.WriteLine($"Arbeitslos.: {alv} EUR");
+Console.WriteLine($"Kranken:     {kv} EUR");
+Console.WriteLine($"Nettolohn:   {netto} EUR");</code></pre>
+      <span class="rubric-label">Bewertungs-Checkliste</span>
+      <ul class="rubric"><li><code>decimal</code> für Geldbeträge</li><li>Soli &amp; Kirche von der <em>Lohnsteuer</em>, nicht vom Brutto</li><li>alle Posten + Netto korrekt ausgegeben</li></ul>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">17</span><span class="q-type">Programmieren</span><span class="q-src">AB Typkonvertierung</span><span class="q-pts">Selbsttest</span></div>
+    <div class="q-body">
+      <p class="q-text"><strong>Bildgrößenrechner (optional/schwer).</strong> Lesen Sie Breite und Höhe (Bildpunkte) ein.
+        <code>Dateigröße = Bildpunkte · Farbtiefe + Header</code> mit Farbtiefe 24 Bit, Header 432 Bit. Geben Sie Bit, Byte
+        (1 Byte = 8 Bit) und KiB (1 KiB = 1024 Byte) aus.</p>
+      <textarea class="code-input" rows="11" placeholder="// Dein C#-Code …" data-task="bildgroesse"></textarea>
+    </div>
+    <div class="q-foot"><button class="q-copyprompt">KI-Bewertungs-Prompt kopieren</button><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <template class="prompt-tpl">Bewerte als Informatik-Lehrkraft diesen C#-Code. Aufgabe: Bildgrößenrechner. Eingabe Breite/Höhe in Bildpunkten. Dateigröße = Breite*Höhe*Farbtiefe + Header, Farbtiefe 24 Bit, Header 432 Bit. Ausgabe in Bit, Byte (1 Byte=8 Bit) und KiB (1 KiB=1024 Byte). Kriterien: Multiplikation korrekt, Umrechnung Bit/Byte/KiB richtig. Code:
+```csharp
+{{CODE}}
+```
+Sag, ob die Aufgabe erfüllt ist, dann nenne Verbesserungen.</template>
+    <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
+<pre><code>using System;
+
+Console.Write("Breite (Bildpunkte): ");
+int breite = Convert.ToInt32(Console.ReadLine());
+Console.Write("Höhe (Bildpunkte): ");
+int hoehe = Convert.ToInt32(Console.ReadLine());
+
+int farbtiefe = 24, header = 432;
+long bit  = (long)breite * hoehe * farbtiefe + header;
+double by = bit / 8.0;
+double kib = by / 1024.0;
+
+Console.WriteLine($"Dateigröße: {bit} Bit, {by} Byte, {kib} KiB");</code></pre>
+      <span class="rubric-label">Bewertungs-Checkliste</span>
+      <ul class="rubric"><li>Bildpunkte = Breite · Höhe, mal Farbtiefe, plus Header</li><li>Byte = Bit / 8, KiB = Byte / 1024</li></ul>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">18</span><span class="q-type">Programmieren</span><span class="q-src">1. Schulaufgabe</span><span class="q-pts">Selbsttest</span></div>
+    <div class="q-body">
+      <p class="q-text"><strong>Tierheim-Hund.</strong> Lesen Sie Name, Gewicht (kg) und Aufnahmedatum eines Hundes ein.
+        Futtermenge = <code>Gewicht · 0,015</code> kg/Tag, Kosten = <code>Futtermenge · 2,70 €</code>. Geben Sie Futter, Kosten
+        (auf 2 Stellen) und die Aufenthaltsdauer in Tagen aus (<code>DateTime</code>/<code>TimeSpan</code>).</p>
+      <textarea class="code-input" rows="12" placeholder="// Dein C#-Code …" data-task="tierheim"></textarea>
+    </div>
+    <div class="q-foot"><button class="q-copyprompt">KI-Bewertungs-Prompt kopieren</button><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <template class="prompt-tpl">Bewerte als Informatik-Lehrkraft diesen C#-Code. Aufgabe: Tierheim-Hund. Eingabe Name, Gewicht (kg), Aufnahmedatum. Futtermenge = Gewicht*0,015 kg/Tag, Kosten = Futtermenge*2,70 EUR. Ausgabe Futter, Kosten (2 Nachkommastellen), Aufenthaltsdauer in Tagen via DateTime/TimeSpan. Kriterien: passende Datentypen (decimal für Kosten), DateTime.Now - Aufnahme, Math.Round. Code:
+```csharp
+{{CODE}}
+```
+Sag, ob die Aufgabe erfüllt ist, dann nenne Verbesserungen.</template>
+    <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
+<pre><code>using System;
+
+Console.Write("Name: ");
+string name = Console.ReadLine();
+Console.Write("Gewicht in kg: ");
+double gewicht = Convert.ToDouble(Console.ReadLine());
+Console.Write("Aufnahmedatum: ");
+DateTime aufnahme = Convert.ToDateTime(Console.ReadLine());
+
+double futter = gewicht * 0.015;
+decimal kosten = Convert.ToDecimal(futter) * 2.7m;
+TimeSpan dauer = DateTime.Now - aufnahme;
+
+Console.WriteLine($"Hund {name} benötigt {futter} kg Futter.");
+Console.WriteLine($"Kosten: {Math.Round(kosten, 2)} EUR");
+Console.WriteLine($"{name} ist seit {Math.Round(dauer.TotalDays, 0)} Tagen im Tierheim.");</code></pre>
+      <span class="rubric-label">Bewertungs-Checkliste</span>
+      <ul class="rubric"><li>passende Datentypen (<code>decimal</code> für Kosten, <code>DateTime</code>/<code>TimeSpan</code>)</li><li>Berechnungen korrekt, Rundung mit <code>Math.Round</code></li><li>Aufenthaltsdauer = <code>DateTime.Now - aufnahme</code></li></ul>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">19</span><span class="q-type">Programmieren</span><span class="q-src">AB Verzweigungen</span><span class="q-pts">Selbsttest</span></div>
+    <div class="q-body">
+      <p class="q-text"><strong>Gesamtbetrag einer Bestellung.</strong> Addieren Sie zum Bestellwert eine Versandpauschale von 6,50 €,
+        <em>falls</em> der Bestellwert unter 100,00 € liegt; ab 100,00 € keine Versandkosten.</p>
+      <textarea class="code-input" rows="9" placeholder="// Dein C#-Code …" data-task="bestellung"></textarea>
+    </div>
+    <div class="q-foot"><button class="q-copyprompt">KI-Bewertungs-Prompt kopieren</button><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <template class="prompt-tpl">Bewerte als Informatik-Lehrkraft diesen C#-Code. Aufgabe: Gesamtbetrag Bestellung. Versandpauschale 6,50 EUR addieren, falls Bestellwert unter 100,00 EUR; ab 100,00 EUR keine Versandkosten. Kriterien: if mit Schwelle 100, korrekte Addition. Code:
+```csharp
+{{CODE}}
+```
+Sag, ob die Aufgabe erfüllt ist, dann nenne Verbesserungen.</template>
+    <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
+<pre><code>using System;
+
+Console.Write("Bestellwert in EUR: ");
+double wert = Convert.ToDouble(Console.ReadLine());
+
+double gesamt = wert;
+if (wert &lt; 100.0)
+    gesamt = wert + 6.5;   // Versandpauschale
+
+Console.WriteLine($"Gesamtbetrag: {gesamt} EUR");</code></pre>
+      <span class="rubric-label">Bewertungs-Checkliste</span>
+      <ul class="rubric"><li><code>if (wert &lt; 100.0)</code> als Schwelle</li><li>nur unter 100 € werden 6,50 € addiert</li></ul>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">20</span><span class="q-type">Programmieren</span><span class="q-src">AB Verzweigungen</span><span class="q-pts">Selbsttest</span></div>
+    <div class="q-body">
+      <p class="q-text"><strong>Zinsen (Staffel).</strong> Berechnen Sie die Jahreszinsen je nach Anlagebetrag:
+        bis 5 000 → 2,00 %, bis 10 000 → 2,25 %, bis 50 000 → 2,50 %, über 50 000 → 2,75 %. Betrag per Eingabe.</p>
+      <textarea class="code-input" rows="11" placeholder="// Dein C#-Code …" data-task="zinsen"></textarea>
+    </div>
+    <div class="q-foot"><button class="q-copyprompt">KI-Bewertungs-Prompt kopieren</button><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <template class="prompt-tpl">Bewerte als Informatik-Lehrkraft diesen C#-Code. Aufgabe: Zinsstaffel. bis 5000 -> 2,00%, bis 10000 -> 2,25%, bis 50000 -> 2,50%, über 50000 -> 2,75%. Betrag per Eingabe, Zinsen ausgeben. Kriterien: if/else-if-Kette in richtiger Reihenfolge, Zinsformel Betrag*Satz/100. Code:
+```csharp
+{{CODE}}
+```
+Sag, ob die Aufgabe erfüllt ist, dann nenne Verbesserungen.</template>
+    <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
+<pre><code>using System;
+
+Console.Write("Anlagebetrag in EUR: ");
+double betrag = Convert.ToDouble(Console.ReadLine());
+
+double satz;
+if (betrag &lt;= 5000)       satz = 2.00;
+else if (betrag &lt;= 10000) satz = 2.25;
+else if (betrag &lt;= 50000) satz = 2.50;
+else                      satz = 2.75;
+
+double zinsen = betrag * satz / 100;
+Console.WriteLine($"Zinssatz {satz} % -> Zinsen: {zinsen} EUR");</code></pre>
+      <span class="rubric-label">Bewertungs-Checkliste</span>
+      <ul class="rubric"><li><code>else if</code>-Kette in aufsteigender Reihenfolge</li><li>Zinsen = Betrag · Satz / 100</li></ul>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">21</span><span class="q-type">Programmieren</span><span class="q-src">AB Verzweigungen</span><span class="q-pts">Selbsttest</span></div>
+    <div class="q-body">
+      <p class="q-text"><strong>Wochen-Bruttolohn.</strong> Eingabe: Arbeitsstunden &amp; Stundenlohn. Für jede Stunde über 35 gibt es 50 % Zuschlag.
+        Eingaben über 80 Stunden oder über 50,00 € Stundenlohn sind ungültig (Meldung ausgeben, nicht weiterrechnen).</p>
+      <textarea class="code-input" rows="13" placeholder="// Dein C#-Code …" data-task="bruttolohn"></textarea>
+    </div>
+    <div class="q-foot"><button class="q-copyprompt">KI-Bewertungs-Prompt kopieren</button><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <template class="prompt-tpl">Bewerte als Informatik-Lehrkraft diesen C#-Code. Aufgabe: Wochen-Bruttolohn. Eingabe Arbeitsstunden und Stundenlohn. Über 35 Std je Stunde 50% Zuschlag. Eingaben über 80 Std oder über 50 EUR Stundenlohn sind ungültig (Meldung, nicht rechnen). Kriterien: Validierung zuerst, Überstundenzuschlag korrekt (35 normal + Rest *1,5). Code:
+```csharp
+{{CODE}}
+```
+Sag, ob die Aufgabe erfüllt ist, dann nenne Verbesserungen.</template>
+    <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
+<pre><code>using System;
+
+Console.Write("Arbeitsstunden: ");
+double std = Convert.ToDouble(Console.ReadLine());
+Console.Write("Stundenlohn in EUR: ");
+double lohn = Convert.ToDouble(Console.ReadLine());
+
+if (std &gt; 80 || lohn &gt; 50.0)
+{
+    Console.WriteLine("Ungültige Eingabe.");
+}
+else
+{
+    double brutto;
+    if (std &gt; 35)
+        brutto = 35 * lohn + (std - 35) * lohn * 1.5;   // Überstunden +50%
+    else
+        brutto = std * lohn;
+
+    Console.WriteLine($"Wochen-Bruttolohn: {brutto} EUR");
+}</code></pre>
+      <span class="rubric-label">Bewertungs-Checkliste</span>
+      <ul class="rubric"><li>Gültigkeitsprüfung (&gt; 80 Std oder &gt; 50 €) zuerst</li><li>Überstunden: 35 normal + Rest · 1,5</li></ul>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">22</span><span class="q-type">Programmieren</span><span class="q-src">SA-Wiederholung</span><span class="q-pts">Selbsttest</span></div>
+    <div class="q-body">
+      <p class="q-text"><strong>Menü mit Schleife.</strong> Zeigen Sie ein Menü: (1) Summe von 1 bis 100 berechnen, (2) Beenden.
+        Nutzen Sie <code>switch</code> und eine <code>while</code>-Schleife; bei ungültiger Eingabe eine Fehlermeldung.</p>
+      <textarea class="code-input" rows="14" placeholder="// Dein C#-Code …" data-task="menue-summe"></textarea>
+    </div>
+    <div class="q-foot"><button class="q-copyprompt">KI-Bewertungs-Prompt kopieren</button><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <template class="prompt-tpl">Bewerte als Informatik-Lehrkraft diesen C#-Code. Aufgabe: Menü mit while-Schleife und switch. Option 1: Summe 1..100 (for) berechnen und ausgeben. Option 2: beenden. Ungültige Eingabe -> Fehlermeldung. Kriterien: while wiederholt das Menü, switch verzweigt, Summe per for korrekt, Beenden über Steuervariable/break. Code:
+```csharp
+{{CODE}}
+```
+Sag, ob die Aufgabe erfüllt ist, dann nenne Verbesserungen.</template>
+    <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
+<pre><code>using System;
+
+bool beenden = false;
+while (!beenden)
+{
+    Console.WriteLine("1) Summe von 1 bis 100");
+    Console.WriteLine("2) Beenden");
+    int wahl = Convert.ToInt32(Console.ReadLine());
+
+    switch (wahl)
+    {
+        case 1:
+            int summe = 0;
+            for (int i = 1; i &lt;= 100; i++) summe += i;
+            Console.WriteLine($"Summe = {summe}");
+            break;
+        case 2:
+            beenden = true;
+            break;
+        default:
+            Console.WriteLine("Ungültige Option!");
+            break;
+    }
+}</code></pre>
+      <span class="rubric-label">Bewertungs-Checkliste</span>
+      <ul class="rubric"><li><code>while</code> wiederholt das Menü</li><li><code>switch</code> mit <code>case 1/2</code> + <code>default</code> und <code>break</code></li><li>Summe 1..100 per <code>for</code> (= 5050)</li></ul>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">23</span><span class="q-type">Programmieren</span><span class="q-src">SA-Wiederholung</span><span class="q-pts">Selbsttest</span></div>
+    <div class="q-body">
+      <p class="q-text"><strong>Vielfaches von 3 oder 5.</strong> Lesen Sie fortlaufend Zahlen ein und melden Sie jeweils, ob die Zahl
+        ein Vielfaches von 3, von 5 oder von beiden ist.</p>
+      <textarea class="code-input" rows="12" placeholder="// Dein C#-Code …" data-task="vielfaches"></textarea>
+    </div>
+    <div class="q-foot"><button class="q-copyprompt">KI-Bewertungs-Prompt kopieren</button><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <template class="prompt-tpl">Bewerte als Informatik-Lehrkraft diesen C#-Code. Aufgabe: fortlaufend Zahlen einlesen und melden, ob die Zahl Vielfaches von 3, von 5 oder von beiden ist. Kriterien: Schleife für fortlaufende Eingabe, Modulo z%3==0 / z%5==0, Fall "beide" zuerst behandeln. Code:
+```csharp
+{{CODE}}
+```
+Sag, ob die Aufgabe erfüllt ist, dann nenne Verbesserungen.</template>
+    <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
+<pre><code>using System;
+
+while (true)
+{
+    Console.Write("Gib eine Zahl ein: ");
+    int z = Convert.ToInt32(Console.ReadLine());
+
+    bool teil3 = z % 3 == 0;
+    bool teil5 = z % 5 == 0;
+
+    if (teil3 &amp;&amp; teil5) Console.WriteLine("Vielfaches von 3 und 5.");
+    else if (teil3)     Console.WriteLine("Vielfaches von 3.");
+    else if (teil5)     Console.WriteLine("Vielfaches von 5.");
+    else                Console.WriteLine("Weder Vielfaches von 3 noch von 5.");
+}</code></pre>
+      <span class="rubric-label">Bewertungs-Checkliste</span>
+      <ul class="rubric"><li>Schleife für fortlaufende Eingabe</li><li><code>z % 3 == 0</code> / <code>z % 5 == 0</code></li><li>Fall „beide" vor den Einzelfällen prüfen</li></ul>
     </div>
   </article>
 
@@ -405,7 +763,7 @@ Console.WriteLine($"Richtig! Du hast die Zahl in {versuche} Versuchen erraten.")
   <p class="sec-sub">Über den Kernstoff hinaus — nützlich, aber nicht zwingend prüfungsrelevant.</p>
 
   <article class="q">
-    <div class="q-head"><span class="q-num">15</span><span class="q-type">Multiple Choice</span><span class="q-pts">Auto</span></div>
+    <div class="q-head"><span class="q-num">24</span><span class="q-type">Multiple Choice</span><span class="q-pts">Auto</span></div>
     <div class="q-body">
       <p class="q-text">Was passiert bei <code>Convert.ToInt32("abc")</code> zur Laufzeit?</p>
       <ul class="q-options" data-multi="false">
@@ -431,5 +789,6 @@ Console.WriteLine($"Richtig! Du hast die Zahl in {versuche} Versuchen erraten.")
 <footer class="foot"><div class="wrap"><span class="mono">AEuP C# · Thema 01 — Grundlagen</span> · Kerninhalt</div></footer>
 <script src="assets/quiz.js"></script>
 <script src="assets/code.js"></script>
+<script src="assets/store.js"></script>
 </body>
 </html>

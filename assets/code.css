@@ -44,6 +44,38 @@
   color: #E4F1EF; background: transparent; border: 0; padding: 0; white-space: pre;
 }
 
+/* ---------- Probe-SA (Prüfungssimulation) ---------- */
+.exam-bar {
+  position: sticky; top: 60px; z-index: 40;
+  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  background: var(--ink); color: #fff; border-radius: var(--radius);
+  padding: 12px 18px; margin: 8px 0 24px; box-shadow: var(--shadow);
+}
+.exam-bar .clock {
+  font-family: var(--font-mono); font-size: 1.25rem; font-weight: 700;
+  background: rgba(255,255,255,.1); border-radius: var(--radius); padding: 4px 12px;
+}
+.exam-bar .clock.low { color: #FFD2C6; background: rgba(221,84,48,.35); }
+.exam-bar .lbl { font-family: var(--font-mono); font-size: .76rem; letter-spacing: .12em; text-transform: uppercase; opacity: .85; }
+.exam-bar .spacer { flex: 1; }
+.exam-bar .btn.primary { background: var(--accent); border-color: var(--accent); }
+
+#result {
+  background: var(--accent-2-tint); border: 1px solid #BFE0DB; border-left: 3px solid var(--accent-2);
+  border-radius: var(--radius); padding: 16px 18px; margin: 18px 0; font-size: 1rem;
+}
+#result[hidden] { display: none; }
+#history { margin: 24px 0; }
+#history[hidden] { display: none; }
+
+/* Quellen-Tag (Übungsblatt) im q-head */
+.q-src {
+  font-family: var(--font-mono); font-size: .66rem; letter-spacing: .04em;
+  color: var(--accent-2); background: var(--accent-2-tint);
+  border: 1px solid #BFE0DB; border-radius: 999px; padding: 2px 9px;
+}
+.q-head .q-src { margin-left: 6px; }
+
 /* Bewertungs-Checkliste in der Musterlösung */
 .rubric { list-style: none; margin: 10px 0 0; padding: 0; }
 .rubric li {

@@ -6,6 +6,7 @@
 <title>03 · UML-Aktivitätsdiagramm — AEuP C#</title>
 <link rel="stylesheet" href="assets/style.css">
 <link rel="stylesheet" href="assets/code.css">
+<link rel="stylesheet" href="assets/print.css">
 </head>
 <body>
 <header class="topbar">
@@ -15,6 +16,7 @@
     <a href="02-arrays.html">02 Arrays</a>
     <a href="03-uml-aktivitaetsdiagramm.html" class="current">03 UML</a>
     <a href="lernseite.html">Lernen</a>
+    <a href="pruefung.html">Probe-SA</a>
   </nav>
   <div class="spacer"></div>
   <span class="scorechip" id="scorechip">Auto-Fragen: 0/0 richtig</span>
@@ -28,9 +30,9 @@
     <p class="lede">Abläufe modellieren: Aktionen, Steuerungsfluss, Entscheidungen, Vereinigung, Gabelung und
       Verantwortungsbereiche. Vom Text zur Grafik — und zurück zum Code.</p>
     <div class="hero-meta">
-      <span class="pill"><b>12</b> Aufgaben</span>
-      <span class="pill"><b>2</b> Diagramme</span>
-      <span class="pill">MC · Multi-Select · Modellieren · Programmieren</span>
+      <span class="pill"><b>14</b> Aufgaben</span>
+      <span class="pill"><b>4</b> Diagramme</span>
+      <span class="pill">MC · Multi-Select · Zeichnen · Programmieren</span>
     </div>
   </section>
 
@@ -316,7 +318,10 @@
       <p class="q-text"><strong>Diagramm → Code.</strong> Setzen Sie den Entscheidungsteil des Ticketkaufs in C# um:
         Frage den Benutzer, ob er bereits ein Konto hat (<code>j/n</code>). Bei „j" gib „Anmelden …" aus, sonst „Registrieren …".
         Danach in beiden Fällen „Zahlungsdaten eingeben" ausgeben (Vereinigung der Pfade).</p>
-      <textarea class="code-input" rows="12" placeholder="// Dein C#-Code …" data-task="diagramm-zu-code"></textarea>
+      <p class="q-text"><strong>Erweiterung (schwerer) — Geldautomat aus Diagramm 2:</strong> Setzen Sie das vollständige
+        Diagramm mit <em>Schleife</em> um: PIN abfragen, bei falschem PIN erneut fragen, jedoch <strong>maximal 3 Versuche</strong>.
+        Nach dem 3. Fehlversuch „Karte einziehen" ausgeben und abbrechen; bei korrektem PIN „Betrag wählen" und „Geld ausgeben".</p>
+      <textarea class="code-input" rows="16" placeholder="// Dein C#-Code …" data-task="diagramm-zu-code"></textarea>
     </div>
     <div class="q-foot">
       <button class="q-copyprompt">KI-Bewertungs-Prompt kopieren</button>
@@ -334,6 +339,12 @@ Bewerte den folgenden Code anhand dieser Kriterien und gib konkretes, freundlich
 - die gemeinsame Folgeaktion "Zahlungsdaten eingeben" steht NACH der if-else (Vereinigung) und wird in beiden Fällen erreicht
 - sinnvolle Variablennamen/Kommentare
 - Bezug Diagramm <-> Code erkennbar
+
+Erweiterung (Geldautomat, schwerer): falls umgesetzt, prüfe zusätzlich:
+- Schleife (while/for/do-while) fragt den PIN wiederholt ab
+- maximal 3 Versuche werden korrekt gezählt und begrenzt
+- nach dem 3. Fehlversuch "Karte einziehen" + Abbruch (Flussende), bei Erfolg "Betrag wählen"/"Geld ausgeben"
+- die Schleife im Code entspricht der Rückführung (Schleife) im Aktivitätsdiagramm
 
 Hier ist mein Code:
 ```csharp
@@ -354,12 +365,45 @@ else
 
 // Vereinigung: gemeinsame Folgeaktion in BEIDEN Fällen
 Console.WriteLine("Zahlungsdaten eingeben");</code></pre>
+      <p><strong>Erweiterung (schwerer) — Geldautomat mit Schleife (Diagramm 2):</strong></p>
+<pre><code>using System;
+
+string echterPin = "1234";
+int versuche = 0;
+bool erfolg = false;
+
+// Schleife im Code = Rückführung (Schleife) im Diagramm
+while (versuche &lt; 3)
+{
+    Console.Write("PIN eingeben: ");
+    string pin = Console.ReadLine();
+    versuche++;
+
+    if (pin == echterPin)        // Entscheidung: PIN korrekt?
+    {
+        erfolg = true;
+        break;                   // raus aus der Schleife -> weiter im Hauptfluss
+    }
+    Console.WriteLine("PIN falsch.");
+}
+
+if (erfolg)
+{
+    Console.WriteLine("Betrag wählen");
+    Console.WriteLine("Geld ausgeben");   // (parallel: + Beleg drucken)
+}
+else
+{
+    Console.WriteLine("Karte einziehen"); // 3. Fehlversuch -> Abbruch (Flussende)
+}</code></pre>
       <span class="rubric-label">Bewertungs-Checkliste</span>
       <ul class="rubric">
         <li>Eingabe <code>j/n</code> eingelesen</li>
         <li><code>if-else</code> bildet den Entscheidungsknoten ab</li>
         <li>„Anmelden" bei j, „Registrieren" bei n</li>
         <li>„Zahlungsdaten eingeben" steht <em>nach</em> dem <code>if-else</code> (Vereinigung) → läuft in beiden Pfaden</li>
+        <li><em>Erweiterung:</em> Schleife mit Zähler, max. 3 Versuche (= Schleife im Diagramm)</li>
+        <li><em>Erweiterung:</em> Erfolg → „Betrag wählen"/„Geld ausgeben"; sonst „Karte einziehen" (Flussende)</li>
       </ul>
     </div>
   </article>
@@ -382,12 +426,213 @@ Console.WriteLine("Zahlungsdaten eingeben");</code></pre>
     </div>
   </article>
 
+  <!-- ============ Abschnitt D: Selbst zeichnen ============ -->
+  <div class="sec-head"><span class="ix">D</span><h2>Aktivitätsdiagramm selbst zeichnen (Papier)</h2></div>
+  <p class="sec-sub">SA-Format: aus einer Prozessbeschreibung ein vollständiges Diagramm <strong>auf Papier</strong> zeichnen.
+    Erst selbst zeichnen, dann die Musterlösung aufdecken und Element für Element vergleichen.
+    Die beiden Aufgaben decken zusammen <em>alle</em> Notationselemente ab.</p>
+
+  <div class="note">
+    <span class="lbl">Was die beiden Aufgaben abdecken</span>
+    <p style="margin:.4em 0 0"><strong>Aufgabe 11</strong> (Onlineshop): Start/Ende, Aktionen, Steuerungsfluss,
+    <strong>Entscheidung + Vereinigung</strong>, <strong>Gabelung + Synchronisation (parallel)</strong> und
+    <strong>Verantwortungsbereiche (Swimlanes)</strong>. &nbsp;·&nbsp;
+    <strong>Aufgabe 12</strong> (Geldautomat): zusätzlich <strong>Schleife</strong> (Rückführung) und
+    <strong>Flussende ⊗</strong> (Abbruch) sowie eine <strong>verschachtelte Entscheidung</strong>.</p>
+  </div>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">11</span><span class="q-type">Zeichnen (Papier)</span><span class="q-pts">manuell</span></div>
+    <div class="q-body">
+      <p class="q-text"><strong>Onlineshop-Bestellvorgang mit Verantwortungsbereichen.</strong> Zeichnen Sie das Aktivitätsdiagramm
+        mit zwei Swimlanes <em>Kunde</em> und <em>Onlineshop</em> nach dieser Beschreibung:</p>
+      <ul class="q-text" style="margin-top:-6px">
+        <li>Der Kunde wählt Artikel aus und geht anschließend zur Kasse.</li>
+        <li>Ein registrierter Kunde meldet sich an (<em>einloggen</em>); andernfalls bestellt er als Gast und gibt seine Adresse ein.</li>
+        <li>Danach wählt der Kunde die Zahlungsart und erteilt den Kaufauftrag.</li>
+        <li>Der Onlineshop bestätigt die Bestellung, erstellt <strong>gleichzeitig</strong> die Rechnung und packt die Ware (parallel).</li>
+        <li>Anschließend versendet der Onlineshop die Ware.</li>
+      </ul>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
+      <figure class="diagram" style="background:#fff">
+        <svg viewBox="0 0 480 580" role="img" aria-label="Aktivitätsdiagramm Onlineshop mit Verantwortungsbereichen Kunde und Onlineshop">
+          <defs><marker id="a-arr" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#16242E"/></marker></defs>
+          <!-- swimlane frame -->
+          <line x1="240" y1="0" x2="240" y2="580" stroke="#B9C7D2" stroke-width="1.5"/>
+          <line x1="0" y1="28" x2="480" y2="28" stroke="#B9C7D2" stroke-width="1.5"/>
+          <text class="svg-title" x="120" y="20" text-anchor="middle">Kunde</text>
+          <text class="svg-title" x="360" y="20" text-anchor="middle">Onlineshop</text>
+          <!-- start -->
+          <circle cx="120" cy="46" r="9" fill="#16242E"/>
+          <line x1="120" y1="55" x2="120" y2="63" stroke="#16242E" stroke-width="1.5" marker-end="url(#a-arr)"/>
+          <rect x="45" y="64" width="150" height="30" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label" x="120" y="84" text-anchor="middle">Artikel wählen</text>
+          <line x1="120" y1="94" x2="120" y2="104" stroke="#16242E" stroke-width="1.5" marker-end="url(#a-arr)"/>
+          <rect x="45" y="106" width="150" height="30" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label" x="120" y="126" text-anchor="middle">Zur Kasse gehen</text>
+          <line x1="120" y1="136" x2="120" y2="145" stroke="#16242E" stroke-width="1.5" marker-end="url(#a-arr)"/>
+          <!-- decision -->
+          <polygon points="120,146 146,170 120,194 94,170" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="120" y="167" text-anchor="middle">Konto</text>
+          <text class="svg-label-sm" x="120" y="178" text-anchor="middle">vorhanden?</text>
+          <!-- [ja] einloggen -->
+          <rect x="10" y="155" width="78" height="30" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="49" y="174" text-anchor="middle">Einloggen</text>
+          <line x1="94" y1="170" x2="90" y2="170" stroke="#16242E" stroke-width="1.5" marker-end="url(#a-arr)"/>
+          <text class="svg-label-sm" x="78" y="163" text-anchor="middle" fill="#15786E">[ja]</text>
+          <line x1="49" y1="185" x2="49" y2="318" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="49" y1="318" x2="98" y2="318" stroke="#16242E" stroke-width="1.5" marker-end="url(#a-arr)"/>
+          <!-- [nein] gast -->
+          <line x1="120" y1="194" x2="120" y2="206" stroke="#16242E" stroke-width="1.5" marker-end="url(#a-arr)"/>
+          <text class="svg-label-sm" x="142" y="203" text-anchor="middle" fill="#B23E1F">[nein]</text>
+          <rect x="45" y="207" width="150" height="30" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label" x="120" y="227" text-anchor="middle">Als Gast bestellen</text>
+          <line x1="120" y1="237" x2="120" y2="247" stroke="#16242E" stroke-width="1.5" marker-end="url(#a-arr)"/>
+          <rect x="45" y="248" width="150" height="30" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label" x="120" y="268" text-anchor="middle">Adresse eingeben</text>
+          <line x1="120" y1="278" x2="120" y2="298" stroke="#16242E" stroke-width="1.5" marker-end="url(#a-arr)"/>
+          <!-- merge -->
+          <polygon points="120,298 140,318 120,338 100,318" fill="#E4F1EF" stroke="#15786E" stroke-width="1.5"/>
+          <line x1="120" y1="338" x2="120" y2="348" stroke="#16242E" stroke-width="1.5" marker-end="url(#a-arr)"/>
+          <rect x="45" y="349" width="150" height="30" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label" x="120" y="369" text-anchor="middle">Zahlungsart wählen</text>
+          <line x1="120" y1="379" x2="120" y2="389" stroke="#16242E" stroke-width="1.5" marker-end="url(#a-arr)"/>
+          <rect x="45" y="390" width="150" height="30" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label" x="120" y="410" text-anchor="middle">Kaufauftrag erstellen</text>
+          <!-- cross to Onlineshop -->
+          <line x1="195" y1="405" x2="285" y2="405" stroke="#16242E" stroke-width="1.5" marker-end="url(#a-arr)"/>
+          <rect x="285" y="390" width="150" height="30" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label" x="360" y="410" text-anchor="middle">Bestellung bestätigen</text>
+          <line x1="360" y1="420" x2="360" y2="430" stroke="#16242E" stroke-width="1.5" marker-end="url(#a-arr)"/>
+          <!-- fork -->
+          <rect x="285" y="430" width="150" height="6" fill="#16242E"/>
+          <line x1="333" y1="436" x2="333" y2="448" stroke="#16242E" stroke-width="1.5" marker-end="url(#a-arr)"/>
+          <line x1="412" y1="436" x2="412" y2="448" stroke="#16242E" stroke-width="1.5" marker-end="url(#a-arr)"/>
+          <rect x="287" y="449" width="92" height="30" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="333" y="468" text-anchor="middle">Rechnung erstellen</text>
+          <rect x="385" y="449" width="80" height="30" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="425" y="468" text-anchor="middle">Ware packen</text>
+          <line x1="333" y1="479" x2="333" y2="491" stroke="#16242E" stroke-width="1.5" marker-end="url(#a-arr)"/>
+          <line x1="412" y1="479" x2="412" y2="491" stroke="#16242E" stroke-width="1.5" marker-end="url(#a-arr)"/>
+          <!-- join -->
+          <rect x="285" y="491" width="150" height="6" fill="#16242E"/>
+          <line x1="360" y1="497" x2="360" y2="509" stroke="#16242E" stroke-width="1.5" marker-end="url(#a-arr)"/>
+          <rect x="285" y="510" width="150" height="30" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label" x="360" y="530" text-anchor="middle">Ware versenden</text>
+          <line x1="360" y1="540" x2="360" y2="551" stroke="#16242E" stroke-width="1.5" marker-end="url(#a-arr)"/>
+          <circle cx="360" cy="563" r="10" fill="#fff" stroke="#16242E" stroke-width="2"/>
+          <circle cx="360" cy="563" r="5" fill="#16242E"/>
+        </svg>
+        <figcaption>Swimlanes Kunde/Onlineshop · Entscheidung „Konto vorhanden?" mit Vereinigung · Gabelung Rechnung ‖ Ware packen mit Synchronisation.</figcaption>
+      </figure>
+      <span class="rubric-label">Prüf-Checkliste (auf deinem Blatt)</span>
+      <ul class="rubric">
+        <li>genau <strong>ein Startpunkt</strong> ● und <strong>ein Endpunkt</strong> ◉</li>
+        <li>zwei <strong>Verantwortungsbereiche</strong> (senkrechte Linie, je Bereich benannt)</li>
+        <li><strong>Entscheidungsraute</strong> mit Bedingungen <code>[ja]</code>/<code>[nein]</code> + <strong>Vereinigung</strong></li>
+        <li><strong>Gabelung</strong> (Balken) → Rechnung &amp; Ware packen parallel → <strong>Synchronisation</strong> (Balken)</li>
+        <li>jede Aktion im richtigen Bereich (Kaufauftrag = Kunde; Bestätigen/Packen/Versenden = Onlineshop)</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">12</span><span class="q-type">Zeichnen (Papier)</span><span class="q-pts">manuell</span></div>
+    <div class="q-body">
+      <p class="q-text"><strong>Geldautomat (mit Schleife &amp; Abbruch).</strong> Zeichnen Sie das Aktivitätsdiagramm nach dieser Beschreibung:</p>
+      <ul class="q-text" style="margin-top:-6px">
+        <li>Karte einführen, dann PIN eingeben.</li>
+        <li>Ist der PIN <strong>falsch</strong>, wird erneut nach dem PIN gefragt — aber <strong>höchstens 3 Versuche</strong>.</li>
+        <li>Nach dem 3. Fehlversuch wird die Karte eingezogen und der Vorgang <strong>abgebrochen</strong> (Flussende).</li>
+        <li>Bei <strong>korrektem</strong> PIN wird der Betrag gewählt; danach werden <strong>gleichzeitig</strong> Geld ausgegeben und ein Beleg gedruckt.</li>
+        <li>Zum Schluss wird die Karte ausgegeben.</li>
+      </ul>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
+      <figure class="diagram" style="background:#fff">
+        <svg viewBox="0 0 470 410" role="img" aria-label="Aktivitätsdiagramm Geldautomat mit PIN-Schleife, Abbruch und Parallelität">
+          <defs><marker id="b-arr" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#16242E"/></marker></defs>
+          <!-- start -->
+          <circle cx="230" cy="22" r="9" fill="#16242E"/>
+          <line x1="230" y1="31" x2="230" y2="43" stroke="#16242E" stroke-width="1.5" marker-end="url(#b-arr)"/>
+          <rect x="150" y="44" width="160" height="30" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label" x="230" y="63" text-anchor="middle">Karte einführen</text>
+          <line x1="230" y1="74" x2="230" y2="86" stroke="#16242E" stroke-width="1.5" marker-end="url(#b-arr)"/>
+          <rect x="150" y="87" width="160" height="30" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label" x="230" y="106" text-anchor="middle">PIN eingeben</text>
+          <line x1="230" y1="117" x2="230" y2="129" stroke="#16242E" stroke-width="1.5" marker-end="url(#b-arr)"/>
+          <!-- decision PIN korrekt -->
+          <polygon points="230,129 258,156 230,183 202,156" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="230" y="153" text-anchor="middle">PIN</text>
+          <text class="svg-label-sm" x="230" y="164" text-anchor="middle">korrekt?</text>
+          <!-- [ja] right -->
+          <line x1="258" y1="156" x2="320" y2="156" stroke="#16242E" stroke-width="1.5" marker-end="url(#b-arr)"/>
+          <text class="svg-label-sm" x="289" y="149" text-anchor="middle" fill="#15786E">[ja]</text>
+          <rect x="322" y="141" width="120" height="30" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="382" y="160" text-anchor="middle">Betrag wählen</text>
+          <line x1="382" y1="171" x2="382" y2="232" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="382" y1="232" x2="232" y2="232" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="230" y1="232" x2="230" y2="240" stroke="#16242E" stroke-width="1.5" marker-end="url(#b-arr)"/>
+          <!-- [nein] left to D2 -->
+          <line x1="202" y1="156" x2="150" y2="156" stroke="#16242E" stroke-width="1.5" marker-end="url(#b-arr)"/>
+          <text class="svg-label-sm" x="176" y="149" text-anchor="middle" fill="#B23E1F">[nein]</text>
+          <polygon points="112,134 136,156 112,178 88,156" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="112" y="153" text-anchor="middle">3.</text>
+          <text class="svg-label-sm" x="112" y="164" text-anchor="middle">Versuch?</text>
+          <!-- D2 [nein] loop up to PIN -->
+          <line x1="112" y1="134" x2="112" y2="102" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="112" y1="102" x2="150" y2="102" stroke="#16242E" stroke-width="1.5" marker-end="url(#b-arr)"/>
+          <text class="svg-label-sm" x="92" y="120" text-anchor="middle" fill="#15786E">[nein]</text>
+          <!-- D2 [ja] down to Karte einziehen + flow end -->
+          <line x1="112" y1="178" x2="112" y2="210" stroke="#16242E" stroke-width="1.5" marker-end="url(#b-arr)"/>
+          <text class="svg-label-sm" x="132" y="198" text-anchor="middle" fill="#B23E1F">[ja]</text>
+          <rect x="52" y="211" width="120" height="30" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="112" y="230" text-anchor="middle">Karte einziehen</text>
+          <line x1="112" y1="241" x2="112" y2="261" stroke="#16242E" stroke-width="1.5" marker-end="url(#b-arr)"/>
+          <circle cx="112" cy="274" r="11" fill="#fff" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="104" y1="266" x2="120" y2="282" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="120" y1="266" x2="104" y2="282" stroke="#16242E" stroke-width="1.5"/>
+          <!-- fork -->
+          <rect x="150" y="240" width="160" height="6" fill="#16242E"/>
+          <line x1="198" y1="246" x2="198" y2="258" stroke="#16242E" stroke-width="1.5" marker-end="url(#b-arr)"/>
+          <line x1="262" y1="246" x2="262" y2="258" stroke="#16242E" stroke-width="1.5" marker-end="url(#b-arr)"/>
+          <rect x="150" y="259" width="98" height="30" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="199" y="278" text-anchor="middle">Geld ausgeben</text>
+          <rect x="256" y="259" width="98" height="30" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="305" y="278" text-anchor="middle">Beleg drucken</text>
+          <line x1="198" y1="289" x2="198" y2="301" stroke="#16242E" stroke-width="1.5" marker-end="url(#b-arr)"/>
+          <line x1="262" y1="289" x2="262" y2="301" stroke="#16242E" stroke-width="1.5" marker-end="url(#b-arr)"/>
+          <!-- join -->
+          <rect x="150" y="301" width="160" height="6" fill="#16242E"/>
+          <line x1="230" y1="307" x2="230" y2="319" stroke="#16242E" stroke-width="1.5" marker-end="url(#b-arr)"/>
+          <rect x="150" y="320" width="160" height="30" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label" x="230" y="340" text-anchor="middle">Karte ausgeben</text>
+          <line x1="230" y1="350" x2="230" y2="361" stroke="#16242E" stroke-width="1.5" marker-end="url(#b-arr)"/>
+          <circle cx="230" cy="373" r="10" fill="#fff" stroke="#16242E" stroke-width="2"/>
+          <circle cx="230" cy="373" r="5" fill="#16242E"/>
+        </svg>
+        <figcaption>Schleife: PIN-Wiederholung über die Entscheidung „3. Versuch?" · Flussende ⊗ bei Abbruch · Gabelung Geld ‖ Beleg.</figcaption>
+      </figure>
+      <span class="rubric-label">Prüf-Checkliste (auf deinem Blatt)</span>
+      <ul class="rubric">
+        <li><strong>Schleife</strong>: Pfad „PIN falsch &amp; noch Versuche" führt zurück zu „PIN eingeben"</li>
+        <li><strong>verschachtelte Entscheidung</strong>: „PIN korrekt?" und „3. Versuch?"</li>
+        <li><strong>Flussende ⊗</strong> nach „Karte einziehen" (Abbruch, kein normales Ende)</li>
+        <li><strong>Gabelung</strong> Geld ausgeben ‖ Beleg drucken → <strong>Synchronisation</strong></li>
+        <li>genau ein Startpunkt ● und ein regulärer Endpunkt ◉ (Karte ausgeben)</li>
+      </ul>
+    </div>
+  </article>
+
   <!-- ============ Vertiefung ============ -->
   <div class="sec-head"><span class="ix">🔬</span><h2>🔬 [Vertiefung]</h2></div>
   <p class="sec-sub">Weiterführende Notation und Abgrenzung zu anderen Diagrammen.</p>
 
   <article class="q">
-    <div class="q-head"><span class="q-num">11</span><span class="q-type">Multiple Choice</span><span class="q-pts">Auto</span></div>
+    <div class="q-head"><span class="q-num">13</span><span class="q-type">Multiple Choice</span><span class="q-pts">Auto</span></div>
     <div class="q-body">
       <p class="q-text">Was kennzeichnet ein <strong>Verantwortungsbereich</strong> (Swimlane) im Aktivitätsdiagramm?</p>
       <ul class="q-options" data-multi="false">
@@ -405,7 +650,7 @@ Console.WriteLine("Zahlungsdaten eingeben");</code></pre>
   </article>
 
   <article class="q">
-    <div class="q-head"><span class="q-num">12</span><span class="q-type">Multiple Choice</span><span class="q-pts">Auto</span></div>
+    <div class="q-head"><span class="q-num">14</span><span class="q-type">Multiple Choice</span><span class="q-pts">Auto</span></div>
     <div class="q-body">
       <p class="q-text">Aktivitätsdiagramm, PAP (Programmablaufplan) und Struktogramm haben gemeinsam, dass sie …</p>
       <ul class="q-options" data-multi="false">
@@ -431,5 +676,6 @@ Console.WriteLine("Zahlungsdaten eingeben");</code></pre>
 <footer class="foot"><div class="wrap"><span class="mono">AEuP C# · Thema 03 — UML-Aktivitätsdiagramm</span> · Kerninhalt</div></footer>
 <script src="assets/quiz.js"></script>
 <script src="assets/code.js"></script>
+<script src="assets/store.js"></script>
 </body>
 </html>

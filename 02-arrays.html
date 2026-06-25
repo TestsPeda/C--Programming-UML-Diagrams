@@ -6,6 +6,7 @@
 <title>02 · Arrays — AEuP C#</title>
 <link rel="stylesheet" href="assets/style.css">
 <link rel="stylesheet" href="assets/code.css">
+<link rel="stylesheet" href="assets/print.css">
 </head>
 <body>
 <header class="topbar">
@@ -15,6 +16,7 @@
     <a href="02-arrays.html" class="current">02 Arrays</a>
     <a href="03-uml-aktivitaetsdiagramm.html">03 UML</a>
     <a href="lernseite.html">Lernen</a>
+    <a href="pruefung.html">Probe-SA</a>
   </nav>
   <div class="spacer"></div>
   <span class="scorechip" id="scorechip">Auto-Fragen: 0/0 richtig</span>
@@ -28,9 +30,9 @@
     <p class="lede">Mehrere Werte unter einem Namen: eindimensionale Arrays (Listen), mehrdimensionale Arrays (Tabellen),
       Zugriff über Indizes und das Abfragen der Länge. Mit der SA-Aufgabe „Chaos-Lager".</p>
     <div class="hero-meta">
-      <span class="pill"><b>13</b> Aufgaben</span>
+      <span class="pill"><b>19</b> Aufgaben</span>
       <span class="pill"><b>2</b> Diagramme</span>
-      <span class="pill">MC · Multi-Select · Rechnen · Programmieren</span>
+      <span class="pill">MC · Multi-Select · Rechnen · 7× Programmieren</span>
     </div>
   </section>
 
@@ -271,7 +273,10 @@ Array-Index:       lager[2 - 1, 3 - 1] = lager[1, 2]   // 0-basiert</div>
       <p class="q-text"><strong>Chaos-Lager.</strong> Erfassen Sie die Produkte eines Lagers (3 Zeilen × 4 Spalten) in einem mehrdimensionalen Array.
         Der Benutzer gibt eine Zeile (1–3) und Spalte (1–4) ein; das Programm gibt das zugehörige Produkt aus.
         <em>Für Schnelle:</em> Wird ein Produkt aus der ersten Zeile gewählt, soll zusätzlich „Produkte im Angebot" erscheinen.</p>
-      <textarea class="code-input" rows="14" placeholder="// Dein C#-Code …" data-task="chaos-lager"></textarea>
+      <p class="q-text"><strong>Erweiterung (schwerer):</strong> (1) <strong>Prüfen</strong> Sie die Eingabe — liegt Zeile/Spalte außerhalb 1–3 bzw. 1–4,
+        geben Sie eine Fehlermeldung aus statt abzustürzen. (2) <strong>Umgekehrte Suche:</strong> Der Benutzer gibt einen Produktnamen ein;
+        durchsuchen Sie das gesamte Lager mit einer <em>verschachtelten Schleife</em> und geben Sie Zeile/Spalte aus (oder „nicht gefunden").</p>
+      <textarea class="code-input" rows="18" placeholder="// Dein C#-Code …" data-task="chaos-lager"></textarea>
     </div>
     <div class="q-foot">
       <button class="q-copyprompt">KI-Bewertungs-Prompt kopieren</button>
@@ -288,8 +293,11 @@ Bewerte den folgenden Code anhand dieser Kriterien und gib konkretes, freundlich
 - Indexumrechnung: vom 1-basierten Eingabewert wird 1 abgezogen (lager[zeile-1, spalte-1])
 - korrektes Produkt wird ausgegeben
 - Für-Schnelle-Bonus: erste Zeile (Eingabe zeile == 1) -> "Produkte im Angebot"
-- (optional) Gültigkeitsprüfung der Eingabe (1-3 bzw. 1-4)
 - strukturierte Darstellung und sinnvolle Kommentare
+
+Erweiterung (schwerer), falls umgesetzt:
+- Gültigkeitsprüfung: Zeile 1-3 / Spalte 1-4, sonst Fehlermeldung statt Absturz (IndexOutOfRange vermeiden)
+- umgekehrte Suche: Produktname wird im gesamten 2D-Array mit verschachtelter Schleife gesucht, Zeile/Spalte (oder "nicht gefunden") ausgegeben
 
 Hier ist mein Code:
 ```csharp
@@ -320,6 +328,32 @@ Console.WriteLine($"Produkt: {produkt}");
 // Für Schnelle: erste Zeile = Angebot
 if (zeile == 1)
     Console.WriteLine("Produkte im Angebot");</code></pre>
+      <p><strong>Erweiterung (schwerer) — Eingabeprüfung + umgekehrte Suche:</strong></p>
+<pre><code>// (1) Gültigkeitsprüfung VOR dem Zugriff
+if (zeile &lt; 1 || zeile &gt; 3 || spalte &lt; 1 || spalte &gt; 4)
+{
+    Console.WriteLine("Ungültige Eingabe (Zeile 1-3, Spalte 1-4)!");
+}
+else
+{
+    Console.WriteLine($"Produkt: {lager[zeile - 1, spalte - 1]}");
+}
+
+// (2) Umgekehrte Suche: Produktname -> Position (verschachtelte Schleife)
+Console.Write("Produkt suchen: ");
+string suche = Console.ReadLine();
+bool gefunden = false;
+
+for (int z = 0; z &lt; lager.GetLength(0); z++)
+    for (int s = 0; s &lt; lager.GetLength(1); s++)
+        if (lager[z, s] == suche)
+        {
+            Console.WriteLine($"'{suche}' steht in Zeile {z + 1}, Spalte {s + 1}.");
+            gefunden = true;
+        }
+
+if (!gefunden)
+    Console.WriteLine($"'{suche}' wurde nicht gefunden.");</code></pre>
       <span class="rubric-label">Bewertungs-Checkliste</span>
       <ul class="rubric">
         <li>2D-Array <code>string[,]</code> korrekt deklariert &amp; mit 3×4 Produkten befüllt</li>
@@ -327,9 +361,9 @@ if (zeile == 1)
         <li>Indexumrechnung <code>lager[zeile-1, spalte-1]</code> korrekt</li>
         <li>zugehöriges Produkt korrekt ausgegeben</li>
         <li>Für-Schnelle: erste Zeile → „Produkte im Angebot"</li>
-        <li>strukturierte Darstellung &amp; sinnvolle Kommentare</li>
+        <li><em>Erweiterung:</em> Gültigkeitsprüfung verhindert <code>IndexOutOfRangeException</code></li>
+        <li><em>Erweiterung:</em> umgekehrte Suche mit verschachtelter Schleife (Zeile/Spalte zurück, 1-basiert)</li>
       </ul>
-      <p class="note"><span class="lbl">Hinweis</span> Robuster wäre zusätzlich eine Prüfung, ob <code>zeile</code> in 1–3 und <code>spalte</code> in 1–4 liegen, sonst droht eine <code>IndexOutOfRangeException</code>.</p>
     </div>
   </article>
 
@@ -351,12 +385,230 @@ if (zeile == 1)
     </div>
   </article>
 
+  <!-- ============ Abschnitt D: Programmieraufgaben der Übungsblätter ============ -->
+  <div class="sec-head"><span class="ix">D</span><h2>Programmieraufgaben (Übungs-Arbeitsblätter)</h2></div>
+  <p class="sec-sub">Die Lotto- und Kinosaal-Aufträge der Arbeitsblätter — getaggt nach Quelle. (Chaos-Lager siehe Aufgabe 10.)</p>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">12</span><span class="q-type">Programmieren</span><span class="q-src">AB Lotto</span><span class="q-pts">Selbsttest</span></div>
+    <div class="q-body">
+      <p class="q-text"><strong>Lotto.</strong> Schreiben Sie 6 Zufallszahlen zwischen 1 und 49 mit einer <code>for</code>-Schleife in das Array
+        <code>lotto</code> und geben Sie sie in einer zweiten <code>for</code>-Schleife aus.</p>
+      <textarea class="code-input" rows="10" placeholder="// Dein C#-Code …" data-task="lotto"></textarea>
+    </div>
+    <div class="q-foot"><button class="q-copyprompt">KI-Bewertungs-Prompt kopieren</button><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <template class="prompt-tpl">Bewerte als Informatik-Lehrkraft diesen C#-Code. Aufgabe: 6 Zufallszahlen 1-49 mit for-Schleife in ein int-Array schreiben und mit einer zweiten for-Schleife ausgeben. Kriterien: Random.Next(1,50), Array Länge 6, Schleifen mit i<Length. Code:
+```csharp
+{{CODE}}
+```
+Sag, ob die Aufgabe erfüllt ist, dann nenne Verbesserungen.</template>
+    <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
+<pre><code>using System;
+
+Random ziehen = new Random();
+int[] lotto = new int[6];
+
+for (int i = 0; i &lt; lotto.Length; i++)
+    lotto[i] = ziehen.Next(1, 50);   // 1..49 (50 exklusiv)
+
+for (int i = 0; i &lt; lotto.Length; i++)
+    Console.WriteLine($"Zahl {i + 1}: {lotto[i]}");</code></pre>
+      <span class="rubric-label">Bewertungs-Checkliste</span>
+      <ul class="rubric"><li><code>ziehen.Next(1, 50)</code> → 1–49</li><li>Array der Länge 6, Schleifen <code>i &lt; lotto.Length</code></li></ul>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">13</span><span class="q-type">Programmieren</span><span class="q-src">AB Lotto</span><span class="q-pts">Selbsttest</span></div>
+    <div class="q-body">
+      <p class="q-text"><strong>LottoZusatzzahl.</strong> Erweitern Sie das Array um <em>ein</em> Feld für eine Superzahl (0–9). Geben Sie die
+        6 Zahlen und die Superzahl aus.</p>
+      <textarea class="code-input" rows="11" placeholder="// Dein C#-Code …" data-task="lotto-zusatz"></textarea>
+    </div>
+    <div class="q-foot"><button class="q-copyprompt">KI-Bewertungs-Prompt kopieren</button><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <template class="prompt-tpl">Bewerte als Informatik-Lehrkraft diesen C#-Code. Aufgabe: Lotto-Array um ein Feld für eine Superzahl (0-9) vergrößern; 6 Zahlen (1-49) plus Superzahl ausgeben. Kriterien: Array Länge 7, Superzahl Next(0,10), getrennte Ausgabe. Code:
+```csharp
+{{CODE}}
+```
+Sag, ob die Aufgabe erfüllt ist, dann nenne Verbesserungen.</template>
+    <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
+<pre><code>using System;
+
+Random ziehen = new Random();
+int[] lotterie = new int[7];          // 6 Zahlen + 1 Superzahl
+
+for (int i = 0; i &lt; 6; i++)
+    lotterie[i] = ziehen.Next(1, 50);
+
+lotterie[6] = ziehen.Next(0, 10);     // Superzahl 0..9
+
+for (int i = 0; i &lt; 6; i++)
+    Console.WriteLine($"Zahl {i + 1}: {lotterie[i]}");
+Console.WriteLine($"Superzahl: {lotterie[6]}");</code></pre>
+      <span class="rubric-label">Bewertungs-Checkliste</span>
+      <ul class="rubric"><li>Array um ein Feld größer (Länge 7)</li><li>Superzahl <code>Next(0, 10)</code> → 0–9</li></ul>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">14</span><span class="q-type">Programmieren</span><span class="q-src">AB Lotto</span><span class="q-pts">Selbsttest</span></div>
+    <div class="q-body">
+      <p class="q-text"><strong>LottoTreffer.</strong> Lassen Sie 6 Zahlen tippen, vergleichen Sie sie mit 6 gezogenen Zahlen und geben Sie die
+        Anzahl der richtigen aus.</p>
+      <textarea class="code-input" rows="13" placeholder="// Dein C#-Code …" data-task="lotto-treffer"></textarea>
+    </div>
+    <div class="q-foot"><button class="q-copyprompt">KI-Bewertungs-Prompt kopieren</button><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <template class="prompt-tpl">Bewerte als Informatik-Lehrkraft diesen C#-Code. Aufgabe: 6 Zahlen tippen lassen, mit 6 gezogenen vergleichen, Anzahl Treffer ausgeben. Kriterien: zwei Arrays, verschachtelte Schleife zum Vergleich, Trefferzähler. Code:
+```csharp
+{{CODE}}
+```
+Sag, ob die Aufgabe erfüllt ist, dann nenne Verbesserungen.</template>
+    <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
+<pre><code>using System;
+
+Random ziehen = new Random();
+int[] lotto = new int[6];
+int[] tipp  = new int[6];
+
+for (int i = 0; i &lt; 6; i++) lotto[i] = ziehen.Next(1, 50);
+
+for (int i = 0; i &lt; 6; i++)
+{
+    Console.Write($"Tipp {i + 1}: ");
+    tipp[i] = Convert.ToInt32(Console.ReadLine());
+}
+
+int treffer = 0;
+for (int i = 0; i &lt; 6; i++)
+    for (int j = 0; j &lt; 6; j++)
+        if (tipp[i] == lotto[j]) treffer++;
+
+Console.WriteLine($"Gezogen: {string.Join(", ", lotto)}");
+Console.WriteLine($"Treffer: {treffer}");</code></pre>
+      <span class="rubric-label">Bewertungs-Checkliste</span>
+      <ul class="rubric"><li>zwei Arrays (gezogen + getippt)</li><li>verschachtelte Schleife für den Vergleich</li><li>Trefferzähler korrekt</li></ul>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">15</span><span class="q-type">Programmieren</span><span class="q-src">AB Lotto · schwer</span><span class="q-pts">Selbsttest</span></div>
+    <div class="q-body">
+      <p class="q-text"><strong>LottoDuplikatsprüfer (für Schnelle).</strong> Ziehen Sie 6 Zahlen, in denen <em>keine</em> Zahl doppelt vorkommt.
+        Tipp: pro neue Zahl mit den bereits gezogenen vergleichen und ggf. neu ziehen.</p>
+      <textarea class="code-input" rows="14" placeholder="// Dein C#-Code …" data-task="lotto-duplikat"></textarea>
+    </div>
+    <div class="q-foot"><button class="q-copyprompt">KI-Bewertungs-Prompt kopieren</button><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <template class="prompt-tpl">Bewerte als Informatik-Lehrkraft diesen C#-Code. Aufgabe: 6 Lottozahlen ohne Duplikate ziehen. Pro neue Zahl mit bereits gezogenen vergleichen, bei Dopplung neu ziehen. Kriterien: do-while/while zum Neuziehen, innere Schleife vergleicht nur die bereits belegten Felder (Index 0..i-1). Code:
+```csharp
+{{CODE}}
+```
+Sag, ob die Aufgabe erfüllt ist, dann nenne Verbesserungen.</template>
+    <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
+<pre><code>using System;
+
+Random ziehen = new Random();
+int[] lotto = new int[6];
+
+for (int i = 0; i &lt; lotto.Length; i++)
+{
+    int zahl;
+    bool doppelt;
+    do
+    {
+        zahl = ziehen.Next(1, 50);
+        doppelt = false;
+        for (int j = 0; j &lt; i; j++)        // nur bereits gezogene prüfen
+            if (lotto[j] == zahl) doppelt = true;
+    }
+    while (doppelt);
+
+    lotto[i] = zahl;
+}
+
+Console.WriteLine(string.Join(", ", lotto));</code></pre>
+      <span class="rubric-label">Bewertungs-Checkliste</span>
+      <ul class="rubric"><li><code>do-while</code> zieht bei Dopplung neu</li><li>innere Schleife vergleicht nur Index <code>0..i-1</code></li><li>Ergebnis enthält keine doppelten Zahlen</li></ul>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">16</span><span class="q-type">Programmieren</span><span class="q-src">AB Kinosaal</span><span class="q-pts">Selbsttest</span></div>
+    <div class="q-body">
+      <p class="q-text"><strong>Kinosaal.</strong> Legen Sie ein <code>bool</code>-Array mit 2 Reihen × 6 Plätzen an. Belegen Sie Plätze zufällig
+        (Zufallszahl 0/1 → bei 1 <code>true</code>) und geben Sie die Belegung zum Testen aus.</p>
+      <textarea class="code-input" rows="13" placeholder="// Dein C#-Code …" data-task="kinosaal"></textarea>
+    </div>
+    <div class="q-foot"><button class="q-copyprompt">KI-Bewertungs-Prompt kopieren</button><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <template class="prompt-tpl">Bewerte als Informatik-Lehrkraft diesen C#-Code. Aufgabe: bool[2,6] Kinosaal. Plätze zufällig belegen (Next(0,2)==1 -> true), Belegung ausgeben. Kriterien: bool[,] korrekt, verschachtelte Schleifen mit GetLength(0)/GetLength(1). Code:
+```csharp
+{{CODE}}
+```
+Sag, ob die Aufgabe erfüllt ist, dann nenne Verbesserungen.</template>
+    <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
+<pre><code>using System;
+
+Random ziehen = new Random();
+bool[,] kinosaal = new bool[2, 6];
+
+for (int z = 0; z &lt; kinosaal.GetLength(0); z++)
+    for (int s = 0; s &lt; kinosaal.GetLength(1); s++)
+        if (ziehen.Next(0, 2) == 1)
+            kinosaal[z, s] = true;        // Platz belegt
+
+for (int z = 0; z &lt; kinosaal.GetLength(0); z++)
+{
+    for (int s = 0; s &lt; kinosaal.GetLength(1); s++)
+        Console.Write(kinosaal[z, s] + " ");
+    Console.WriteLine();
+}</code></pre>
+      <span class="rubric-label">Bewertungs-Checkliste</span>
+      <ul class="rubric"><li><code>bool[,] = new bool[2, 6]</code></li><li>Zufall <code>Next(0, 2) == 1</code> → <code>true</code></li><li>verschachtelte Schleifen über <code>GetLength(0/1)</code></li></ul>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">17</span><span class="q-type">Programmieren</span><span class="q-src">AB Kinosaal · schwer</span><span class="q-pts">Selbsttest</span></div>
+    <div class="q-body">
+      <p class="q-text"><strong>Belegungsplan formatieren (für Schnelle).</strong> Geben Sie den Saal mit Reihen-/Platzbeschriftung aus:
+        belegt = <code>x</code>, frei = <code>-</code>. Nutzen Sie <code>\t</code> (Tabulator) zur Ausrichtung.</p>
+      <textarea class="code-input" rows="14" placeholder="// Dein C#-Code …" data-task="kinosaal-format"></textarea>
+    </div>
+    <div class="q-foot"><button class="q-copyprompt">KI-Bewertungs-Prompt kopieren</button><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <template class="prompt-tpl">Bewerte als Informatik-Lehrkraft diesen C#-Code. Aufgabe: Kinosaal-Belegung formatiert ausgeben mit Reihen-/Platzbeschriftung, belegt=x, frei=-, Tabulator \t zur Ausrichtung. Kriterien: Kopfzeile mit Platznummern, je Reihe Beschriftung + x/- über bedingte Ausgabe, \t genutzt. Code:
+```csharp
+{{CODE}}
+```
+Sag, ob die Aufgabe erfüllt ist, dann nenne Verbesserungen.</template>
+    <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
+<pre><code>using System;
+
+Random ziehen = new Random();
+bool[,] kinosaal = new bool[2, 6];
+for (int z = 0; z &lt; 2; z++)
+    for (int s = 0; s &lt; 6; s++)
+        kinosaal[z, s] = ziehen.Next(0, 2) == 1;
+
+Console.WriteLine("\tPlatz");
+Console.WriteLine("\t1\t2\t3\t4\t5\t6");
+
+for (int z = 0; z &lt; kinosaal.GetLength(0); z++)
+{
+    Console.Write($"{z + 1}. Reihe");
+    for (int s = 0; s &lt; kinosaal.GetLength(1); s++)
+        Console.Write("\t" + (kinosaal[z, s] ? "x" : "-"));
+    Console.WriteLine();
+}</code></pre>
+      <span class="rubric-label">Bewertungs-Checkliste</span>
+      <ul class="rubric"><li>Kopfzeile mit Platznummern</li><li>belegt → <code>x</code>, frei → <code>-</code> (Bedingung)</li><li><code>\t</code> zur Ausrichtung</li></ul>
+    </div>
+  </article>
+
   <!-- ============ Vertiefung ============ -->
   <div class="sec-head"><span class="ix">🔬</span><h2>🔬 [Vertiefung]</h2></div>
   <p class="sec-sub">Weiterführendes rund um Arrays — über den Kern-Prüfungsstoff hinaus.</p>
 
   <article class="q">
-    <div class="q-head"><span class="q-num">12</span><span class="q-type">Multiple Choice</span><span class="q-pts">Auto</span></div>
+    <div class="q-head"><span class="q-num">18</span><span class="q-type">Multiple Choice</span><span class="q-pts">Auto</span></div>
     <div class="q-body">
       <p class="q-text">Was ist ein <strong>jagged array</strong> (<code>int[][]</code>) im Unterschied zum rechteckigen <code>int[,]</code>?</p>
       <ul class="q-options" data-multi="false">
@@ -374,7 +626,7 @@ if (zeile == 1)
   </article>
 
   <article class="q">
-    <div class="q-head"><span class="q-num">13</span><span class="q-type">Szenario</span><span class="q-pts">manuell</span></div>
+    <div class="q-head"><span class="q-num">19</span><span class="q-type">Szenario</span><span class="q-pts">manuell</span></div>
     <div class="q-body">
       <p class="q-text">Wie durchläuft man <em>alle</em> Plätze eines 2D-Saals <code>int[,] saal</code> und zählt die belegten (Wert <code>1</code>)?
         Skizzieren Sie die verschachtelte Schleife.</p>
@@ -400,5 +652,6 @@ for (int z = 0; z &lt; saal.GetLength(0); z++)       // Zeilen
 <footer class="foot"><div class="wrap"><span class="mono">AEuP C# · Thema 02 — Arrays</span> · Kerninhalt</div></footer>
 <script src="assets/quiz.js"></script>
 <script src="assets/code.js"></script>
+<script src="assets/store.js"></script>
 </body>
 </html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Probe-SA — AEuP C#</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/code.css">
+<link rel="stylesheet" href="assets/print.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="mark">AEuP·C#</span><b>SA-Vorbereitung</b></a>
+  <nav class="topnav">
+    <a href="01-grundlagen.html">01 Grundlagen</a>
+    <a href="02-arrays.html">02 Arrays</a>
+    <a href="03-uml-aktivitaetsdiagramm.html">03 UML</a>
+    <a href="lernseite.html">Lernen</a>
+    <a href="pruefung.html" class="current">Probe-SA</a>
+  </nav>
+  <div class="spacer"></div>
+  <span class="scorechip">Prüfungssimulation</span>
+</header>
+<main><div class="wrap">
+
+  <section class="hero">
+    <p class="eyebrow">Prüfungssimulation</p>
+    <h1>Probe-SA</h1>
+    <p class="lede">15 Fragen quer über alle drei Themen, 30 Minuten Zeit. Antworten auswählen, am Ende <strong>abgeben</strong> —
+      dann erscheinen Punktzahl, Zeit und alle Lösungen. Deine Ergebnisse werden lokal gespeichert.</p>
+  </section>
+
+  <div class="exam-bar">
+    <span class="lbl">Verbleibend</span>
+    <span class="clock" id="timer">30:00</span>
+    <div class="spacer"></div>
+    <button class="btn primary" id="submit-btn" type="button">Abgeben &amp; auswerten</button>
+  </div>
+
+  <div id="result" hidden></div>
+
+  <!-- ===== Grundlagen ===== -->
+  <article class="q exam-q" data-answer="1">
+    <div class="q-head"><span class="q-num">01</span><span class="q-type">Grundlagen</span><span class="q-pts">1 P</span></div>
+    <div class="q-body"><p class="q-text">Welchen Datentyp liefert <code>Console.ReadLine()</code>?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt"><span class="tick"></span><code>int</code></li>
+        <li class="opt"><span class="tick"></span><code>string</code></li>
+        <li class="opt"><span class="tick"></span><code>double</code></li>
+        <li class="opt"><span class="tick"></span>den passenden Typ automatisch</li>
+      </ul>
+    </div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span><p><code>string</code> — vor dem Rechnen konvertieren (<code>Convert.ToInt32(...)</code>).</p></div>
+  </article>
+
+  <article class="q exam-q" data-answer="1">
+    <div class="q-head"><span class="q-num">02</span><span class="q-type">Grundlagen</span><span class="q-pts">1 P</span></div>
+    <div class="q-body"><p class="q-text">Was ergibt <code>7 / 2</code> bei zwei <code>int</code>-Operanden?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt"><span class="tick"></span><code>3.5</code></li>
+        <li class="opt"><span class="tick"></span><code>3</code></li>
+        <li class="opt"><span class="tick"></span><code>4</code></li>
+        <li class="opt"><span class="tick"></span>Kompilierfehler</li>
+      </ul>
+    </div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span><p>Ganzzahldivision → <code>3</code> (Nachkomma fällt weg). Für <code>3.5</code> muss ein Operand <code>double</code> sein.</p></div>
+  </article>
+
+  <article class="q exam-q" data-answer="2">
+    <div class="q-head"><span class="q-num">03</span><span class="q-type">Grundlagen</span><span class="q-pts">1 P</span></div>
+    <div class="q-body"><p class="q-text">Welcher Typ passt am besten für einen Geldbetrag?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt"><span class="tick"></span><code>int</code></li>
+        <li class="opt"><span class="tick"></span><code>double</code></li>
+        <li class="opt"><span class="tick"></span><code>decimal</code></li>
+        <li class="opt"><span class="tick"></span><code>string</code></li>
+      </ul>
+    </div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span><p><code>decimal</code> — dezimal-genau, keine Rundungsfehler (Suffix <code>m</code>).</p></div>
+  </article>
+
+  <article class="q exam-q" data-answer="0">
+    <div class="q-head"><span class="q-num">04</span><span class="q-type">Grundlagen</span><span class="q-pts">1 P</span></div>
+    <div class="q-body"><p class="q-text">Welche Schleife passt, wenn die Anzahl der Wiederholungen vorab feststeht?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt"><span class="tick"></span><code>for</code></li>
+        <li class="opt"><span class="tick"></span><code>while</code></li>
+        <li class="opt"><span class="tick"></span><code>do-while</code></li>
+        <li class="opt"><span class="tick"></span><code>switch</code></li>
+      </ul>
+    </div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span><p><code>for</code> — Startwert, Bedingung und Schritt in einer Zeile.</p></div>
+  </article>
+
+  <article class="q exam-q" data-answer="1">
+    <div class="q-head"><span class="q-num">05</span><span class="q-type">Grundlagen</span><span class="q-pts">1 P</span></div>
+    <div class="q-body"><p class="q-text">Wozu dient <code>break;</code> in einem <code>switch</code>?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt"><span class="tick"></span>beendet das Programm</li>
+        <li class="opt"><span class="tick"></span>verlässt den <code>switch</code>, kein Durchfallen in den nächsten <code>case</code></li>
+        <li class="opt"><span class="tick"></span>springt zum Schleifenanfang</li>
+        <li class="opt"><span class="tick"></span>hat keine Wirkung</li>
+      </ul>
+    </div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span><p>Es verlässt den <code>switch</code> nach dem passenden <code>case</code>.</p></div>
+  </article>
+
+  <article class="q exam-q" data-answer="1">
+    <div class="q-head"><span class="q-num">06</span><span class="q-type">Grundlagen</span><span class="q-pts">1 P</span></div>
+    <div class="q-body"><p class="q-text">Wie prüft man, ob <code>z</code> ein Vielfaches von 5 ist?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt"><span class="tick"></span><code>z / 5 == 0</code></li>
+        <li class="opt"><span class="tick"></span><code>z % 5 == 0</code></li>
+        <li class="opt"><span class="tick"></span><code>z % 5 == 1</code></li>
+        <li class="opt"><span class="tick"></span><code>z * 5 == 0</code></li>
+      </ul>
+    </div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span><p><code>z % 5 == 0</code> — der Rest ist 0.</p></div>
+  </article>
+
+  <!-- ===== Arrays ===== -->
+  <article class="q exam-q" data-answer="1">
+    <div class="q-head"><span class="q-num">07</span><span class="q-type">Arrays</span><span class="q-pts">1 P</span></div>
+    <div class="q-body"><p class="q-text">Welchen Index hat das erste Element eines Arrays?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt"><span class="tick"></span><code>1</code></li>
+        <li class="opt"><span class="tick"></span><code>0</code></li>
+        <li class="opt"><span class="tick"></span><code>-1</code></li>
+        <li class="opt"><span class="tick"></span>frei wählbar</li>
+      </ul>
+    </div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span><p>0-basiert: erstes Element <code>[0]</code>, letztes <code>[Length-1]</code>.</p></div>
+  </article>
+
+  <article class="q exam-q" data-answer="1">
+    <div class="q-head"><span class="q-num">08</span><span class="q-type">Arrays</span><span class="q-pts">1 P</span></div>
+    <div class="q-body"><p class="q-text">Wie deklariert man ein 2D-Array mit 3 Zeilen und 4 Spalten (<code>string</code>)?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt"><span class="tick"></span><code>string[] m = new string[3][4];</code></li>
+        <li class="opt"><span class="tick"></span><code>string[,] m = new string[3, 4];</code></li>
+        <li class="opt"><span class="tick"></span><code>string[3,4] m;</code></li>
+        <li class="opt"><span class="tick"></span><code>string m = new string[3, 4];</code></li>
+      </ul>
+    </div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span><p>Komma-Syntax: <code>string[,]</code> und <code>new string[3, 4]</code>.</p></div>
+  </article>
+
+  <article class="q exam-q" data-answer="2">
+    <div class="q-head"><span class="q-num">09</span><span class="q-type">Arrays</span><span class="q-pts">1 P</span></div>
+    <div class="q-body"><p class="q-text">Womit ermittelt man die Anzahl der <em>Spalten</em> eines 2D-Arrays <code>m</code>?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt"><span class="tick"></span><code>m.Length</code></li>
+        <li class="opt"><span class="tick"></span><code>m.GetLength(0)</code></li>
+        <li class="opt"><span class="tick"></span><code>m.GetLength(1)</code></li>
+        <li class="opt"><span class="tick"></span><code>m.Columns</code></li>
+      </ul>
+    </div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span><p><code>GetLength(1)</code> = Spalten, <code>GetLength(0)</code> = Zeilen.</p></div>
+  </article>
+
+  <article class="q exam-q" data-answer="2">
+    <div class="q-head"><span class="q-num">10</span><span class="q-type">Arrays</span><span class="q-pts">1 P</span></div>
+    <div class="q-body"><p class="q-text">Wie viele Plätze hat <code>int[,] saal = new int[10, 15];</code> insgesamt?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt"><span class="tick"></span>25</li>
+        <li class="opt"><span class="tick"></span>10</li>
+        <li class="opt"><span class="tick"></span>150</li>
+        <li class="opt"><span class="tick"></span>15</li>
+      </ul>
+    </div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span><p>10 × 15 = 150 (Zeilen × Spalten).</p></div>
+  </article>
+
+  <article class="q exam-q" data-answer="1">
+    <div class="q-head"><span class="q-num">11</span><span class="q-type">Arrays</span><span class="q-pts">1 P</span></div>
+    <div class="q-body"><p class="q-text">Eingabe Zeile <code>1</code>, Spalte <code>1</code> (1-basiert). Welcher Array-Zugriff ist richtig?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt"><span class="tick"></span><code>lager[1, 1]</code></li>
+        <li class="opt"><span class="tick"></span><code>lager[0, 0]</code></li>
+        <li class="opt"><span class="tick"></span><code>lager[1][1]</code></li>
+        <li class="opt"><span class="tick"></span><code>lager(0, 0)</code></li>
+      </ul>
+    </div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span><p>1-basiert minus 1 → <code>[0, 0]</code>; 2D mit Komma.</p></div>
+  </article>
+
+  <!-- ===== UML ===== -->
+  <article class="q exam-q" data-answer="1">
+    <div class="q-head"><span class="q-num">12</span><span class="q-type">UML</span><span class="q-pts">1 P</span></div>
+    <div class="q-body"><p class="q-text">Womit wird eine <strong>Aktion</strong> dargestellt?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt"><span class="tick"></span>Raute</li>
+        <li class="opt"><span class="tick"></span>abgerundetes Rechteck</li>
+        <li class="opt"><span class="tick"></span>ausgefüllter Kreis</li>
+        <li class="opt"><span class="tick"></span>dicker Balken</li>
+      </ul>
+    </div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span><p>Abgerundetes Rechteck mit dem Tätigkeitsnamen.</p></div>
+  </article>
+
+  <article class="q exam-q" data-answer="1">
+    <div class="q-head"><span class="q-num">13</span><span class="q-type">UML</span><span class="q-pts">1 P</span></div>
+    <div class="q-body"><p class="q-text">Wofür steht der ausgefüllte Kreis <em>mit Ring</em> (◉)?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt"><span class="tick"></span>Startpunkt</li>
+        <li class="opt"><span class="tick"></span>Endpunkt der Aktivität</li>
+        <li class="opt"><span class="tick"></span>Entscheidungsknoten</li>
+        <li class="opt"><span class="tick"></span>Gabelung</li>
+      </ul>
+    </div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span><p>Endpunkt. Der Start ist der ausgefüllte Kreis <em>ohne</em> Ring.</p></div>
+  </article>
+
+  <article class="q exam-q" data-answer="0">
+    <div class="q-head"><span class="q-num">14</span><span class="q-type">UML</span><span class="q-pts">1 P</span></div>
+    <div class="q-body"><p class="q-text">Was bewirkt eine <strong>Gabelung</strong> (Balken)?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt"><span class="tick"></span>teilt den Fluss in <em>parallele</em> Teilflüsse</li>
+        <li class="opt"><span class="tick"></span>wählt je Bedingung genau einen Pfad</li>
+        <li class="opt"><span class="tick"></span>beendet die Aktivität</li>
+        <li class="opt"><span class="tick"></span>kennzeichnet eine Bedingung</li>
+      </ul>
+    </div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span><p>Gabelung = parallel (sowohl als auch). Die Entscheidung (Raute) = entweder/oder.</p></div>
+  </article>
+
+  <article class="q exam-q" data-answer="0">
+    <div class="q-head"><span class="q-num">15</span><span class="q-type">UML</span><span class="q-pts">1 P</span></div>
+    <div class="q-body"><p class="q-text">Eine <strong>Vereinigung</strong> nach einer Verzweigung entspricht im Code …</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt"><span class="tick"></span>der gemeinsamen Anweisung <em>nach</em> dem <code>if-else</code></li>
+        <li class="opt"><span class="tick"></span>einer zusätzlichen Schleife</li>
+        <li class="opt"><span class="tick"></span>dem Programmende</li>
+        <li class="opt"><span class="tick"></span>einem zweiten <code>if</code> im ersten</li>
+      </ul>
+    </div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span><p>Die erste Anweisung <em>hinter</em> dem <code>if-else</code> — läuft unabhängig vom Pfad.</p></div>
+  </article>
+
+  <div id="history" hidden></div>
+
+  <div class="note">
+    <span class="lbl">Hinweis</span>
+    <p style="margin:.4em 0 0">Diese Probe-SA wertet nur die 15 Auswahlfragen automatisch aus. Für die offenen Aufgaben
+    (Programmieren, Diagramme zeichnen) übe mit den Themenseiten und der Druckansicht.</p>
+  </div>
+
+</div></main>
+<footer class="foot"><div class="wrap"><span class="mono">AEuP C# · Probe-SA</span> · 15 Fragen · 30 Minuten</div></footer>
+<script src="assets/pruefung.js"></script>
+</body>
+</html>
