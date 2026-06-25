@@ -1,7 +1,10 @@
 # AEuP C# — Selbsttest zur Schulaufgabe
 
+> 🌐 **Live über GitHub Pages:** <https://testspeda.github.io/C--Programming-UML-Diagrams/index.html>
+
 Statische Lern-/Selbsttest-Website zur Vorbereitung auf die Schulaufgabe im Fach
-**Anwendungsentwicklung mit Programmierung (AEuP) – C#**. Abgedeckte Themen:
+**Anwendungsentwicklung mit Programmierung (AEuP) – C#**. Die Website wird über
+**GitHub Pages** bereitgestellt. Abgedeckte Themen:
 
 1. **Grundlagen** — Datentypen & Variablen, Typkonvertierung & Ein-/Ausgabe, Operatoren, Verzweigungen (`if`/`switch`), Schleifen
 2. **Arrays** — ein- und mehrdimensionale Arrays, Index & Länge, SA-Aufgabe „Chaos-Lager"
@@ -16,6 +19,7 @@ Umfang: **57 Aufgaben** (davon **18 Programmieraufgaben** aus den Übungs-Arbeit
 (Punktestand oben rechts). Rechen-/Szenario-/Modellier-/Zeichenaufgaben bieten aufdeckbare **Musterlösungen**.
 
 ### Speichern, Drucken, Probe-SA
+
 - **Fortschritt** (beantwortete Fragen, Code-Eingaben) wird lokal im Browser gespeichert (`localStorage`);
   je Themenseite gibt es einen Button „Fortschritt zurücksetzen".
 - **Drucken/PDF:** `Strg/Cmd + P` blendet Bedienelemente aus, deckt alle Lösungen auf und macht die
@@ -24,19 +28,26 @@ Umfang: **57 Aufgaben** (davon **18 Programmieraufgaben** aus den Übungs-Arbeit
   Auswertung mit gespeichertem Versuchsverlauf.
 
 ### Programmieraufgaben (statisch, kein Server)
+
 Diese Seite ist rein statisch (GitHub Pages) und **führt keinen Code aus**. Bei Programmieraufgaben:
+
 - Code in das Eingabefeld tippen,
 - per **„KI-Bewertungs-Prompt kopieren"** einen fertigen Prompt (Aufgabe + dein Code + Bewertungskriterien)
   in die Zwischenablage legen und in eine KI (z. B. ChatGPT/Claude) einfügen, **oder**
 - die **Musterlösung + Bewertungs-Checkliste** aufdecken und selbst vergleichen.
 
 ## Veröffentlichen über GitHub Pages
+
+Die Seite ist live erreichbar unter
+<https://testspeda.github.io/C--Programming-UML-Diagrams/index.html>.
+
 1. Diesen Ordner (Inhalt) in ein GitHub-Repository legen.
-2. In den Repo-Einstellungen → *Pages* → Branch + Ordner als Quelle wählen.
+2. In den Repo-Einstellungen → _Pages_ → Branch + Ordner als Quelle wählen.
 3. Die `.nojekyll`-Datei sorgt dafür, dass der `assets/`-Ordner nicht von Jekyll gefiltert wird.
 
 Keine externen Abhängigkeiten (keine CDNs/Fonts/Skripte) — funktioniert auch offline.
 
 ## Hinweis
+
 Lernmaterial, KI-gestützt erstellt aus den Unterrichtsunterlagen des Workspace (Arbeitsblätter, SA-Übungen).
 Ohne Gewähr auf Vollständigkeit/Richtigkeit — im Zweifel gelten die Original-Unterlagen und die Lehrkraft.
