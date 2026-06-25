@@ -30,8 +30,8 @@
     <p class="lede">Abläufe modellieren: Aktionen, Steuerungsfluss, Entscheidungen, Vereinigung, Gabelung und
       Verantwortungsbereiche. Vom Text zur Grafik — und zurück zum Code.</p>
     <div class="hero-meta">
-      <span class="pill"><b>14</b> Aufgaben</span>
-      <span class="pill"><b>4</b> Diagramme</span>
+      <span class="pill"><b>18</b> Aufgaben</span>
+      <span class="pill"><b>9</b> Diagramme</span>
       <span class="pill">MC · Multi-Select · Zeichnen · Programmieren</span>
     </div>
   </section>
@@ -295,6 +295,38 @@
     </div>
     <div class="q-foot"><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
     <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
+      <figure class="diagram" style="background:#fff">
+        <svg viewBox="0 0 420 420" role="img" aria-label="Aktivitätsdiagramm Kehrwert mit Entscheidung Zahl ungleich 0">
+          <defs><marker id="k-arr" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#16242E"/></marker></defs>
+          <circle cx="210" cy="24" r="10" fill="#16242E"/>
+          <line x1="210" y1="34" x2="210" y2="52" stroke="#16242E" stroke-width="1.5" marker-end="url(#k-arr)"/>
+          <rect x="135" y="54" width="150" height="34" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label" x="210" y="76" text-anchor="middle">Zahl einlesen</text>
+          <line x1="210" y1="88" x2="210" y2="112" stroke="#16242E" stroke-width="1.5" marker-end="url(#k-arr)"/>
+          <polygon points="210,114 250,150 210,186 170,150" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="210" y="147" text-anchor="middle">Zahl</text>
+          <text class="svg-label-sm" x="210" y="159" text-anchor="middle">ungleich 0?</text>
+          <line x1="170" y1="150" x2="95" y2="150" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="95" y1="150" x2="95" y2="226" stroke="#16242E" stroke-width="1.5" marker-end="url(#k-arr)"/>
+          <text class="svg-label-sm" x="128" y="142" text-anchor="middle" fill="#B23E1F">[nein]</text>
+          <rect x="25" y="228" width="140" height="34" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="95" y="249" text-anchor="middle">Fehlermeldung ausgeben</text>
+          <line x1="250" y1="150" x2="325" y2="150" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="325" y1="150" x2="325" y2="226" stroke="#16242E" stroke-width="1.5" marker-end="url(#k-arr)"/>
+          <text class="svg-label-sm" x="292" y="142" text-anchor="middle" fill="#15786E">[ja]</text>
+          <rect x="255" y="228" width="140" height="34" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="325" y="249" text-anchor="middle">Kehrwert berechnen</text>
+          <line x1="95" y1="262" x2="95" y2="306" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="325" y1="262" x2="325" y2="306" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="95" y1="306" x2="180" y2="306" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="325" y1="306" x2="240" y2="306" stroke="#16242E" stroke-width="1.5"/>
+          <polygon points="210,284 240,306 210,328 180,306" fill="#E4F1EF" stroke="#15786E" stroke-width="1.5"/>
+          <line x1="210" y1="328" x2="210" y2="358" stroke="#16242E" stroke-width="1.5" marker-end="url(#k-arr)"/>
+          <circle cx="210" cy="372" r="11" fill="#fff" stroke="#16242E" stroke-width="2"/>
+          <circle cx="210" cy="372" r="5" fill="#16242E"/>
+        </svg>
+        <figcaption>Entscheidung: Nur bei <code>[ja]</code> wird der Kehrwert berechnet; bei <code>[nein]</code> wird eine Fehlermeldung ausgegeben. Danach werden beide Pfade vereinigt.</figcaption>
+      </figure>
       <ol>
         <li><strong>Startpunkt</strong> (●)</li>
         <li>Aktion <em>„Zahl einlesen"</em></li>
@@ -664,6 +696,322 @@ else
     <div class="q-solution" hidden><span class="sol-label">Lösung</span>
       <p>Alle drei beschreiben Abläufe grafisch. Das Struktogramm (Nassi-Shneiderman) nutzt verschachtelte Blöcke, der PAP
       Sinnbilder mit Pfeilen, das Aktivitätsdiagramm die UML-Notation — inhaltlich lassen sie sich ineinander überführen.</p>
+    </div>
+  </article>
+
+  <!-- ============ Abschnitt E: PDF-Aufgaben ============ -->
+  <div class="sec-head"><span class="ix">E</span><h2>Zusatzaufgaben aus der PDF-Übung</h2></div>
+  <p class="sec-sub">Die Aufgaben stammen aus <em>02 Aktivitätsdiagramm - Übung_S.pdf</em>. Erst selbst zeichnen, dann die SVG-Musterlösung vergleichen.</p>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">15</span><span class="q-type">PDF 1</span><span class="q-pts">manuell</span></div>
+    <div class="q-body">
+      <p class="q-text"><strong>Onlineshop-Bestellvorgang.</strong> Modellieren Sie den beschriebenen Bestellprozess mit den Rollen <em>Kunde</em> und <em>Onlineshop</em>: Artikel ansehen und in den Warenkorb legen, Auswahl beenden oder abbrechen, zur Kasse gehen, Login oder Gastbestellung mit Adresse, Zahlungsart wählen, Kaufauftrag erstellen, Bestellung bestätigen, Rechnung erstellen und Ware packen parallel, anschließend Ware versenden.</p>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
+      <figure class="diagram" style="background:#fff">
+        <svg viewBox="0 0 620 760" role="img" aria-label="PDF 1 Aktivitätsdiagramm Onlineshop-Bestellvorgang mit Kunde und Onlineshop">
+          <defs><marker id="pdf1-arr" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#16242E"/></marker></defs>
+          <line x1="310" y1="0" x2="310" y2="760" stroke="#B9C7D2" stroke-width="1.5"/>
+          <line x1="0" y1="28" x2="620" y2="28" stroke="#B9C7D2" stroke-width="1.5"/>
+          <text class="svg-title" x="155" y="20" text-anchor="middle">Kunde</text>
+          <text class="svg-title" x="465" y="20" text-anchor="middle">Onlineshop</text>
+          <circle cx="155" cy="48" r="9" fill="#16242E"/>
+          <line x1="155" y1="57" x2="155" y2="72" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf1-arr)"/>
+          <rect x="80" y="74" width="150" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label" x="155" y="95" text-anchor="middle">Artikel ansehen</text>
+          <line x1="155" y1="106" x2="155" y2="124" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf1-arr)"/>
+          <polygon points="155,126 190,154 155,182 120,154" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="155" y="151" text-anchor="middle">Artikel</text>
+          <text class="svg-label-sm" x="155" y="163" text-anchor="middle">ausgewählt?</text>
+          <line x1="120" y1="154" x2="55" y2="154" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="55" y1="154" x2="55" y2="214" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf1-arr)"/>
+          <text class="svg-label-sm" x="86" y="146" text-anchor="middle" fill="#15786E">[ja]</text>
+          <rect x="8" y="216" width="94" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="55" y="236" text-anchor="middle">In Warenkorb</text>
+          <line x1="55" y1="216" x2="55" y2="90" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="55" y1="90" x2="80" y2="90" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf1-arr)"/>
+          <line x1="155" y1="182" x2="155" y2="222" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf1-arr)"/>
+          <text class="svg-label-sm" x="177" y="202" text-anchor="middle" fill="#B23E1F">[nein]</text>
+          <polygon points="155,224 190,252 155,280 120,252" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="155" y="249" text-anchor="middle">Zur</text>
+          <text class="svg-label-sm" x="155" y="261" text-anchor="middle">Kasse?</text>
+          <line x1="120" y1="252" x2="28" y2="252" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="28" y1="252" x2="28" y2="296" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf1-arr)"/>
+          <text class="svg-label-sm" x="74" y="244" text-anchor="middle" fill="#B23E1F">[nein]</text>
+          <text class="svg-label-sm" x="48" y="282" text-anchor="middle">Abbruch</text>
+          <circle cx="28" cy="310" r="10" fill="#fff" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="21" y1="303" x2="35" y2="317" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="35" y1="303" x2="21" y2="317" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="155" y1="280" x2="155" y2="304" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf1-arr)"/>
+          <text class="svg-label-sm" x="177" y="296" text-anchor="middle" fill="#15786E">[ja]</text>
+          <rect x="80" y="306" width="150" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label" x="155" y="327" text-anchor="middle">Zur Kasse gehen</text>
+          <line x1="155" y1="338" x2="155" y2="360" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf1-arr)"/>
+          <polygon points="155,362 190,390 155,418 120,390" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="155" y="387" text-anchor="middle">Konto</text>
+          <text class="svg-label-sm" x="155" y="399" text-anchor="middle">vorhanden?</text>
+          <line x1="120" y1="390" x2="62" y2="390" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf1-arr)"/>
+          <text class="svg-label-sm" x="93" y="382" text-anchor="middle" fill="#15786E">[ja]</text>
+          <rect x="10" y="374" width="52" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="36" y="394" text-anchor="middle">Login</text>
+          <line x1="36" y1="406" x2="36" y2="500" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="36" y1="500" x2="125" y2="500" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf1-arr)"/>
+          <line x1="155" y1="418" x2="155" y2="438" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf1-arr)"/>
+          <text class="svg-label-sm" x="178" y="431" text-anchor="middle" fill="#B23E1F">[nein]</text>
+          <rect x="80" y="440" width="150" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label" x="155" y="461" text-anchor="middle">Als Gast bestellen</text>
+          <line x1="155" y1="472" x2="155" y2="486" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf1-arr)"/>
+          <rect x="80" y="488" width="150" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label" x="155" y="509" text-anchor="middle">Adresse eingeben</text>
+          <line x1="155" y1="520" x2="155" y2="542" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf1-arr)"/>
+          <polygon points="155,542 180,562 155,582 130,562" fill="#E4F1EF" stroke="#15786E" stroke-width="1.5"/>
+          <line x1="155" y1="582" x2="155" y2="604" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf1-arr)"/>
+          <rect x="80" y="606" width="150" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="155" y="626" text-anchor="middle">Zahlungsart wählen</text>
+          <line x1="155" y1="638" x2="155" y2="660" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf1-arr)"/>
+          <rect x="80" y="662" width="150" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="155" y="682" text-anchor="middle">Kaufauftrag erstellen</text>
+          <line x1="230" y1="678" x2="390" y2="678" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf1-arr)"/>
+          <rect x="390" y="662" width="150" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="465" y="682" text-anchor="middle">Bestellung bestätigen</text>
+          <line x1="465" y1="662" x2="465" y2="612" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf1-arr)"/>
+          <rect x="390" y="604" width="150" height="6" fill="#16242E"/>
+          <line x1="430" y1="604" x2="430" y2="582" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf1-arr)"/>
+          <line x1="506" y1="604" x2="506" y2="582" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf1-arr)"/>
+          <rect x="370" y="548" width="120" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="430" y="568" text-anchor="middle">Rechnung erstellen</text>
+          <rect x="498" y="548" width="96" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="546" y="568" text-anchor="middle">Ware packen</text>
+          <line x1="430" y1="548" x2="430" y2="526" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf1-arr)"/>
+          <line x1="506" y1="548" x2="506" y2="526" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf1-arr)"/>
+          <rect x="390" y="518" width="150" height="6" fill="#16242E"/>
+          <line x1="465" y1="518" x2="465" y2="496" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf1-arr)"/>
+          <rect x="390" y="462" width="150" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label" x="465" y="483" text-anchor="middle">Ware versenden</text>
+          <line x1="465" y1="462" x2="465" y2="438" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf1-arr)"/>
+          <circle cx="465" cy="424" r="10" fill="#fff" stroke="#16242E" stroke-width="2"/>
+          <circle cx="465" cy="424" r="5" fill="#16242E"/>
+        </svg>
+        <figcaption>PDF 1: Schleife über die Artikelauswahl, Abbruch als Flussende, Login/Gast als Entscheidung mit Vereinigung und parallele Rechnung/Ware-packen-Schritte.</figcaption>
+      </figure>
+      <span class="rubric-label">Prüf-Checkliste</span>
+      <ul class="rubric">
+        <li>Artikelauswahl kann mehrfach durchlaufen oder abgebrochen werden.</li>
+        <li>Login und Gastbestellung sind alternative Pfade mit anschließender Vereinigung.</li>
+        <li>Rechnung erstellen und Ware packen laufen parallel und werden synchronisiert.</li>
+        <li>Aktionen liegen in den passenden Verantwortungsbereichen Kunde/Onlineshop.</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">16</span><span class="q-type">PDF 2</span><span class="q-pts">manuell</span></div>
+    <div class="q-body">
+      <p class="q-text"><strong>Bestellannahme der Global Medi AG.</strong> Vertreter melden Bestellungen an die Vertriebsleitung. Diese prüft sachlich, korrigiert bei Bedarf und lässt die Korrektur bestätigen. Danach laufen Provisionsabrechnung und Bereitstellung/Auslieferung parallel. Nach der Auslieferungsmeldung wird die Bestellung abgeschlossen.</p>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
+      <figure class="diagram" style="background:#fff">
+        <svg viewBox="0 0 620 650" role="img" aria-label="PDF 2 Aktivitätsdiagramm Global Medi AG Bestellannahme">
+          <defs><marker id="pdf2-arr" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#16242E"/></marker></defs>
+          <circle cx="310" cy="24" r="9" fill="#16242E"/>
+          <line x1="310" y1="33" x2="310" y2="52" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf2-arr)"/>
+          <rect x="210" y="54" width="200" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="310" y="74" text-anchor="middle">Vertreter melden Bestellungen</text>
+          <line x1="310" y1="86" x2="310" y2="108" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf2-arr)"/>
+          <rect x="210" y="110" width="200" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="310" y="130" text-anchor="middle">Vertriebsleitung prüft sachlich</text>
+          <line x1="310" y1="142" x2="310" y2="166" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf2-arr)"/>
+          <polygon points="310,168 350,200 310,232 270,200" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="310" y="197" text-anchor="middle">Korrektur</text>
+          <text class="svg-label-sm" x="310" y="209" text-anchor="middle">nötig?</text>
+          <line x1="270" y1="200" x2="150" y2="200" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf2-arr)"/>
+          <text class="svg-label-sm" x="210" y="192" text-anchor="middle" fill="#B23E1F">[ja]</text>
+          <rect x="20" y="184" width="130" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="85" y="204" text-anchor="middle">Korrektur schicken</text>
+          <line x1="85" y1="216" x2="85" y2="250" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf2-arr)"/>
+          <rect x="20" y="252" width="130" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="85" y="272" text-anchor="middle">Vertreter bestätigt</text>
+          <line x1="85" y1="284" x2="85" y2="320" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="85" y1="320" x2="280" y2="320" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf2-arr)"/>
+          <line x1="310" y1="232" x2="310" y2="304" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf2-arr)"/>
+          <text class="svg-label-sm" x="334" y="258" text-anchor="middle" fill="#15786E">[nein]</text>
+          <polygon points="310,304 338,320 310,336 282,320" fill="#E4F1EF" stroke="#15786E" stroke-width="1.5"/>
+          <line x1="310" y1="336" x2="310" y2="360" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf2-arr)"/>
+          <rect x="210" y="362" width="200" height="6" fill="#16242E"/>
+          <line x1="250" y1="368" x2="250" y2="402" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf2-arr)"/>
+          <line x1="370" y1="368" x2="370" y2="402" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf2-arr)"/>
+          <rect x="150" y="404" width="200" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="250" y="424" text-anchor="middle">Provisionsabrechnung melden</text>
+          <rect x="372" y="404" width="190" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="467" y="424" text-anchor="middle">Artikel bereitstellen</text>
+          <line x1="467" y1="436" x2="467" y2="462" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf2-arr)"/>
+          <rect x="372" y="464" width="190" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="467" y="484" text-anchor="middle">Tourenplan + Zustellung</text>
+          <line x1="467" y1="496" x2="467" y2="522" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf2-arr)"/>
+          <rect x="372" y="524" width="190" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="467" y="544" text-anchor="middle">Auslieferung melden</text>
+          <line x1="250" y1="436" x2="250" y2="582" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="467" y1="556" x2="467" y2="582" stroke="#16242E" stroke-width="1.5"/>
+          <rect x="210" y="582" width="200" height="6" fill="#16242E"/>
+          <line x1="310" y1="588" x2="310" y2="610" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf2-arr)"/>
+          <rect x="210" y="612" width="200" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="310" y="632" text-anchor="middle">Bestellung abschließen</text>
+        </svg>
+        <figcaption>PDF 2: Korrekturschleife vor der Freigabe; anschließend parallele Provisionsabrechnung und Auslieferungskette.</figcaption>
+      </figure>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">17</span><span class="q-type">PDF 3</span><span class="q-pts">manuell</span></div>
+    <div class="q-body">
+      <p class="q-text"><strong>Auftragsabwicklung der LaLuSe GmbH.</strong> Stellen Sie Kundenanfrage, Angebot, Kundenauftrag, Bonitätsprüfung, Vorkasse-Alternative und die parallele Bearbeitung mit Verladung/Transport sowie Rechnungs- und Zahlungskontrolle als Aktivitätsdiagramm dar.</p>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
+      <figure class="diagram" style="background:#fff">
+        <svg viewBox="0 0 620 720" role="img" aria-label="PDF 3 Aktivitätsdiagramm LaLuSe GmbH Auftragsabwicklung">
+          <defs><marker id="pdf3-arr" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#16242E"/></marker></defs>
+          <circle cx="310" cy="24" r="9" fill="#16242E"/>
+          <line x1="310" y1="33" x2="310" y2="52" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3-arr)"/>
+          <rect x="210" y="54" width="200" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="310" y="74" text-anchor="middle">Kundenanfrage geht ein</text>
+          <line x1="310" y1="86" x2="310" y2="108" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3-arr)"/>
+          <rect x="210" y="110" width="200" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="310" y="130" text-anchor="middle">Angebot erstellen/verschicken</text>
+          <line x1="310" y1="142" x2="310" y2="164" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3-arr)"/>
+          <rect x="210" y="166" width="200" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="310" y="186" text-anchor="middle">Kundenauftrag geht ein</text>
+          <line x1="310" y1="198" x2="310" y2="222" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3-arr)"/>
+          <polygon points="310,224 350,256 310,288 270,256" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="310" y="253" text-anchor="middle">Bonität</text>
+          <text class="svg-label-sm" x="310" y="265" text-anchor="middle">vorhanden?</text>
+          <line x1="270" y1="256" x2="115" y2="256" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3-arr)"/>
+          <text class="svg-label-sm" x="192" y="248" text-anchor="middle" fill="#B23E1F">[nein]</text>
+          <rect x="8" y="240" width="108" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="62" y="260" text-anchor="middle">Angebot Vorkasse</text>
+          <line x1="62" y1="272" x2="62" y2="306" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3-arr)"/>
+          <polygon points="62,308 92,332 62,356 32,332" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="62" y="329" text-anchor="middle">Annahme?</text>
+          <line x1="32" y1="332" x2="20" y2="332" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3-arr)"/>
+          <circle cx="8" cy="332" r="9" fill="#fff" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="2" y1="326" x2="14" y2="338" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="14" y1="326" x2="2" y2="338" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="62" y1="356" x2="62" y2="386" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3-arr)"/>
+          <text class="svg-label-sm" x="84" y="372" text-anchor="middle" fill="#15786E">[ja]</text>
+          <rect x="8" y="388" width="108" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="62" y="408" text-anchor="middle">Rechnung Vorkasse</text>
+          <line x1="62" y1="420" x2="62" y2="452" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3-arr)"/>
+          <polygon points="62,454 96,480 62,506 28,480" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="62" y="477" text-anchor="middle">Vorkasse</text>
+          <text class="svg-label-sm" x="62" y="489" text-anchor="middle">geleistet?</text>
+          <line x1="96" y1="480" x2="210" y2="480" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3-arr)"/>
+          <text class="svg-label-sm" x="150" y="472" text-anchor="middle" fill="#15786E">[ja]</text>
+          <line x1="350" y1="256" x2="500" y2="256" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3-arr)"/>
+          <text class="svg-label-sm" x="424" y="248" text-anchor="middle" fill="#15786E">[ja]</text>
+          <rect x="500" y="240" width="110" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="555" y="260" text-anchor="middle">Auftrag annehmen</text>
+          <line x1="555" y1="272" x2="555" y2="326" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="555" y1="326" x2="410" y2="326" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3-arr)"/>
+          <rect x="210" y="464" width="200" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="310" y="484" text-anchor="middle">Auftrag annehmen</text>
+          <line x1="310" y1="496" x2="310" y2="528" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3-arr)"/>
+          <rect x="210" y="528" width="200" height="6" fill="#16242E"/>
+          <line x1="248" y1="534" x2="248" y2="560" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3-arr)"/>
+          <line x1="372" y1="534" x2="372" y2="560" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3-arr)"/>
+          <rect x="178" y="562" width="140" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="248" y="582" text-anchor="middle">Verladung + Transport</text>
+          <rect x="326" y="562" width="140" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="396" y="582" text-anchor="middle">Rechnungen/Zahlung</text>
+          <line x1="396" y1="594" x2="396" y2="622" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3-arr)"/>
+          <polygon points="396,624 430,650 396,676 362,650" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="396" y="647" text-anchor="middle">Zahlung</text>
+          <text class="svg-label-sm" x="396" y="659" text-anchor="middle">vollständig?</text>
+          <line x1="362" y1="650" x2="318" y2="650" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3-arr)"/>
+          <text class="svg-label-sm" x="340" y="642" text-anchor="middle" fill="#15786E">[ja]</text>
+          <rect x="178" y="634" width="140" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="248" y="654" text-anchor="middle">Auslieferung freigeben</text>
+          <line x1="430" y1="650" x2="520" y2="650" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3-arr)"/>
+          <text class="svg-label-sm" x="470" y="642" text-anchor="middle" fill="#B23E1F">[nein]</text>
+          <rect x="520" y="634" width="92" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="566" y="654" text-anchor="middle">Ware halten</text>
+        </svg>
+        <figcaption>PDF 3: Ohne Bonität führt der Ablauf über Vorkasse; mit Bonität laufen Transportbearbeitung und Zahlungskontrolle parallel.</figcaption>
+      </figure>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">18</span><span class="q-type">PDF 4</span><span class="q-pts">manuell</span></div>
+    <div class="q-body">
+      <p class="q-text"><strong>Visite und Patientendaten.</strong> Erweitern Sie das in der PDF begonnene Aktivitätsdiagramm: Ärzte und Pflegepersonal versammeln sich, Laborergebnisse werden abgefragt, die Patientenreihenfolge wird geplant und die Patientenakte geöffnet. Danach werden Vitalwerte geprüft, Symptome abgefragt, ggf. Laborergebnisse besprochen, Untersuchungen durchgeführt und die Änderungen nach der Visite in die Software übertragen.</p>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
+      <figure class="diagram" style="background:#fff">
+        <svg viewBox="0 0 620 720" role="img" aria-label="PDF 4 Aktivitätsdiagramm Visite und Patientendaten">
+          <defs><marker id="pdf4-arr" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#16242E"/></marker></defs>
+          <circle cx="310" cy="24" r="9" fill="#16242E"/>
+          <line x1="310" y1="33" x2="310" y2="52" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf4-arr)"/>
+          <rect x="205" y="54" width="210" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="310" y="74" text-anchor="middle">Ärzte und Pflege versammeln sich</text>
+          <line x1="310" y1="86" x2="310" y2="108" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf4-arr)"/>
+          <rect x="205" y="110" width="210" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="310" y="130" text-anchor="middle">Laborergebnisse abfragen</text>
+          <line x1="310" y1="142" x2="310" y2="164" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf4-arr)"/>
+          <rect x="205" y="166" width="210" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="310" y="186" text-anchor="middle">Patientenreihenfolge planen</text>
+          <line x1="310" y1="198" x2="310" y2="220" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf4-arr)"/>
+          <rect x="205" y="222" width="210" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="310" y="242" text-anchor="middle">Patientenakte öffnen</text>
+          <line x1="310" y1="254" x2="310" y2="280" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf4-arr)"/>
+          <rect x="205" y="282" width="210" height="6" fill="#16242E"/>
+          <line x1="245" y1="288" x2="245" y2="318" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf4-arr)"/>
+          <line x1="375" y1="288" x2="375" y2="318" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf4-arr)"/>
+          <rect x="145" y="320" width="200" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="245" y="340" text-anchor="middle">Vitalwerte prüfen/notieren</text>
+          <rect x="355" y="320" width="200" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="455" y="340" text-anchor="middle">Patient nach Symptomen fragen</text>
+          <line x1="455" y1="352" x2="455" y2="378" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf4-arr)"/>
+          <polygon points="455,380 490,408 455,436 420,408" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="455" y="405" text-anchor="middle">Symptome?</text>
+          <line x1="490" y1="408" x2="555" y2="408" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="555" y1="408" x2="555" y2="474" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf4-arr)"/>
+          <text class="svg-label-sm" x="522" y="400" text-anchor="middle" fill="#15786E">[ja]</text>
+          <rect x="490" y="476" width="130" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="555" y="496" text-anchor="middle">Plan anpassen</text>
+          <line x1="420" y1="408" x2="375" y2="408" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="375" y1="408" x2="375" y2="528" stroke="#16242E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="397" y="400" text-anchor="middle" fill="#B23E1F">[nein]</text>
+          <line x1="555" y1="508" x2="555" y2="528" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="555" y1="528" x2="338" y2="528" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf4-arr)"/>
+          <line x1="245" y1="352" x2="245" y2="528" stroke="#16242E" stroke-width="1.5"/>
+          <rect x="205" y="528" width="210" height="6" fill="#16242E"/>
+          <line x1="310" y1="534" x2="310" y2="558" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf4-arr)"/>
+          <polygon points="310,560 348,590 310,620 272,590" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="310" y="587" text-anchor="middle">Neue Labor-</text>
+          <text class="svg-label-sm" x="310" y="599" text-anchor="middle">ergebnisse?</text>
+          <line x1="348" y1="590" x2="450" y2="590" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf4-arr)"/>
+          <text class="svg-label-sm" x="398" y="582" text-anchor="middle" fill="#15786E">[ja]</text>
+          <rect x="452" y="574" width="140" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="522" y="594" text-anchor="middle">Laborwerte besprechen</text>
+          <line x1="522" y1="606" x2="522" y2="650" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="272" y1="590" x2="190" y2="590" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="190" y1="590" x2="190" y2="650" stroke="#16242E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="230" y="582" text-anchor="middle" fill="#B23E1F">[nein]</text>
+          <line x1="190" y1="650" x2="240" y2="650" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf4-arr)"/>
+          <rect x="240" y="634" width="140" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="310" y="654" text-anchor="middle">Untersuchung + Notiz</text>
+          <line x1="522" y1="650" x2="380" y2="650" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf4-arr)"/>
+          <line x1="310" y1="666" x2="310" y2="690" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf4-arr)"/>
+          <rect x="205" y="692" width="210" height="24" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="310" y="708" text-anchor="middle">Änderungen in Software übertragen</text>
+        </svg>
+        <figcaption>PDF 4: Die PDF-Vorlage wird fortgeführt; Vitalwerte und Symptombefragung laufen parallel, danach folgen optionale Laborbesprechung, Untersuchung und digitale Übertragung.</figcaption>
+      </figure>
     </div>
   </article>
 

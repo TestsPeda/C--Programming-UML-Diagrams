@@ -312,6 +312,42 @@ Console.WriteLine(werte[1, 0]);   // 7</code></pre>
     <template class="prompt-tpl">Aufgabe (5 Punkte): UML-Aktivitätsdiagramm Login. Passwort eingeben; bei falsch erneut, max. 3 Versuche; nach 3 Fehlversuchen Konto sperren (Ende); bei richtig Startseite anzeigen. Ich habe das Diagramm auf Papier gezeichnet; hier meine Beschreibung (oder ein angehängtes Foto). Vergib 0-5 Punkte: 1P Start- und Endknoten korrekt, 1P Aktionen als abgerundete Rechtecke in richtiger Reihenfolge, 1P Entscheidung 'Passwort korrekt?' mit Bedingungen, 1P Schleife/Rückführung mit Versuchszählung (max. 3), 1P Konto sperren als eigener Abschluss (Flussende/Ende). Meine Beschreibung:
 {{CODE}}</template>
     <div class="q-solution" hidden><span class="sol-label">Musterlösung (Elemente)</span>
+      <figure class="diagram" style="background:#fff">
+        <svg viewBox="0 0 470 390" role="img" aria-label="Aktivitätsdiagramm Login mit Passwortprüfung und maximal drei Versuchen">
+          <defs><marker id="login-arr" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#16242E"/></marker></defs>
+          <circle cx="235" cy="22" r="9" fill="#16242E"/>
+          <line x1="235" y1="31" x2="235" y2="48" stroke="#16242E" stroke-width="1.5" marker-end="url(#login-arr)"/>
+          <rect x="155" y="50" width="160" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label" x="235" y="71" text-anchor="middle">Passwort eingeben</text>
+          <line x1="235" y1="82" x2="235" y2="104" stroke="#16242E" stroke-width="1.5" marker-end="url(#login-arr)"/>
+          <polygon points="235,105 268,132 235,159 202,132" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="235" y="129" text-anchor="middle">Passwort</text>
+          <text class="svg-label-sm" x="235" y="141" text-anchor="middle">korrekt?</text>
+          <line x1="268" y1="132" x2="345" y2="132" stroke="#16242E" stroke-width="1.5" marker-end="url(#login-arr)"/>
+          <text class="svg-label-sm" x="305" y="124" text-anchor="middle" fill="#15786E">[ja]</text>
+          <rect x="347" y="116" width="110" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="402" y="136" text-anchor="middle">Startseite anzeigen</text>
+          <line x1="402" y1="148" x2="402" y2="172" stroke="#16242E" stroke-width="1.5" marker-end="url(#login-arr)"/>
+          <circle cx="402" cy="185" r="10" fill="#fff" stroke="#16242E" stroke-width="2"/>
+          <circle cx="402" cy="185" r="5" fill="#16242E"/>
+          <line x1="202" y1="132" x2="125" y2="132" stroke="#16242E" stroke-width="1.5" marker-end="url(#login-arr)"/>
+          <text class="svg-label-sm" x="164" y="124" text-anchor="middle" fill="#B23E1F">[nein]</text>
+          <polygon points="92,108 122,132 92,156 62,132" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="92" y="129" text-anchor="middle">3.</text>
+          <text class="svg-label-sm" x="92" y="141" text-anchor="middle">Versuch?</text>
+          <line x1="92" y1="108" x2="92" y2="66" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="92" y1="66" x2="155" y2="66" stroke="#16242E" stroke-width="1.5" marker-end="url(#login-arr)"/>
+          <text class="svg-label-sm" x="73" y="86" text-anchor="middle" fill="#15786E">[nein]</text>
+          <line x1="92" y1="156" x2="92" y2="206" stroke="#16242E" stroke-width="1.5" marker-end="url(#login-arr)"/>
+          <text class="svg-label-sm" x="113" y="181" text-anchor="middle" fill="#B23E1F">[ja]</text>
+          <rect x="32" y="208" width="120" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label" x="92" y="229" text-anchor="middle">Konto sperren</text>
+          <line x1="92" y1="240" x2="92" y2="268" stroke="#16242E" stroke-width="1.5" marker-end="url(#login-arr)"/>
+          <circle cx="92" cy="282" r="10" fill="#fff" stroke="#16242E" stroke-width="2"/>
+          <circle cx="92" cy="282" r="5" fill="#16242E"/>
+        </svg>
+        <figcaption>Schleife bei falschem Passwort: Solange noch keine drei Fehlversuche erreicht sind, führt der Pfad zurück zur Eingabe. Nach dem 3. Fehlversuch wird das Konto gesperrt.</figcaption>
+      </figure>
       <ol>
         <li><strong>Startpunkt</strong> ● → Aktion <em>„Passwort eingeben"</em></li>
         <li><strong>Entscheidung</strong> <em>„Passwort korrekt?"</em> mit <code>[ja]</code> / <code>[nein]</code></li>
