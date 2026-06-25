@@ -1,7 +1,7 @@
 /* Probe-SA — Prüfungssimulation mit Countdown.
    Eigene Logik (NICHT quiz.js): Antworten werden erst beim Abgeben bewertet.
    Single-Choice-Fragen tragen data-answer="<Index der richtigen Option>".
-   Speichert Ergebnisse via window.AeupStore (store.js). Vanilla JS. */
+   Speichert Ergebnisse lokal (localStorage). Vanilla JS. */
 (function () {
   "use strict";
 
@@ -70,9 +70,9 @@
       var picked = -1;
       opts.forEach(function (o, i) { if (o.classList.contains("picked")) picked = i; });
       opts.forEach(function (o, i) {
-        var tick = o.querySelector(".tick");
-        if (i === ans) { o.classList.add("correct"); if (tick) tick.textContent = "✓"; }
-        else if (i === picked) { o.classList.add("wrong"); if (tick) tick.textContent = "✕"; }
+        var mark = o.querySelector(".tick");
+        if (i === ans) { o.classList.add("correct"); if (mark) mark.textContent = "✓"; }
+        else if (i === picked) { o.classList.add("wrong"); if (mark) mark.textContent = "✕"; }
       });
       if (picked === ans) { ok++; q.classList.add("answered-ok"); }
       else q.classList.add("answered-bad");
@@ -97,7 +97,7 @@
       "<strong>Auswahlteil:</strong> " + ok + " / " + total + " richtig (" + pct + " %) · " +
       "Zeit: " + fmt(used) + (auto ? " · <em>Zeit abgelaufen</em>" : "") +
       "<br>Die Musterlösungen sind jetzt unter den Fragen sichtbar." +
-      "<br><strong>Offener Teil (13 P):</strong> mit „… zur KI-Bewertung kopieren" bewerten lassen und die Punkte addieren.";
+      "<br><strong>Offener Teil (13 P):</strong> per KI-Bewertungs-Prompt bewerten lassen und die Punkte addieren.";
     box.scrollIntoView({ behavior: "smooth", block: "center" });
   }
 
