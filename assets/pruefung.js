@@ -8,7 +8,9 @@
   var DURATION = 30 * 60;        // Sekunden (30 Minuten)
   var remaining = DURATION;
   var timerId = null;
+  var started = false;
   var submitted = false;
+  var currentResultTs = null;
   var RESULT_KEY = "aeup:probe-sa:results";
   var OPEN_TASKS = [
     { id: "open-p1", label: "P1 Programmieren", max: 4 },
@@ -172,7 +174,12 @@
 
     var used = DURATION - Math.max(0, remaining);
     showResult(ok, total, used, auto);
-    saveResult({ score: ok, total: total, seconds: used, ts: Date.now() });
+    currentResultTs = Date.now();
+    saveResult({
+      ts: currentResultTs, score: ok, total: total, seconds: used,
+      openScore: null, openMax: 13, totalScore: null, totalMax: total + 13,
+      percentage: null, grade: null, gradeLabel: null, finalized: false
+    });
     renderBest();
     var sb = document.getElementById("submit-btn");
     if (sb) { sb.disabled = true; sb.textContent = "Abgegeben"; }
@@ -192,7 +199,35 @@
       "<p class='score-help'>Trage nach der KI-Bewertung die Punkte der offenen Aufgaben ein. Gesamtpunktzahl, Prozentzahl und Note werden direkt nach IHK-Regensburg-Schl&uuml;ssel berechnet.</p>" +
       "<div class='open-score-grid'>" + fields + "</div>" +
       "<div id='final-score-summary' class='final-score-summary' aria-live='polite'></div>" +
+      "<div class='open-score-actions' style='margin-top:12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap'>" +
+        "<button class='btn primary' id='save-final' type='button'>Endergebnis (mit Note) im Verlauf speichern</button>" +
+        "<span id='save-final-status' class='save-status' aria-live='polite' style='color:var(--brand);font-size:.85rem'></span>" +
+      "</div>" +
     "</div>";
+  }
+
+  function finalizeResult(choiceScore, choiceTotal) {
+    if (currentResultTs === null) return;
+    var result = calculateExamResult(choiceScore, choiceTotal, readOpenScoreTotal(), 13);
+    var arr = getResults();
+    var found = false;
+    for (var i = 0; i < arr.length; i++) {
+      if (arr[i].ts === currentResultTs) {
+        arr[i].openScore = result.openScore;
+        arr[i].openMax = result.openMax;
+        arr[i].totalScore = result.totalScore;
+        arr[i].totalMax = result.totalMax;
+        arr[i].percentage = result.percentage;
+        arr[i].grade = result.grade;
+        arr[i].gradeLabel = result.gradeLabel;
+        arr[i].finalized = true;
+        found = true;
+        break;
+      }
+    }
+    if (!found) return;
+    try { localStorage.setItem(RESULT_KEY, JSON.stringify(arr)); } catch (e) {}
+    renderBest();
   }
 
   function readOpenScoreTotal() {
@@ -227,6 +262,12 @@
       });
     });
     updateFinalScore(choiceScore, choiceTotal);
+    var saveBtn = document.getElementById("save-final");
+    if (saveBtn) saveBtn.addEventListener("click", function () {
+      finalizeResult(choiceScore, choiceTotal);
+      var st = document.getElementById("save-final-status");
+      if (st) st.textContent = "✓ Note & Punkte im Verlauf gespeichert";
+    });
   }
 
   function showResult(ok, total, used, auto) {
@@ -253,14 +294,21 @@
     var rows = res.slice(-5).reverse().map(function (r) {
       var d = new Date(r.ts);
       var datum = d.toLocaleDateString() + " " + d.toLocaleTimeString().slice(0, 5);
-      var pct = r.total ? Math.round(r.score / r.total * 100) : 0;
-      return "<tr><td>" + datum + "</td><td>" + r.score + "/" + r.total +
-             "</td><td>" + pct + " %</td><td>" + fmt(r.seconds) + "</td></tr>";
+      var auswahl = r.score + "/" + r.total;
+      var offen = (r.openScore !== null && r.openScore !== undefined)
+        ? formatPoints(r.openScore) + "/" + (r.openMax || 13) : "—";
+      var note = (r.grade !== null && r.grade !== undefined) ? r.grade : "—";
+      var pct = (r.percentage !== null && r.percentage !== undefined)
+        ? formatPercent(r.percentage) + " %"
+        : (r.total ? Math.round(r.score / r.total * 100) + " %*" : "0 %");
+      return "<tr><td>" + datum + "</td><td>" + auswahl + "</td><td>" + offen +
+             "</td><td>" + note + "</td><td>" + pct + "</td><td>" + fmt(r.seconds) + "</td></tr>";
     }).join("");
     box.innerHTML =
       "<span class='rubric-label'>Deine letzten Versuche</span>" +
-      "<div class='tbl-wrap'><table class='ref'><tr><th>Datum</th><th>Punkte</th><th>Quote</th><th>Zeit</th></tr>" +
+      "<div class='tbl-wrap'><table class='ref'><tr><th>Datum</th><th>Auswahl</th><th>Offen</th><th>Note</th><th>Quote</th><th>Zeit</th></tr>" +
       rows + "</table></div>" +
+      "<p class='score-help'>* nur Auswahlteil — das Endergebnis mit Note erscheint nach dem Speichern.</p>" +
       "<button class='btn' id='clear-history' type='button'>Verlauf löschen</button>";
     var cl = document.getElementById("clear-history");
     if (cl) cl.addEventListener("click", function () {
@@ -320,16 +368,31 @@
     if (co) co.addEventListener("click", function () { copyText(buildOpenPrompt(), co); });
   }
 
-  document.addEventListener("DOMContentLoaded", function () {
-    initSelect();
-    initOpen();
+  function startExam() {
+    if (started) return;
+    started = true;
+    var content = document.getElementById("exam-content");
+    if (content) content.hidden = false;
+    var gate = document.getElementById("exam-gate");
+    if (gate) gate.hidden = true;
     var el = document.getElementById("timer");
     if (el) el.textContent = fmt(remaining);
     timerId = setInterval(tick, 1000);
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    initSelect();
+    initOpen();
+
+    var startBtn = document.getElementById("start-btn");
+    if (startBtn) startBtn.addEventListener("click", startExam);
 
     var sb = document.getElementById("submit-btn");
     if (sb) sb.addEventListener("click", function () { doSubmit(false); });
 
     renderBest();
+
+    // Fallback: ohne Start-Gate (z. B. ältere Seite) sofort starten
+    if (!startBtn) startExam();
   });
 })();

@@ -31,6 +31,20 @@
       Auswahlteil am Ende <strong>abgeben</strong>; für den offenen Teil den KI-Bewertungs-Prompt kopieren. Ergebnisse werden lokal gespeichert.</p>
   </section>
 
+  <div class="exam-gate" id="exam-gate">
+    <div class="note">
+      <span class="lbl">Vor dem Start lesen</span>
+      <p style="margin:.4em 0 0"><strong>Ablauf:</strong> Mit „Test starten" werden die Aufgaben sichtbar und der
+      <strong>30-Minuten-Countdown</strong> beginnt. Der <strong>Auswahlteil</strong> (15 Fragen · 15 P) wird beim Abgeben
+      automatisch ausgewertet; den <strong>offenen Teil</strong> (Programmieren &amp; Diagramm · 13 P) lässt du per
+      KI-Bewertungs-Prompt bewerten und trägst die Punkte danach ein. <strong>Läuft die Zeit ab, wird der Auswahlteil
+      automatisch abgegeben.</strong> Gesamtpunktzahl, Prozentwert und Note (IHK-Regensburg-Schlüssel) sowie der Versuch
+      werden lokal im Verlauf gespeichert.</p>
+    </div>
+    <div class="controls"><button class="btn primary" id="start-btn" type="button">Test starten</button></div>
+  </div>
+
+  <div id="exam-content" hidden>
   <div class="exam-bar">
     <span class="lbl">Verbleibend</span>
     <span class="clock" id="timer">30:00</span>
@@ -321,25 +335,21 @@ Console.WriteLine(werte[1, 0]);   // 7</code></pre>
           <text class="svg-label" x="235" y="71" text-anchor="middle">Passwort eingeben</text>
           <line x1="235" y1="82" x2="235" y2="104" stroke="#16242E" stroke-width="1.5" marker-end="url(#login-arr)"/>
           <polygon points="235,105 268,132 235,159 202,132" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
-          <text class="svg-label-sm" x="235" y="129" text-anchor="middle">Passwort</text>
-          <text class="svg-label-sm" x="235" y="141" text-anchor="middle">korrekt?</text>
           <line x1="268" y1="132" x2="345" y2="132" stroke="#16242E" stroke-width="1.5" marker-end="url(#login-arr)"/>
-          <text class="svg-label-sm" x="305" y="124" text-anchor="middle" fill="#15786E">[ja]</text>
+          <text class="svg-label-sm" x="305" y="124" text-anchor="middle" fill="#15786E">[korrekt]</text>
           <rect x="347" y="116" width="110" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
           <text class="svg-label-sm" x="402" y="136" text-anchor="middle">Startseite anzeigen</text>
           <line x1="402" y1="148" x2="402" y2="172" stroke="#16242E" stroke-width="1.5" marker-end="url(#login-arr)"/>
           <circle cx="402" cy="185" r="10" fill="#fff" stroke="#16242E" stroke-width="2"/>
           <circle cx="402" cy="185" r="5" fill="#16242E"/>
           <line x1="202" y1="132" x2="125" y2="132" stroke="#16242E" stroke-width="1.5" marker-end="url(#login-arr)"/>
-          <text class="svg-label-sm" x="164" y="124" text-anchor="middle" fill="#B23E1F">[nein]</text>
+          <text class="svg-label-sm" x="164" y="124" text-anchor="middle" fill="#B23E1F">[falsch]</text>
           <polygon points="92,108 122,132 92,156 62,132" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
-          <text class="svg-label-sm" x="92" y="129" text-anchor="middle">3.</text>
-          <text class="svg-label-sm" x="92" y="141" text-anchor="middle">Versuch?</text>
           <line x1="92" y1="108" x2="92" y2="66" stroke="#16242E" stroke-width="1.5"/>
           <line x1="92" y1="66" x2="155" y2="66" stroke="#16242E" stroke-width="1.5" marker-end="url(#login-arr)"/>
-          <text class="svg-label-sm" x="73" y="86" text-anchor="middle" fill="#15786E">[nein]</text>
+          <text class="svg-label-sm" x="73" y="86" text-anchor="middle" fill="#15786E">[noch Versuche]</text>
           <line x1="92" y1="156" x2="92" y2="206" stroke="#16242E" stroke-width="1.5" marker-end="url(#login-arr)"/>
-          <text class="svg-label-sm" x="113" y="181" text-anchor="middle" fill="#B23E1F">[ja]</text>
+          <text class="svg-label-sm" x="113" y="181" text-anchor="middle" fill="#B23E1F">[3. Versuch]</text>
           <rect x="32" y="208" width="120" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
           <text class="svg-label" x="92" y="229" text-anchor="middle">Konto sperren</text>
           <line x1="92" y1="240" x2="92" y2="268" stroke="#16242E" stroke-width="1.5" marker-end="url(#login-arr)"/>
@@ -359,6 +369,7 @@ Console.WriteLine(werte[1, 0]);   // 7</code></pre>
       <p>Entspricht dem Muster von Aufgabe 12 (Geldautomat) auf der UML-Seite: Schleife + verschachtelte Entscheidung + Abschluss.</p>
     </div>
   </article>
+  </div><!-- /exam-content -->
 
   <div id="history" hidden></div>
 

@@ -212,18 +212,16 @@
       <line x1="180" y1="292" x2="180" y2="312" stroke="#16242E" stroke-width="1.5" marker-end="url(#t-arr)"/>
       <!-- decision: Konto vorhanden? -->
       <polygon points="180,314 218,346 180,378 142,346" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
-      <text class="svg-label-sm" x="180" y="343" text-anchor="middle">Konto</text>
-      <text class="svg-label-sm" x="180" y="355" text-anchor="middle">vorhanden?</text>
       <!-- left [nein] registrieren -->
       <line x1="142" y1="346" x2="60" y2="346" stroke="#16242E" stroke-width="1.5"/>
       <line x1="60" y1="346" x2="60" y2="400" stroke="#16242E" stroke-width="1.5" marker-end="url(#t-arr)"/>
-      <text class="svg-label-sm" x="98" y="338" text-anchor="middle" fill="#B23E1F">[nein]</text>
+      <text class="svg-label-sm" x="98" y="338" text-anchor="middle" fill="#B23E1F">[kein Konto]</text>
       <rect x="10" y="402" width="100" height="34" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
       <text class="svg-label" x="60" y="424" text-anchor="middle">Registrieren</text>
       <!-- right [ja] anmelden -->
       <line x1="218" y1="346" x2="300" y2="346" stroke="#16242E" stroke-width="1.5"/>
       <line x1="300" y1="346" x2="300" y2="400" stroke="#16242E" stroke-width="1.5" marker-end="url(#t-arr)"/>
-      <text class="svg-label-sm" x="262" y="338" text-anchor="middle" fill="#15786E">[ja]</text>
+      <text class="svg-label-sm" x="262" y="338" text-anchor="middle" fill="#15786E">[Konto vorhanden]</text>
       <rect x="250" y="402" width="100" height="34" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
       <text class="svg-label" x="300" y="424" text-anchor="middle">Anmelden</text>
       <!-- merge -->
@@ -304,16 +302,14 @@
           <text class="svg-label" x="210" y="76" text-anchor="middle">Zahl einlesen</text>
           <line x1="210" y1="88" x2="210" y2="112" stroke="#16242E" stroke-width="1.5" marker-end="url(#k-arr)"/>
           <polygon points="210,114 250,150 210,186 170,150" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
-          <text class="svg-label-sm" x="210" y="147" text-anchor="middle">Zahl</text>
-          <text class="svg-label-sm" x="210" y="159" text-anchor="middle">ungleich 0?</text>
           <line x1="170" y1="150" x2="95" y2="150" stroke="#16242E" stroke-width="1.5"/>
           <line x1="95" y1="150" x2="95" y2="226" stroke="#16242E" stroke-width="1.5" marker-end="url(#k-arr)"/>
-          <text class="svg-label-sm" x="128" y="142" text-anchor="middle" fill="#B23E1F">[nein]</text>
+          <text class="svg-label-sm" x="128" y="142" text-anchor="middle" fill="#B23E1F">[Zahl == 0]</text>
           <rect x="25" y="228" width="140" height="34" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
           <text class="svg-label-sm" x="95" y="249" text-anchor="middle">Fehlermeldung ausgeben</text>
           <line x1="250" y1="150" x2="325" y2="150" stroke="#16242E" stroke-width="1.5"/>
           <line x1="325" y1="150" x2="325" y2="226" stroke="#16242E" stroke-width="1.5" marker-end="url(#k-arr)"/>
-          <text class="svg-label-sm" x="292" y="142" text-anchor="middle" fill="#15786E">[ja]</text>
+          <text class="svg-label-sm" x="292" y="142" text-anchor="middle" fill="#15786E">[Zahl != 0]</text>
           <rect x="255" y="228" width="140" height="34" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
           <text class="svg-label-sm" x="325" y="249" text-anchor="middle">Kehrwert berechnen</text>
           <line x1="95" y1="262" x2="95" y2="306" stroke="#16242E" stroke-width="1.5"/>
@@ -520,18 +516,16 @@ Sag zuerst, ob das Diagramm die Aufgabe erfüllt, dann liste konkrete Verbesseru
           <line x1="170" y1="144" x2="170" y2="164" stroke="#16242E" stroke-width="1.5" marker-end="url(#a-arr)"/>
           <!-- Entscheidung -->
           <polygon points="170,164 208,196 170,228 132,196" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
-          <text class="svg-label-sm" x="170" y="193" text-anchor="middle">Konto</text>
-          <text class="svg-label-sm" x="170" y="205" text-anchor="middle">vorhanden?</text>
           <!-- [ja] Einloggen -> Vereinigung -->
           <line x1="132" y1="196" x2="112" y2="196" stroke="#16242E" stroke-width="1.5" marker-end="url(#a-arr)"/>
-          <text class="svg-label-sm" x="124" y="186" text-anchor="middle" fill="#15786E">[ja]</text>
+          <text class="svg-label-sm" x="75" y="172" text-anchor="middle" fill="#15786E">[Konto vorhanden]</text>
           <rect x="20" y="180" width="90" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
           <text class="svg-label-sm" x="65" y="200" text-anchor="middle">Einloggen</text>
           <line x1="65" y1="212" x2="65" y2="372" stroke="#16242E" stroke-width="1.5"/>
           <line x1="65" y1="372" x2="148" y2="372" stroke="#16242E" stroke-width="1.5" marker-end="url(#a-arr)"/>
           <!-- [nein] Gast -->
           <line x1="170" y1="228" x2="170" y2="252" stroke="#16242E" stroke-width="1.5" marker-end="url(#a-arr)"/>
-          <text class="svg-label-sm" x="193" y="243" text-anchor="middle" fill="#B23E1F">[nein]</text>
+          <text class="svg-label-sm" x="210" y="242" text-anchor="middle" fill="#B23E1F">[kein Konto]</text>
           <rect x="80" y="254" width="180" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
           <text class="svg-label" x="170" y="275" text-anchor="middle">Als Gast bestellen</text>
           <line x1="170" y1="286" x2="170" y2="302" stroke="#16242E" stroke-width="1.5" marker-end="url(#a-arr)"/>
@@ -624,11 +618,9 @@ Sag zuerst, ob das Diagramm die Aufgabe erfüllt, dann liste konkrete Verbesseru
           <line x1="230" y1="117" x2="230" y2="129" stroke="#16242E" stroke-width="1.5" marker-end="url(#b-arr)"/>
           <!-- decision PIN korrekt -->
           <polygon points="230,129 258,156 230,183 202,156" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
-          <text class="svg-label-sm" x="230" y="153" text-anchor="middle">PIN</text>
-          <text class="svg-label-sm" x="230" y="164" text-anchor="middle">korrekt?</text>
           <!-- [ja] right -->
           <line x1="258" y1="156" x2="320" y2="156" stroke="#16242E" stroke-width="1.5" marker-end="url(#b-arr)"/>
-          <text class="svg-label-sm" x="289" y="149" text-anchor="middle" fill="#15786E">[ja]</text>
+          <text class="svg-label-sm" x="289" y="149" text-anchor="middle" fill="#15786E">[PIN korrekt]</text>
           <rect x="322" y="141" width="120" height="30" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
           <text class="svg-label-sm" x="382" y="160" text-anchor="middle">Betrag wählen</text>
           <line x1="382" y1="171" x2="382" y2="232" stroke="#16242E" stroke-width="1.5"/>
@@ -636,17 +628,15 @@ Sag zuerst, ob das Diagramm die Aufgabe erfüllt, dann liste konkrete Verbesseru
           <line x1="230" y1="232" x2="230" y2="240" stroke="#16242E" stroke-width="1.5" marker-end="url(#b-arr)"/>
           <!-- [nein] left to D2 -->
           <line x1="202" y1="156" x2="150" y2="156" stroke="#16242E" stroke-width="1.5" marker-end="url(#b-arr)"/>
-          <text class="svg-label-sm" x="176" y="149" text-anchor="middle" fill="#B23E1F">[nein]</text>
+          <text class="svg-label-sm" x="176" y="149" text-anchor="middle" fill="#B23E1F">[PIN falsch]</text>
           <polygon points="112,134 136,156 112,178 88,156" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
-          <text class="svg-label-sm" x="112" y="153" text-anchor="middle">3.</text>
-          <text class="svg-label-sm" x="112" y="164" text-anchor="middle">Versuch?</text>
           <!-- D2 [nein] loop up to PIN -->
           <line x1="112" y1="134" x2="112" y2="102" stroke="#16242E" stroke-width="1.5"/>
           <line x1="112" y1="102" x2="150" y2="102" stroke="#16242E" stroke-width="1.5" marker-end="url(#b-arr)"/>
-          <text class="svg-label-sm" x="92" y="120" text-anchor="middle" fill="#15786E">[nein]</text>
+          <text class="svg-label-sm" x="92" y="120" text-anchor="middle" fill="#15786E">[noch Versuche]</text>
           <!-- D2 [ja] down to Karte einziehen + flow end -->
           <line x1="112" y1="178" x2="112" y2="210" stroke="#16242E" stroke-width="1.5" marker-end="url(#b-arr)"/>
-          <text class="svg-label-sm" x="132" y="198" text-anchor="middle" fill="#B23E1F">[ja]</text>
+          <text class="svg-label-sm" x="132" y="198" text-anchor="middle" fill="#B23E1F">[3. Versuch]</text>
           <rect x="52" y="211" width="120" height="30" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
           <text class="svg-label-sm" x="112" y="230" text-anchor="middle">Karte einziehen</text>
           <line x1="112" y1="241" x2="112" y2="261" stroke="#16242E" stroke-width="1.5" marker-end="url(#b-arr)"/>
@@ -766,50 +756,44 @@ Sag zuerst, ob das Diagramm die Aufgabe erfüllt, dann liste konkrete Verbesseru
           <line x1="170" y1="96" x2="170" y2="116" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf1-arr)"/>
           <!-- D1 Artikel ausgewählt? -->
           <polygon points="170,118 208,150 170,182 132,150" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
-          <text class="svg-label-sm" x="170" y="147" text-anchor="middle">Artikel</text>
-          <text class="svg-label-sm" x="170" y="159" text-anchor="middle">ausgewählt?</text>
           <!-- [ja] loop: In Warenkorb -> zurück zu Artikel ansehen -->
           <line x1="132" y1="150" x2="122" y2="150" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf1-arr)"/>
-          <text class="svg-label-sm" x="104" y="142" text-anchor="middle" fill="#15786E">[ja]</text>
+          <text class="svg-label-sm" x="70" y="128" text-anchor="middle" fill="#15786E">[ausgewählt]</text>
           <rect x="20" y="134" width="100" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
           <text class="svg-label-sm" x="70" y="154" text-anchor="middle">In Warenkorb</text>
           <line x1="70" y1="134" x2="70" y2="82" stroke="#16242E" stroke-width="1.5"/>
           <line x1="70" y1="82" x2="80" y2="82" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf1-arr)"/>
           <!-- [nein] weiter zu D2 -->
           <line x1="170" y1="182" x2="170" y2="206" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf1-arr)"/>
-          <text class="svg-label-sm" x="192" y="198" text-anchor="middle" fill="#B23E1F">[nein]</text>
+          <text class="svg-label-sm" x="200" y="198" text-anchor="middle" fill="#B23E1F">[fertig]</text>
           <!-- D2 Zur Kasse? -->
           <polygon points="170,206 208,238 170,270 132,238" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
-          <text class="svg-label-sm" x="170" y="235" text-anchor="middle">Zur</text>
-          <text class="svg-label-sm" x="170" y="247" text-anchor="middle">Kasse?</text>
           <!-- [nein] Abbruch -> Flussende -->
           <line x1="132" y1="238" x2="60" y2="238" stroke="#16242E" stroke-width="1.5"/>
           <line x1="60" y1="238" x2="60" y2="290" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf1-arr)"/>
-          <text class="svg-label-sm" x="96" y="230" text-anchor="middle" fill="#B23E1F">[nein]</text>
+          <text class="svg-label-sm" x="96" y="230" text-anchor="middle" fill="#B23E1F">[Abbruch]</text>
           <circle cx="60" cy="301" r="10" fill="#fff" stroke="#16242E" stroke-width="1.5"/>
           <line x1="53" y1="294" x2="67" y2="308" stroke="#16242E" stroke-width="1.5"/>
           <line x1="67" y1="294" x2="53" y2="308" stroke="#16242E" stroke-width="1.5"/>
           <text class="svg-label-sm" x="60" y="328" text-anchor="middle">Abbruch</text>
           <!-- [ja] Zur Kasse gehen -->
           <line x1="170" y1="270" x2="170" y2="294" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf1-arr)"/>
-          <text class="svg-label-sm" x="192" y="286" text-anchor="middle" fill="#15786E">[ja]</text>
+          <text class="svg-label-sm" x="204" y="286" text-anchor="middle" fill="#15786E">[zur Kasse]</text>
           <rect x="80" y="296" width="180" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
           <text class="svg-label" x="170" y="317" text-anchor="middle">Zur Kasse gehen</text>
           <line x1="170" y1="328" x2="170" y2="348" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf1-arr)"/>
           <!-- D3 Konto vorhanden? -->
           <polygon points="170,348 208,380 170,412 132,380" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
-          <text class="svg-label-sm" x="170" y="377" text-anchor="middle">Konto</text>
-          <text class="svg-label-sm" x="170" y="389" text-anchor="middle">vorhanden?</text>
           <!-- [ja] Einloggen -> Vereinigung -->
           <line x1="132" y1="380" x2="112" y2="380" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf1-arr)"/>
-          <text class="svg-label-sm" x="124" y="370" text-anchor="middle" fill="#15786E">[ja]</text>
+          <text class="svg-label-sm" x="75" y="358" text-anchor="middle" fill="#15786E">[Konto vorhanden]</text>
           <rect x="20" y="364" width="90" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
           <text class="svg-label-sm" x="65" y="384" text-anchor="middle">Einloggen</text>
           <line x1="65" y1="396" x2="65" y2="556" stroke="#16242E" stroke-width="1.5"/>
           <line x1="65" y1="556" x2="148" y2="556" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf1-arr)"/>
           <!-- [nein] Gast -->
           <line x1="170" y1="412" x2="170" y2="436" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf1-arr)"/>
-          <text class="svg-label-sm" x="193" y="427" text-anchor="middle" fill="#B23E1F">[nein]</text>
+          <text class="svg-label-sm" x="210" y="427" text-anchor="middle" fill="#B23E1F">[kein Konto]</text>
           <rect x="80" y="438" width="180" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
           <text class="svg-label" x="170" y="459" text-anchor="middle">Als Gast bestellen</text>
           <line x1="170" y1="470" x2="170" y2="486" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf1-arr)"/>
@@ -891,10 +875,8 @@ Sag zuerst, ob das Diagramm die Aufgabe erfüllt, dann liste konkrete Verbesseru
           <text class="svg-label-sm" x="310" y="130" text-anchor="middle">Vertriebsleitung prüft sachlich</text>
           <line x1="310" y1="142" x2="310" y2="166" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf2-arr)"/>
           <polygon points="310,168 350,200 310,232 270,200" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
-          <text class="svg-label-sm" x="310" y="197" text-anchor="middle">Korrektur</text>
-          <text class="svg-label-sm" x="310" y="209" text-anchor="middle">nötig?</text>
           <line x1="270" y1="200" x2="150" y2="200" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf2-arr)"/>
-          <text class="svg-label-sm" x="210" y="192" text-anchor="middle" fill="#B23E1F">[ja]</text>
+          <text class="svg-label-sm" x="210" y="192" text-anchor="middle" fill="#B23E1F">[Korrektur nötig]</text>
           <rect x="20" y="184" width="130" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
           <text class="svg-label-sm" x="85" y="204" text-anchor="middle">Korrektur schicken</text>
           <line x1="85" y1="216" x2="85" y2="250" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf2-arr)"/>
@@ -903,7 +885,7 @@ Sag zuerst, ob das Diagramm die Aufgabe erfüllt, dann liste konkrete Verbesseru
           <line x1="85" y1="284" x2="85" y2="320" stroke="#16242E" stroke-width="1.5"/>
           <line x1="85" y1="320" x2="280" y2="320" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf2-arr)"/>
           <line x1="310" y1="232" x2="310" y2="304" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf2-arr)"/>
-          <text class="svg-label-sm" x="334" y="258" text-anchor="middle" fill="#15786E">[nein]</text>
+          <text class="svg-label-sm" x="334" y="258" text-anchor="middle" fill="#15786E">[korrekt]</text>
           <polygon points="310,304 338,320 310,336 282,320" fill="#E4F1EF" stroke="#15786E" stroke-width="1.5"/>
           <line x1="310" y1="336" x2="310" y2="360" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf2-arr)"/>
           <rect x="210" y="362" width="200" height="6" fill="#16242E"/>
@@ -968,39 +950,34 @@ Sag zuerst, ob das Diagramm die Aufgabe erfüllt, dann liste konkrete Verbesseru
           <line x1="320" y1="202" x2="320" y2="222" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3-arr)"/>
           <!-- D1 Bonität -->
           <polygon points="320,224 362,256 320,288 278,256" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
-          <text class="svg-label-sm" x="320" y="253" text-anchor="middle">Bonität</text>
-          <text class="svg-label-sm" x="320" y="265" text-anchor="middle">vorhanden?</text>
           <!-- [ja] rechts: direkt zur Vereinigung -->
           <line x1="362" y1="256" x2="470" y2="256" stroke="#16242E" stroke-width="1.5"/>
           <line x1="470" y1="256" x2="470" y2="560" stroke="#16242E" stroke-width="1.5"/>
           <line x1="470" y1="560" x2="343" y2="560" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3-arr)"/>
-          <text class="svg-label-sm" x="408" y="248" text-anchor="middle" fill="#15786E">[ja]</text>
+          <text class="svg-label-sm" x="408" y="248" text-anchor="middle" fill="#15786E">[Bonität vorhanden]</text>
           <!-- [nein] links: Vorkasse-Kette -->
           <line x1="278" y1="256" x2="202" y2="256" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3-arr)"/>
-          <text class="svg-label-sm" x="240" y="248" text-anchor="middle" fill="#B23E1F">[nein]</text>
+          <text class="svg-label-sm" x="245" y="244" text-anchor="middle" fill="#B23E1F">[keine Bonität]</text>
           <rect x="40" y="240" width="160" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
           <text class="svg-label-sm" x="120" y="260" text-anchor="middle">Angebot Vorkasse</text>
           <line x1="120" y1="272" x2="120" y2="300" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3-arr)"/>
           <!-- D2 Annahme? -->
           <polygon points="120,300 160,332 120,364 80,332" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
-          <text class="svg-label-sm" x="120" y="336" text-anchor="middle">Annahme?</text>
           <line x1="80" y1="332" x2="44" y2="332" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3-arr)"/>
-          <text class="svg-label-sm" x="62" y="324" text-anchor="middle" fill="#B23E1F">[nein]</text>
+          <text class="svg-label-sm" x="62" y="324" text-anchor="middle" fill="#B23E1F">[abgelehnt]</text>
           <circle cx="30" cy="332" r="10" fill="#fff" stroke="#16242E" stroke-width="1.5"/>
           <line x1="23" y1="325" x2="37" y2="339" stroke="#16242E" stroke-width="1.5"/>
           <line x1="37" y1="325" x2="23" y2="339" stroke="#16242E" stroke-width="1.5"/>
           <text class="svg-label-sm" x="30" y="357" text-anchor="middle">Abbruch</text>
           <line x1="120" y1="364" x2="120" y2="388" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3-arr)"/>
-          <text class="svg-label-sm" x="142" y="380" text-anchor="middle" fill="#15786E">[ja]</text>
+          <text class="svg-label-sm" x="165" y="380" text-anchor="middle" fill="#15786E">[angenommen]</text>
           <rect x="40" y="390" width="160" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
           <text class="svg-label-sm" x="120" y="410" text-anchor="middle">Rechnung Vorkasse</text>
           <line x1="120" y1="422" x2="120" y2="446" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3-arr)"/>
           <!-- D3 Vorkasse geleistet? -->
           <polygon points="120,446 160,478 120,510 80,478" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
-          <text class="svg-label-sm" x="120" y="475" text-anchor="middle">Vorkasse</text>
-          <text class="svg-label-sm" x="120" y="487" text-anchor="middle">geleistet?</text>
           <line x1="80" y1="478" x2="44" y2="478" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3-arr)"/>
-          <text class="svg-label-sm" x="62" y="470" text-anchor="middle" fill="#B23E1F">[nein]</text>
+          <text class="svg-label-sm" x="62" y="470" text-anchor="middle" fill="#B23E1F">[nicht geleistet]</text>
           <circle cx="30" cy="478" r="10" fill="#fff" stroke="#16242E" stroke-width="1.5"/>
           <line x1="23" y1="471" x2="37" y2="485" stroke="#16242E" stroke-width="1.5"/>
           <line x1="37" y1="471" x2="23" y2="485" stroke="#16242E" stroke-width="1.5"/>
@@ -1009,7 +986,7 @@ Sag zuerst, ob das Diagramm die Aufgabe erfüllt, dann liste konkrete Verbesseru
           <line x1="160" y1="478" x2="255" y2="478" stroke="#16242E" stroke-width="1.5"/>
           <line x1="255" y1="478" x2="255" y2="560" stroke="#16242E" stroke-width="1.5"/>
           <line x1="255" y1="560" x2="297" y2="560" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3-arr)"/>
-          <text class="svg-label-sm" x="188" y="470" text-anchor="middle" fill="#15786E">[ja]</text>
+          <text class="svg-label-sm" x="188" y="470" text-anchor="middle" fill="#15786E">[geleistet]</text>
           <!-- Vereinigung -->
           <polygon points="320,542 342,560 320,578 298,560" fill="#E4F1EF" stroke="#15786E" stroke-width="1.5"/>
           <line x1="320" y1="578" x2="320" y2="600" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3-arr)"/>
@@ -1031,11 +1008,9 @@ Sag zuerst, ob das Diagramm die Aufgabe erfüllt, dann liste konkrete Verbesseru
           <line x1="320" y1="746" x2="320" y2="766" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3-arr)"/>
           <!-- D4 Zahlung vollständig? -->
           <polygon points="320,766 362,798 320,830 278,798" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
-          <text class="svg-label-sm" x="320" y="795" text-anchor="middle">Zahlung</text>
-          <text class="svg-label-sm" x="320" y="807" text-anchor="middle">vollständig?</text>
           <!-- [ja] Auslieferung freigeben -> Ende -->
           <line x1="278" y1="798" x2="220" y2="798" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3-arr)"/>
-          <text class="svg-label-sm" x="248" y="790" text-anchor="middle" fill="#15786E">[ja]</text>
+          <text class="svg-label-sm" x="249" y="776" text-anchor="middle" fill="#15786E">[vollständig]</text>
           <rect x="20" y="782" width="200" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
           <text class="svg-label-sm" x="120" y="802" text-anchor="middle">Auslieferung freigeben</text>
           <line x1="120" y1="814" x2="120" y2="850" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3-arr)"/>
@@ -1043,7 +1018,7 @@ Sag zuerst, ob das Diagramm die Aufgabe erfüllt, dann liste konkrete Verbesseru
           <circle cx="120" cy="862" r="5" fill="#16242E"/>
           <!-- [nein] Ware halten -> Ende -->
           <line x1="362" y1="798" x2="440" y2="798" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3-arr)"/>
-          <text class="svg-label-sm" x="400" y="790" text-anchor="middle" fill="#B23E1F">[nein]</text>
+          <text class="svg-label-sm" x="400" y="790" text-anchor="middle" fill="#B23E1F">[offen]</text>
           <rect x="440" y="782" width="180" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
           <text class="svg-label-sm" x="530" y="802" text-anchor="middle">Ware halten</text>
           <line x1="530" y1="814" x2="530" y2="850" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3-arr)"/>
@@ -1085,25 +1060,21 @@ Sag zuerst, ob das Diagramm die Aufgabe erfüllt, dann liste konkrete Verbesseru
           <line x1="175" y1="164" x2="175" y2="200" stroke="#16242E" stroke-width="1.5"/>
           <line x1="175" y1="200" x2="470" y2="200" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3b-arr)"/>
           <polygon points="515,170 560,200 515,230 470,200" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
-          <text class="svg-label-sm" x="515" y="197" text-anchor="middle">Bonität</text>
-          <text class="svg-label-sm" x="515" y="209" text-anchor="middle">vorhanden?</text>
           <!-- [ja]: runter zur Vereinigung -->
           <line x1="515" y1="230" x2="515" y2="556" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3b-arr)"/>
-          <text class="svg-label-sm" x="538" y="250" text-anchor="middle" fill="#15786E">[ja]</text>
+          <text class="svg-label-sm" x="538" y="250" text-anchor="middle" fill="#15786E">[Bonität vorhanden]</text>
           <!-- [nein]: R verlangt Vorkasse -> K -->
           <line x1="560" y1="200" x2="600" y2="200" stroke="#16242E" stroke-width="1.5"/>
           <line x1="600" y1="200" x2="600" y2="252" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3b-arr)"/>
-          <text class="svg-label-sm" x="582" y="192" text-anchor="middle" fill="#B23E1F">[nein]</text>
+          <text class="svg-label-sm" x="582" y="192" text-anchor="middle" fill="#B23E1F">[keine Bonität]</text>
           <rect x="500" y="254" width="130" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
           <text class="svg-label-sm" x="565" y="274" text-anchor="middle">Vorkasse verlangen</text>
           <!-- R Vorkasse verlangen -> K: Vorkasse leisten? -->
           <line x1="500" y1="270" x2="220" y2="270" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3b-arr)"/>
           <polygon points="175,270 220,300 175,330 130,300" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
-          <text class="svg-label-sm" x="175" y="297" text-anchor="middle">Vorkasse</text>
-          <text class="svg-label-sm" x="175" y="309" text-anchor="middle">leisten?</text>
           <!-- K [nein] -> Abbruch -->
           <line x1="130" y1="300" x2="95" y2="300" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3b-arr)"/>
-          <text class="svg-label-sm" x="112" y="292" text-anchor="middle" fill="#B23E1F">[nein]</text>
+          <text class="svg-label-sm" x="112" y="292" text-anchor="middle" fill="#B23E1F">[lehnt ab]</text>
           <circle cx="81" cy="300" r="10" fill="#fff" stroke="#16242E" stroke-width="1.5"/>
           <line x1="74" y1="293" x2="88" y2="307" stroke="#16242E" stroke-width="1.5"/>
           <line x1="88" y1="293" x2="74" y2="307" stroke="#16242E" stroke-width="1.5"/>
@@ -1111,7 +1082,7 @@ Sag zuerst, ob das Diagramm die Aufgabe erfüllt, dann liste konkrete Verbesseru
           <!-- K [ja] -> R Vereinigung -->
           <line x1="175" y1="330" x2="175" y2="576" stroke="#16242E" stroke-width="1.5"/>
           <line x1="175" y1="576" x2="470" y2="576" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3b-arr)"/>
-          <text class="svg-label-sm" x="197" y="346" text-anchor="middle" fill="#15786E">[ja]</text>
+          <text class="svg-label-sm" x="197" y="346" text-anchor="middle" fill="#15786E">[zahlt]</text>
           <!-- R Vereinigung -->
           <polygon points="515,556 537,576 515,596 493,576" fill="#E4F1EF" stroke="#15786E" stroke-width="1.5"/>
           <line x1="515" y1="596" x2="515" y2="616" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3b-arr)"/>
@@ -1127,7 +1098,6 @@ Sag zuerst, ob das Diagramm die Aufgabe erfüllt, dann liste konkrete Verbesseru
           <text class="svg-label-sm" x="460" y="722" text-anchor="middle">Transport</text>
           <rect x="520" y="694" width="105" height="36" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
           <text class="svg-label-sm" x="572" y="709" text-anchor="middle">Rechnung +</text>
-          <text class="svg-label-sm" x="572" y="722" text-anchor="middle">Zahlung</text>
           <line x1="460" y1="730" x2="460" y2="748" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3b-arr)"/>
           <line x1="570" y1="730" x2="570" y2="748" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3b-arr)"/>
           <!-- join (R) -->
@@ -1135,12 +1105,10 @@ Sag zuerst, ob das Diagramm die Aufgabe erfüllt, dann liste konkrete Verbesseru
           <line x1="515" y1="754" x2="515" y2="772" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3b-arr)"/>
           <!-- D Zahlung vollständig? -->
           <polygon points="515,772 560,802 515,832 470,802" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
-          <text class="svg-label-sm" x="515" y="799" text-anchor="middle">Zahlung</text>
-          <text class="svg-label-sm" x="515" y="811" text-anchor="middle">vollständig?</text>
           <!-- [ja] Auslieferung freigeben -> Ende -->
           <line x1="470" y1="802" x2="454" y2="802" stroke="#16242E" stroke-width="1.5"/>
           <line x1="454" y1="802" x2="454" y2="844" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3b-arr)"/>
-          <text class="svg-label-sm" x="436" y="794" text-anchor="middle" fill="#15786E">[ja]</text>
+          <text class="svg-label-sm" x="436" y="794" text-anchor="middle" fill="#15786E">[vollständig]</text>
           <rect x="400" y="846" width="110" height="36" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
           <text class="svg-label-sm" x="455" y="861" text-anchor="middle">Auslieferung</text>
           <text class="svg-label-sm" x="455" y="874" text-anchor="middle">freigeben</text>
@@ -1150,7 +1118,7 @@ Sag zuerst, ob das Diagramm die Aufgabe erfüllt, dann liste konkrete Verbesseru
           <!-- [nein] Ware halten -> Ende -->
           <line x1="560" y1="802" x2="576" y2="802" stroke="#16242E" stroke-width="1.5"/>
           <line x1="576" y1="802" x2="576" y2="844" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3b-arr)"/>
-          <text class="svg-label-sm" x="596" y="794" text-anchor="middle" fill="#B23E1F">[nein]</text>
+          <text class="svg-label-sm" x="596" y="794" text-anchor="middle" fill="#B23E1F">[offen]</text>
           <rect x="521" y="846" width="104" height="36" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
           <text class="svg-label-sm" x="573" y="867" text-anchor="middle">Ware halten</text>
           <line x1="573" y1="882" x2="573" y2="898" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3b-arr)"/>
@@ -1213,31 +1181,28 @@ Sag zuerst, ob das Diagramm die Aufgabe erfüllt, dann liste konkrete Verbesseru
           <text class="svg-label-sm" x="455" y="340" text-anchor="middle">Patient nach Symptomen fragen</text>
           <line x1="455" y1="352" x2="455" y2="378" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf4-arr)"/>
           <polygon points="455,380 490,408 455,436 420,408" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
-          <text class="svg-label-sm" x="455" y="405" text-anchor="middle">Symptome?</text>
           <line x1="490" y1="408" x2="555" y2="408" stroke="#16242E" stroke-width="1.5"/>
           <line x1="555" y1="408" x2="555" y2="474" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf4-arr)"/>
-          <text class="svg-label-sm" x="522" y="400" text-anchor="middle" fill="#15786E">[ja]</text>
+          <text class="svg-label-sm" x="522" y="400" text-anchor="middle" fill="#15786E">[Symptome]</text>
           <rect x="490" y="476" width="130" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
           <text class="svg-label-sm" x="555" y="496" text-anchor="middle">Plan anpassen</text>
           <line x1="420" y1="408" x2="375" y2="408" stroke="#16242E" stroke-width="1.5"/>
           <line x1="375" y1="408" x2="375" y2="528" stroke="#16242E" stroke-width="1.5"/>
-          <text class="svg-label-sm" x="397" y="400" text-anchor="middle" fill="#B23E1F">[nein]</text>
+          <text class="svg-label-sm" x="397" y="400" text-anchor="middle" fill="#B23E1F">[keine]</text>
           <line x1="555" y1="508" x2="555" y2="528" stroke="#16242E" stroke-width="1.5"/>
           <line x1="555" y1="528" x2="338" y2="528" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf4-arr)"/>
           <line x1="245" y1="352" x2="245" y2="528" stroke="#16242E" stroke-width="1.5"/>
           <rect x="205" y="528" width="210" height="6" fill="#16242E"/>
           <line x1="310" y1="534" x2="310" y2="558" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf4-arr)"/>
           <polygon points="310,560 348,590 310,620 272,590" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
-          <text class="svg-label-sm" x="310" y="587" text-anchor="middle">Neue Labor-</text>
-          <text class="svg-label-sm" x="310" y="599" text-anchor="middle">ergebnisse?</text>
           <line x1="348" y1="590" x2="450" y2="590" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf4-arr)"/>
-          <text class="svg-label-sm" x="398" y="582" text-anchor="middle" fill="#15786E">[ja]</text>
+          <text class="svg-label-sm" x="398" y="582" text-anchor="middle" fill="#15786E">[neue Ergebnisse]</text>
           <rect x="452" y="574" width="140" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
           <text class="svg-label-sm" x="522" y="594" text-anchor="middle">Laborwerte besprechen</text>
           <line x1="522" y1="606" x2="522" y2="650" stroke="#16242E" stroke-width="1.5"/>
           <line x1="272" y1="590" x2="190" y2="590" stroke="#16242E" stroke-width="1.5"/>
           <line x1="190" y1="590" x2="190" y2="650" stroke="#16242E" stroke-width="1.5"/>
-          <text class="svg-label-sm" x="230" y="582" text-anchor="middle" fill="#B23E1F">[nein]</text>
+          <text class="svg-label-sm" x="230" y="582" text-anchor="middle" fill="#B23E1F">[keine]</text>
           <line x1="190" y1="650" x2="240" y2="650" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf4-arr)"/>
           <rect x="240" y="634" width="140" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
           <text class="svg-label-sm" x="310" y="654" text-anchor="middle">Untersuchung + Notiz</text>
