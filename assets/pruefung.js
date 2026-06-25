@@ -380,7 +380,7 @@
     timerId = setInterval(tick, 1000);
   }
 
-  document.addEventListener("DOMContentLoaded", function () {
+  function init() {
     initSelect();
     initOpen();
 
@@ -394,5 +394,11 @@
 
     // Fallback: ohne Start-Gate (z. B. ältere Seite) sofort starten
     if (!startBtn) startExam();
-  });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
 })();
