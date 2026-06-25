@@ -486,7 +486,20 @@ else
         <li>Anschließend versendet der Onlineshop die Ware.</li>
       </ul>
     </div>
-    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <div class="q-foot"><button class="q-copyprompt">KI-Bewertungs-Prompt kopieren</button><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <p class="code-hint">Tipp: Diagramm auf Papier zeichnen, abfotografieren, dann „KI-Bewertungs-Prompt kopieren" → zusammen mit dem Foto in eine KI (z. B. ChatGPT/Claude) einfügen. Die Seite selbst wertet keine Fotos aus.</p>
+    <template class="prompt-tpl">Du bist Informatik-Lehrkraft (Fach AEuP, Thema UML-Aktivitätsdiagramm) und bewertest ein Aktivitätsdiagramm, das ein Berufsschüler von Hand gezeichnet und als Foto angehängt hat. WICHTIG: Beziehe dich auf das ANGEHÄNGTE FOTO des Diagramms — erkenne die gezeichneten Symbole (Start, Ende, Aktionen, Entscheidungsrauten, Gabelungs-/Synchronisationsbalken, Vereinigung, Flussende), die Pfeile und die Beschriftungen und bewerte sie anhand der Aufgabe.
+
+Aufgabe: Onlineshop-Bestellvorgang mit zwei Verantwortungsbereichen (Swimlanes Kunde und Onlineshop): Der Kunde wählt Artikel und geht zur Kasse; ein registrierter Kunde loggt sich ein, sonst bestellt er als Gast und gibt seine Adresse ein; danach Zahlungsart wählen und Kaufauftrag erteilen. Der Onlineshop bestätigt die Bestellung, erstellt gleichzeitig die Rechnung und packt die Ware (parallel) und versendet anschließend die Ware.
+
+Bewerte das Diagramm anhand dieser Kriterien und gib konkretes, freundliches Feedback samt Verbesserungen:
+- genau ein Startpunkt und ein Endpunkt
+- zwei beschriftete Swimlanes (Kunde / Onlineshop), jede Aktion im richtigen Bereich
+- Entscheidung 'Konto vorhanden?' mit Bedingungen [ja]/[nein] und anschließender Vereinigung
+- Gabelung (Balken): Rechnung erstellen und Ware packen laufen parallel, danach Synchronisation
+- sinnvolle Reihenfolge der Aktionen und korrekt gerichtete Pfeile (Steuerungsfluss)
+
+Sag zuerst, ob das Diagramm die Aufgabe erfüllt, dann liste konkrete Verbesserungen auf. Falls das Foto unleserlich ist oder Teile fehlen, weise ausdrücklich darauf hin.</template>
     <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
       <figure class="diagram" style="background:#fff">
         <svg viewBox="0 0 640 700" role="img" aria-label="Aktivitätsdiagramm Onlineshop mit Verantwortungsbereichen Kunde und Onlineshop">
@@ -582,7 +595,20 @@ else
         <li>Zum Schluss wird die Karte ausgegeben.</li>
       </ul>
     </div>
-    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <div class="q-foot"><button class="q-copyprompt">KI-Bewertungs-Prompt kopieren</button><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <p class="code-hint">Tipp: Diagramm auf Papier zeichnen, abfotografieren, dann „KI-Bewertungs-Prompt kopieren" → zusammen mit dem Foto in eine KI (z. B. ChatGPT/Claude) einfügen. Die Seite selbst wertet keine Fotos aus.</p>
+    <template class="prompt-tpl">Du bist Informatik-Lehrkraft (Fach AEuP, Thema UML-Aktivitätsdiagramm) und bewertest ein Aktivitätsdiagramm, das ein Berufsschüler von Hand gezeichnet und als Foto angehängt hat. WICHTIG: Beziehe dich auf das ANGEHÄNGTE FOTO des Diagramms — erkenne die gezeichneten Symbole (Start, Ende, Aktionen, Entscheidungsrauten, Gabelungs-/Synchronisationsbalken, Vereinigung, Flussende), die Pfeile und die Beschriftungen und bewerte sie anhand der Aufgabe.
+
+Aufgabe: Geldautomat mit Schleife und Abbruch: Karte einführen, PIN eingeben; bei falschem PIN erneut fragen, höchstens 3 Versuche; nach dem 3. Fehlversuch Karte einziehen und Vorgang abbrechen (Flussende); bei korrektem PIN Betrag wählen, dann gleichzeitig Geld ausgeben und Beleg drucken (parallel), zum Schluss Karte ausgeben.
+
+Bewerte das Diagramm anhand dieser Kriterien und gib konkretes, freundliches Feedback samt Verbesserungen:
+- Start und regulärer Endpunkt (Karte ausgeben)
+- Schleife (Rückführung) für die PIN-Wiederholung, begrenzt auf 3 Versuche (verschachtelte Entscheidung 'PIN korrekt?' und '3. Versuch?')
+- Flussende-Symbol (durchgestrichener Kreis) nach 'Karte einziehen' als Abbruch
+- Gabelung: Geld ausgeben und Beleg drucken parallel, danach Synchronisation
+- korrekte Bedingungen [ja]/[nein] an den Entscheidungen
+
+Sag zuerst, ob das Diagramm die Aufgabe erfüllt, dann liste konkrete Verbesserungen auf. Falls das Foto unleserlich ist oder Teile fehlen, weise ausdrücklich darauf hin.</template>
     <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
       <figure class="diagram" style="background:#fff">
         <svg viewBox="0 0 470 410" role="img" aria-label="Aktivitätsdiagramm Geldautomat mit PIN-Schleife, Abbruch und Parallelität">
@@ -708,7 +734,20 @@ else
     <div class="q-body">
       <p class="q-text"><strong>Onlineshop-Bestellvorgang.</strong> Modellieren Sie den beschriebenen Bestellprozess mit den Rollen <em>Kunde</em> und <em>Onlineshop</em>: Artikel ansehen und in den Warenkorb legen, Auswahl beenden oder abbrechen, zur Kasse gehen, Login oder Gastbestellung mit Adresse, Zahlungsart wählen, Kaufauftrag erstellen, Bestellung bestätigen, Rechnung erstellen und Ware packen parallel, anschließend Ware versenden.</p>
     </div>
-    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <div class="q-foot"><button class="q-copyprompt">KI-Bewertungs-Prompt kopieren</button><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <p class="code-hint">Tipp: Diagramm auf Papier zeichnen, abfotografieren, dann „KI-Bewertungs-Prompt kopieren" → zusammen mit dem Foto in eine KI (z. B. ChatGPT/Claude) einfügen. Die Seite selbst wertet keine Fotos aus.</p>
+    <template class="prompt-tpl">Du bist Informatik-Lehrkraft (Fach AEuP, Thema UML-Aktivitätsdiagramm) und bewertest ein Aktivitätsdiagramm, das ein Berufsschüler von Hand gezeichnet und als Foto angehängt hat. WICHTIG: Beziehe dich auf das ANGEHÄNGTE FOTO des Diagramms — erkenne die gezeichneten Symbole (Start, Ende, Aktionen, Entscheidungsrauten, Gabelungs-/Synchronisationsbalken, Vereinigung, Flussende), die Pfeile und die Beschriftungen und bewerte sie anhand der Aufgabe.
+
+Aufgabe: Onlineshop-Bestellvorgang mit den Rollen Kunde und Onlineshop: Artikel ansehen und in den Warenkorb legen (wiederholbar), Auswahl beenden oder abbrechen, zur Kasse gehen, Login oder Gastbestellung mit Adresse, Zahlungsart wählen, Kaufauftrag erstellen; der Onlineshop bestätigt die Bestellung, erstellt Rechnung und packt die Ware parallel und versendet anschließend die Ware.
+
+Bewerte das Diagramm anhand dieser Kriterien und gib konkretes, freundliches Feedback samt Verbesserungen:
+- zwei Swimlanes (Kunde / Onlineshop), jede Aktion im richtigen Bereich
+- Schleife über die Artikelauswahl; Abbruch als Flussende möglich
+- Entscheidung Login/Gast mit anschließender Vereinigung
+- Gabelung Rechnung erstellen / Ware packen mit Synchronisation
+- Start- und Endpunkt, korrekt gerichteter Steuerungsfluss
+
+Sag zuerst, ob das Diagramm die Aufgabe erfüllt, dann liste konkrete Verbesserungen auf. Falls das Foto unleserlich ist oder Teile fehlen, weise ausdrücklich darauf hin.</template>
     <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
       <figure class="diagram" style="background:#fff">
         <svg viewBox="0 0 640 880" role="img" aria-label="PDF 1 Aktivitätsdiagramm Onlineshop-Bestellvorgang mit Kunde und Onlineshop">
@@ -826,7 +865,19 @@ else
     <div class="q-body">
       <p class="q-text"><strong>Bestellannahme der Global Medi AG.</strong> Vertreter melden Bestellungen an die Vertriebsleitung. Diese prüft sachlich, korrigiert bei Bedarf und lässt die Korrektur bestätigen. Danach laufen Provisionsabrechnung und Bereitstellung/Auslieferung parallel. Nach der Auslieferungsmeldung wird die Bestellung abgeschlossen.</p>
     </div>
-    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <div class="q-foot"><button class="q-copyprompt">KI-Bewertungs-Prompt kopieren</button><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <p class="code-hint">Tipp: Diagramm auf Papier zeichnen, abfotografieren, dann „KI-Bewertungs-Prompt kopieren" → zusammen mit dem Foto in eine KI (z. B. ChatGPT/Claude) einfügen. Die Seite selbst wertet keine Fotos aus.</p>
+    <template class="prompt-tpl">Du bist Informatik-Lehrkraft (Fach AEuP, Thema UML-Aktivitätsdiagramm) und bewertest ein Aktivitätsdiagramm, das ein Berufsschüler von Hand gezeichnet und als Foto angehängt hat. WICHTIG: Beziehe dich auf das ANGEHÄNGTE FOTO des Diagramms — erkenne die gezeichneten Symbole (Start, Ende, Aktionen, Entscheidungsrauten, Gabelungs-/Synchronisationsbalken, Vereinigung, Flussende), die Pfeile und die Beschriftungen und bewerte sie anhand der Aufgabe.
+
+Aufgabe: Bestellannahme der Global Medi AG: Vertreter melden Bestellungen an die Vertriebsleitung; diese prüft sachlich, korrigiert bei Bedarf und lässt die Korrektur bestätigen (Korrekturschleife); danach laufen Provisionsabrechnung und Bereitstellung/Auslieferung parallel; nach der Auslieferungsmeldung wird die Bestellung abgeschlossen.
+
+Bewerte das Diagramm anhand dieser Kriterien und gib konkretes, freundliches Feedback samt Verbesserungen:
+- Entscheidung 'Korrektur nötig?' mit Rückführung (Korrekturschleife) vor der Freigabe
+- Gabelung in zwei parallele Stränge (Provisionsabrechnung sowie Bereitstellung/Tourenplan/Auslieferung), danach Synchronisation
+- korrekte Reihenfolge bis 'Bestellung abschließen'
+- Start- und Endpunkt, korrekte Bedingungen und Pfeile
+
+Sag zuerst, ob das Diagramm die Aufgabe erfüllt, dann liste konkrete Verbesserungen auf. Falls das Foto unleserlich ist oder Teile fehlen, weise ausdrücklich darauf hin.</template>
     <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
       <figure class="diagram" style="background:#fff">
         <svg viewBox="0 0 620 650" role="img" aria-label="PDF 2 Aktivitätsdiagramm Global Medi AG Bestellannahme">
@@ -885,7 +936,20 @@ else
     <div class="q-body">
       <p class="q-text"><strong>Auftragsabwicklung der LaLuSe GmbH.</strong> Stellen Sie Kundenanfrage, Angebot, Kundenauftrag, Bonitätsprüfung, Vorkasse-Alternative und die parallele Bearbeitung mit Verladung/Transport sowie Rechnungs- und Zahlungskontrolle als Aktivitätsdiagramm dar.</p>
     </div>
-    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <div class="q-foot"><button class="q-copyprompt">KI-Bewertungs-Prompt kopieren</button><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <p class="code-hint">Tipp: Diagramm auf Papier zeichnen, abfotografieren, dann „KI-Bewertungs-Prompt kopieren" → zusammen mit dem Foto in eine KI (z. B. ChatGPT/Claude) einfügen. Die Seite selbst wertet keine Fotos aus.</p>
+    <template class="prompt-tpl">Du bist Informatik-Lehrkraft (Fach AEuP, Thema UML-Aktivitätsdiagramm) und bewertest ein Aktivitätsdiagramm, das ein Berufsschüler von Hand gezeichnet und als Foto angehängt hat. WICHTIG: Beziehe dich auf das ANGEHÄNGTE FOTO des Diagramms — erkenne die gezeichneten Symbole (Start, Ende, Aktionen, Entscheidungsrauten, Gabelungs-/Synchronisationsbalken, Vereinigung, Flussende), die Pfeile und die Beschriftungen und bewerte sie anhand der Aufgabe.
+
+Aufgabe: Auftragsabwicklung der LaLuSe GmbH: Kundenanfrage, Angebot, Kundenauftrag, Bonitätsprüfung; ohne Bonität führt der Weg über eine Vorkasse-Alternative; nach der Auftragsannahme laufen Verladung/Transport sowie Rechnungs- und Zahlungskontrolle parallel; abschließend Zahlungskontrolle (Auslieferung freigeben oder Ware halten).
+
+Bewerte das Diagramm anhand dieser Kriterien und gib konkretes, freundliches Feedback samt Verbesserungen:
+- Entscheidung 'Bonität vorhanden?' mit alternativem Vorkasse-Pfad und Vereinigung
+- Gabelung Verladung/Transport und Rechnung/Zahlung mit Synchronisation
+- Entscheidung 'Zahlung vollständig?' (Auslieferung freigeben / Ware halten)
+- Start und Endpunkt(e); Abbruch als Flussende, wo sinnvoll
+- eine Darstellung mit Swimlanes Kunde/Reederei ist ebenfalls korrekt, sofern jede Aktion der richtigen Rolle zugeordnet ist
+
+Sag zuerst, ob das Diagramm die Aufgabe erfüllt, dann liste konkrete Verbesserungen auf. Falls das Foto unleserlich ist oder Teile fehlen, weise ausdrücklich darauf hin.</template>
     <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
       <figure class="diagram" style="background:#fff">
         <svg viewBox="0 0 640 880" role="img" aria-label="PDF 3 Aktivitätsdiagramm LaLuSe GmbH Auftragsabwicklung">
@@ -1109,7 +1173,19 @@ else
     <div class="q-body">
       <p class="q-text"><strong>Visite und Patientendaten.</strong> Erweitern Sie das in der PDF begonnene Aktivitätsdiagramm: Ärzte und Pflegepersonal versammeln sich, Laborergebnisse werden abgefragt, die Patientenreihenfolge wird geplant und die Patientenakte geöffnet. Danach werden Vitalwerte geprüft, Symptome abgefragt, ggf. Laborergebnisse besprochen, Untersuchungen durchgeführt und die Änderungen nach der Visite in die Software übertragen.</p>
     </div>
-    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <div class="q-foot"><button class="q-copyprompt">KI-Bewertungs-Prompt kopieren</button><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <p class="code-hint">Tipp: Diagramm auf Papier zeichnen, abfotografieren, dann „KI-Bewertungs-Prompt kopieren" → zusammen mit dem Foto in eine KI (z. B. ChatGPT/Claude) einfügen. Die Seite selbst wertet keine Fotos aus.</p>
+    <template class="prompt-tpl">Du bist Informatik-Lehrkraft (Fach AEuP, Thema UML-Aktivitätsdiagramm) und bewertest ein Aktivitätsdiagramm, das ein Berufsschüler von Hand gezeichnet und als Foto angehängt hat. WICHTIG: Beziehe dich auf das ANGEHÄNGTE FOTO des Diagramms — erkenne die gezeichneten Symbole (Start, Ende, Aktionen, Entscheidungsrauten, Gabelungs-/Synchronisationsbalken, Vereinigung, Flussende), die Pfeile und die Beschriftungen und bewerte sie anhand der Aufgabe.
+
+Aufgabe: Visite und Patientendaten: Ärzte und Pflege versammeln sich, Laborergebnisse abfragen, Patientenreihenfolge planen, Patientenakte öffnen; danach Vitalwerte prüfen und Patient nach Symptomen fragen (parallel); bei Symptomen Plan anpassen; gegebenenfalls neue Laborergebnisse besprechen; Untersuchung durchführen und notieren; Änderungen nach der Visite in die Software übertragen.
+
+Bewerte das Diagramm anhand dieser Kriterien und gib konkretes, freundliches Feedback samt Verbesserungen:
+- Gabelung Vitalwerte prüfen / Patient nach Symptomen fragen mit Synchronisation
+- Entscheidungen ('Symptome?', 'neue Laborergebnisse?') mit korrekten Bedingungen und Vereinigung
+- sinnvolle Reihenfolge bis 'Änderungen in Software übertragen'
+- Start- und Endpunkt, korrekt gerichteter Steuerungsfluss
+
+Sag zuerst, ob das Diagramm die Aufgabe erfüllt, dann liste konkrete Verbesserungen auf. Falls das Foto unleserlich ist oder Teile fehlen, weise ausdrücklich darauf hin.</template>
     <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
       <figure class="diagram" style="background:#fff">
         <svg viewBox="0 0 620 770" role="img" aria-label="PDF 4 Aktivitätsdiagramm Visite und Patientendaten">
