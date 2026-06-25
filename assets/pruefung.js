@@ -13,9 +13,9 @@
   var currentResultTs = null;
   var RESULT_KEY = "aeup:probe-sa:results";
   var OPEN_TASKS = [
-    { id: "open-p1", label: "P1 Programmieren", max: 4 },
-    { id: "open-p2", label: "P2 Arrays 2D", max: 4 },
-    { id: "open-p3", label: "P3 UML", max: 5 }
+    { id: "open-p1", label: "P1 Programmieren", max: 5 },
+    { id: "open-p2", label: "P2 Arrays 2D", max: 6 },
+    { id: "open-p3", label: "P3 UML", max: 9 }
   ];
 
   function readNumber(value) {
@@ -177,7 +177,7 @@
     currentResultTs = Date.now();
     saveResult({
       ts: currentResultTs, score: ok, total: total, seconds: used,
-      openScore: null, openMax: 13, totalScore: null, totalMax: total + 13,
+      openScore: null, openMax: 20, totalScore: null, totalMax: total + 20,
       percentage: null, grade: null, gradeLabel: null, finalized: false
     });
     renderBest();
@@ -208,7 +208,7 @@
 
   function finalizeResult(choiceScore, choiceTotal) {
     if (currentResultTs === null) return;
-    var result = calculateExamResult(choiceScore, choiceTotal, readOpenScoreTotal(), 13);
+    var result = calculateExamResult(choiceScore, choiceTotal, readOpenScoreTotal(), 20);
     var arr = getResults();
     var found = false;
     for (var i = 0; i < arr.length; i++) {
@@ -241,7 +241,7 @@
   function updateFinalScore(choiceScore, choiceTotal) {
     var summary = document.getElementById("final-score-summary");
     if (!summary) return;
-    var result = calculateExamResult(choiceScore, choiceTotal, readOpenScoreTotal(), 13);
+    var result = calculateExamResult(choiceScore, choiceTotal, readOpenScoreTotal(), 20);
     var gradeInfo = getIhkGrade(result.percentage);
     summary.innerHTML =
       "<div class='final-score-main'>" +
@@ -279,7 +279,7 @@
       "<strong>Auswahlteil:</strong> " + ok + " / " + total + " richtig (" + pct + " %) · " +
       "Zeit: " + fmt(used) + (auto ? " · <em>Zeit abgelaufen</em>" : "") +
       "<br>Die Musterlösungen sind jetzt unter den Fragen sichtbar." +
-      "<br><strong>Offener Teil (13 P):</strong> per KI-Bewertungs-Prompt bewerten lassen und die Punkte unten eintragen." +
+      "<br><strong>Offener Teil (20 P):</strong> per KI-Bewertungs-Prompt bewerten lassen und die Punkte unten eintragen." +
       renderOpenScorePanel();
     initOpenScorePanel(ok, total);
     box.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -296,7 +296,7 @@
       var datum = d.toLocaleDateString() + " " + d.toLocaleTimeString().slice(0, 5);
       var auswahl = r.score + "/" + r.total;
       var offen = (r.openScore !== null && r.openScore !== undefined)
-        ? formatPoints(r.openScore) + "/" + (r.openMax || 13) : "—";
+        ? formatPoints(r.openScore) + "/" + (r.openMax || 20) : "—";
       var note = (r.grade !== null && r.grade !== undefined) ? r.grade : "—";
       var pct = (r.percentage !== null && r.percentage !== undefined)
         ? formatPercent(r.percentage) + " %"

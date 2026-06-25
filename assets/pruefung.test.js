@@ -40,26 +40,26 @@ assert.equal(scoring.getIhkGrade(49.99).grade, 5);
 assert.equal(scoring.getIhkGrade(30).grade, 5);
 assert.equal(scoring.getIhkGrade(29.99).grade, 6);
 
-assert.deepEqual(JSON.parse(JSON.stringify(scoring.calculateExamResult(15, 15, 13, 13))), {
+assert.deepEqual(JSON.parse(JSON.stringify(scoring.calculateExamResult(15, 15, 20, 20))), {
   choiceScore: 15,
   choiceMax: 15,
-  openScore: 13,
-  openMax: 13,
-  totalScore: 28,
-  totalMax: 28,
+  openScore: 20,
+  openMax: 20,
+  totalScore: 35,
+  totalMax: 35,
   percentage: 100,
   grade: 1,
   gradeLabel: "sehr gut"
 });
 
-const passingEdge = scoring.calculateExamResult(10, 15, 4, 13);
-assert.equal(passingEdge.totalScore, 14);
+const passingEdge = scoring.calculateExamResult(10, 15, 7.5, 20);
+assert.equal(passingEdge.totalScore, 17.5);
 assert.equal(passingEdge.percentage, 50);
 assert.equal(passingEdge.grade, 4);
 
-const clamped = scoring.calculateExamResult(15, 15, 20, 13);
-assert.equal(clamped.openScore, 13);
-assert.equal(clamped.totalScore, 28);
+const clamped = scoring.calculateExamResult(15, 15, 25, 20);
+assert.equal(clamped.openScore, 20);
+assert.equal(clamped.totalScore, 35);
 assert.equal(clamped.grade, 1);
 
 console.log("pruefung scoring tests passed");
