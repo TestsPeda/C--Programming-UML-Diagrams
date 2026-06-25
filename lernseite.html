@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lernen · Konzepte wiederholen — AEuP C#</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="mark">AEuP·C#</span><b>SA-Vorbereitung</b></a>
+  <nav class="topnav">
+    <a href="01-grundlagen.html">01 Grundlagen</a>
+    <a href="02-arrays.html">02 Arrays</a>
+    <a href="03-uml-aktivitaetsdiagramm.html">03 UML</a>
+    <a href="lernseite.html" class="current">Lernen</a>
+  </nav>
+  <div class="spacer"></div>
+  <span class="scorechip">Konzepte · ohne Quiz</span>
+</header>
+<main><div class="wrap">
+
+  <section class="hero">
+    <p class="eyebrow">Konzepte wiederholen</p>
+    <h1>Lernseite</h1>
+    <p class="lede">Die zentralen Begriffe aller drei Themen kompakt erklärt — zusammen mit den Diagrammen von den
+      Testseiten. Ideal zum schnellen Wiederholen vor der Schulaufgabe.</p>
+    <nav class="gal-nav">
+      <a class="pill" href="#t01">Grundlagen <span class="cnt">8</span></a>
+      <a class="pill" href="#t02">Arrays <span class="cnt">7</span></a>
+      <a class="pill" href="#t03">UML-Aktivitätsdiagramm <span class="cnt">7</span></a>
+    </nav>
+  </section>
+
+  <!-- ===================== Thema 01 ===================== -->
+  <div class="sec-head" id="t01"><span class="ix">01</span><h2>Grundlagen</h2></div>
+  <p class="sec-sub"><a class="src-link" href="01-grundlagen.html">zum Test öffnen →</a></p>
+  <div class="learn-grid">
+    <div class="learn-card"><span class="lc-term">Variable</span><p class="lc-def">Benannter Speicherplatz: <code>Typ name = Wert;</code> — Zuweisung mit <em>einfachem</em> <code>=</code>.</p></div>
+    <div class="learn-card"><span class="lc-term">int / double / decimal</span><p class="lc-def"><code>int</code> = ganze Zahlen, <code>double</code> = Gleitkomma, <code>decimal</code> = exakt für Geld (Suffix <code>m</code>).</p></div>
+    <div class="learn-card"><span class="lc-term">string / char / bool</span><p class="lc-def"><code>string</code> in <code>"..."</code>, <code>char</code> ein Zeichen in <code>'.'</code>, <code>bool</code> nur <code>true</code>/<code>false</code>.</p></div>
+    <div class="learn-card"><span class="lc-term">Ein-/Ausgabe</span><p class="lc-def"><code>Console.ReadLine()</code> liefert immer <code>string</code>; Ausgabe mit <code>Console.WriteLine($"...{x}")</code>.</p></div>
+    <div class="learn-card"><span class="lc-term">Typkonvertierung</span><p class="lc-def">Erweiternd (<code>int→double</code>) implizit; verkleinernd explizit per <code>Convert.ToInt32(...)</code> / Cast.</p></div>
+    <div class="learn-card"><span class="lc-term">Ganzzahldivision &amp; %</span><p class="lc-def"><code>7/2 = 3</code> (Rest fällt weg), <code>7%2 = 1</code> (Rest). Teilbarkeit: <code>z % n == 0</code>.</p></div>
+    <div class="learn-card"><span class="lc-term">Verzweigung</span><p class="lc-def"><code>if/else if/else</code> für Bereiche; <code>switch-case</code> + <code>break</code> für feste Einzelwerte.</p></div>
+    <div class="learn-card"><span class="lc-term">Schleifen</span><p class="lc-def"><code>for</code> bei bekannter Anzahl, <code>while</code> bei eingabeabhängigem Abbruch, <code>do-while</code> mind. 1×.</p></div>
+  </div>
+  <div class="gal-grid">
+    <div class="gal-item"><figure class="diagram">
+      <svg viewBox="0 0 460 250" role="img" aria-label="Ablauf einer if-else-Verzweigung">
+        <circle cx="60" cy="40" r="9" fill="#16242E"/>
+        <line x1="60" y1="49" x2="60" y2="78" stroke="#B9C7D2" stroke-width="1.5" marker-end="url(#g-arr)"/>
+        <polygon points="60,80 95,110 60,140 25,110" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
+        <text class="svg-label-sm" x="60" y="108" text-anchor="middle">zahl %</text>
+        <text class="svg-label-sm" x="60" y="120" text-anchor="middle">2 == 0?</text>
+        <line x1="95" y1="110" x2="180" y2="110" stroke="#B9C7D2" stroke-width="1.5" marker-end="url(#g-arr)"/>
+        <text class="svg-label-sm" x="120" y="103" text-anchor="middle">[ja]</text>
+        <rect x="180" y="92" width="120" height="36" rx="6" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+        <text class="svg-label" x="240" y="114" text-anchor="middle">"gerade"</text>
+        <line x1="60" y1="140" x2="60" y2="180" stroke="#B9C7D2" stroke-width="1.5" marker-end="url(#g-arr)"/>
+        <text class="svg-label-sm" x="78" y="165" text-anchor="middle">[nein]</text>
+        <rect x="10" y="180" width="120" height="36" rx="6" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+        <text class="svg-label" x="70" y="202" text-anchor="middle">"ungerade"</text>
+        <polygon points="360,110 380,128 360,146 340,128" fill="#E4F1EF" stroke="#15786E" stroke-width="1.5"/>
+        <line x1="300" y1="110" x2="345" y2="124" stroke="#B9C7D2" stroke-width="1.5" marker-end="url(#g-arr)"/>
+        <line x1="130" y1="198" x2="360" y2="146" stroke="#B9C7D2" stroke-width="1.5" marker-end="url(#g-arr)"/>
+        <line x1="360" y1="146" x2="360" y2="200" stroke="#B9C7D2" stroke-width="1.5" marker-end="url(#g-arr)"/>
+        <circle cx="360" cy="210" r="9" fill="#fff" stroke="#16242E" stroke-width="2"/>
+        <circle cx="360" cy="210" r="4" fill="#16242E"/>
+        <defs><marker id="g-arr" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#8b97a3"/></marker></defs>
+      </svg>
+      <figcaption>if-else: eine Bedingung, zwei Pfade, danach wieder gemeinsamer Fluss.</figcaption>
+    </figure></div>
+  </div>
+
+  <!-- ===================== Thema 02 ===================== -->
+  <div class="sec-head" id="t02"><span class="ix">02</span><h2>Arrays</h2></div>
+  <p class="sec-sub"><a class="src-link" href="02-arrays.html">zum Test öffnen →</a></p>
+  <div class="learn-grid">
+    <div class="learn-card"><span class="lc-term">Array (1D)</span><p class="lc-def">Reihe gleichartiger Werte: <code>int[] a = new int[6];</code>. Zugriff über Index <code>a[i]</code>.</p></div>
+    <div class="learn-card"><span class="lc-term">0-basiert</span><p class="lc-def">Erstes Element <code>[0]</code>, letztes <code>[Length - 1]</code>. <code>a[Length]</code> → <code>IndexOutOfRangeException</code>.</p></div>
+    <div class="learn-card"><span class="lc-term">Length</span><p class="lc-def"><code>a.Length</code> = Anzahl Elemente. Durchlaufen: <code>for (int i=0; i&lt;a.Length; i++)</code>.</p></div>
+    <div class="learn-card"><span class="lc-term">Array (2D)</span><p class="lc-def">Tabelle: <code>string[,] m = new string[3,4];</code>. Zugriff <code>m[zeile, spalte]</code> (Komma!).</p></div>
+    <div class="learn-card"><span class="lc-term">GetLength</span><p class="lc-def"><code>GetLength(0)</code> = Zeilen, <code>GetLength(1)</code> = Spalten; <code>Length</code> = Zeilen × Spalten gesamt.</p></div>
+    <div class="learn-card"><span class="lc-term">Indexumrechnung</span><p class="lc-def">Menschliche Eingabe 1-basiert → Array 0-basiert: <code>m[zeile-1, spalte-1]</code> (Chaos-Lager).</p></div>
+    <div class="learn-card"><span class="lc-term">Verschachtelte Schleife</span><p class="lc-def">Alle Felder eines 2D-Arrays: äußere Schleife Zeilen, innere Spalten.</p></div>
+  </div>
+  <div class="gal-grid">
+    <div class="gal-item"><figure class="diagram">
+      <svg viewBox="0 0 520 130" role="img" aria-label="Eindimensionales Array mit Indizes 0 bis 5">
+        <text class="svg-title" x="10" y="20">int[] lotto = new int[6];</text>
+        <g>
+          <rect x="10"  y="40" width="80" height="44" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <rect x="90"  y="40" width="80" height="44" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <rect x="170" y="40" width="80" height="44" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <rect x="250" y="40" width="80" height="44" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <rect x="330" y="40" width="80" height="44" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <rect x="410" y="40" width="80" height="44" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label" x="50" y="68" text-anchor="middle">7</text>
+          <text class="svg-label" x="130" y="68" text-anchor="middle">12</text>
+          <text class="svg-label" x="210" y="68" text-anchor="middle">23</text>
+          <text class="svg-label" x="290" y="68" text-anchor="middle">31</text>
+          <text class="svg-label" x="370" y="68" text-anchor="middle">42</text>
+          <text class="svg-label" x="450" y="68" text-anchor="middle">49</text>
+          <text class="svg-label-sm" x="50" y="102" text-anchor="middle">[0]</text>
+          <text class="svg-label-sm" x="130" y="102" text-anchor="middle">[1]</text>
+          <text class="svg-label-sm" x="210" y="102" text-anchor="middle">[2]</text>
+          <text class="svg-label-sm" x="290" y="102" text-anchor="middle">[3]</text>
+          <text class="svg-label-sm" x="370" y="102" text-anchor="middle">[4]</text>
+          <text class="svg-label-sm" x="450" y="102" text-anchor="middle">[5]</text>
+        </g>
+        <text class="svg-label-sm" x="450" y="122" text-anchor="middle" fill="#DD5430">Länge = 6, letzter Index = 5</text>
+      </svg>
+      <figcaption>1D-Array: <code>Length</code> = 6, letzter Index <code>5</code>.</figcaption>
+    </figure></div>
+    <div class="gal-item"><figure class="diagram">
+      <svg viewBox="0 0 420 230" role="img" aria-label="Zweidimensionales Array als Gitter">
+        <text class="svg-title" x="10" y="20">int[,] saal = new int[3, 4];</text>
+        <text class="svg-label-sm" x="120" y="46" text-anchor="middle">[,0]</text>
+        <text class="svg-label-sm" x="190" y="46" text-anchor="middle">[,1]</text>
+        <text class="svg-label-sm" x="260" y="46" text-anchor="middle">[,2]</text>
+        <text class="svg-label-sm" x="330" y="46" text-anchor="middle">[,3]</text>
+        <g stroke="#15786E" stroke-width="1.5" fill="#fff">
+          <rect x="85" y="55"  width="70" height="40"/><rect x="155" y="55"  width="70" height="40"/><rect x="225" y="55"  width="70" height="40"/><rect x="295" y="55"  width="70" height="40"/>
+          <rect x="85" y="95"  width="70" height="40"/><rect x="155" y="95"  width="70" height="40"/><rect x="225" y="95"  width="70" height="40"/><rect x="295" y="95"  width="70" height="40"/>
+          <rect x="85" y="135" width="70" height="40"/><rect x="155" y="135" width="70" height="40"/><rect x="225" y="135" width="70" height="40"/><rect x="295" y="135" width="70" height="40"/>
+        </g>
+        <text class="svg-label-sm" x="60" y="80"  text-anchor="middle">[0,]</text>
+        <text class="svg-label-sm" x="60" y="120" text-anchor="middle">[1,]</text>
+        <text class="svg-label-sm" x="60" y="160" text-anchor="middle">[2,]</text>
+        <rect x="225" y="95" width="70" height="40" fill="#FBEAE3" stroke="#DD5430" stroke-width="2"/>
+        <text class="svg-label" x="260" y="120" text-anchor="middle" fill="#B23E1F">saal[1,2]</text>
+        <text class="svg-label-sm" x="210" y="205" text-anchor="middle" fill="#DD5430">saal[zeile, spalte] — beide 0-basiert</text>
+      </svg>
+      <figcaption>2D-Array: <code>saal[1,2]</code> = 2. Zeile, 3. Spalte.</figcaption>
+    </figure></div>
+  </div>
+
+  <!-- ===================== Thema 03 ===================== -->
+  <div class="sec-head" id="t03"><span class="ix">03</span><h2>UML-Aktivitätsdiagramm</h2></div>
+  <p class="sec-sub"><a class="src-link" href="03-uml-aktivitaetsdiagramm.html">zum Test öffnen →</a></p>
+  <div class="learn-grid">
+    <div class="learn-card"><span class="lc-term">Aktion</span><p class="lc-def">Abgerundetes Rechteck = eine Tätigkeit/Funktion des Systems.</p></div>
+    <div class="learn-card"><span class="lc-term">Steuerungsfluss</span><p class="lc-def">Pfeil zwischen Aktionen — gibt die Reihenfolge vor.</p></div>
+    <div class="learn-card"><span class="lc-term">Start / Ende</span><p class="lc-def">● Startpunkt, ◉ Endpunkt der Aktivität, ⊗ Ende eines einzelnen Flusses.</p></div>
+    <div class="learn-card"><span class="lc-term">Entscheidung</span><p class="lc-def">Raute: ein Eingang, mehrere bedingte Ausgänge <code>[Bedingung]</code> — nur <em>ein</em> Pfad.</p></div>
+    <div class="learn-card"><span class="lc-term">Vereinigung (Merge)</span><p class="lc-def">Raute, die verzweigte Pfade wieder zu einem Fluss zusammenführt → im Code: Anweisung nach <code>if-else</code>.</p></div>
+    <div class="learn-card"><span class="lc-term">Gabelung</span><p class="lc-def">Dicker Balken: teilt den Fluss in <em>parallele</em> Teilflüsse (sowohl als auch).</p></div>
+    <div class="learn-card"><span class="lc-term">Verantwortungsbereich</span><p class="lc-def">Swimlane: zeigt, <em>wer</em> (welche Rolle) für eine Aktion zuständig ist.</p></div>
+  </div>
+  <div class="gal-grid">
+    <div class="gal-item"><figure class="diagram">
+      <svg viewBox="0 0 560 200" role="img" aria-label="Legende der Notationselemente">
+        <circle cx="50" cy="40" r="11" fill="#16242E"/>
+        <text class="svg-label-sm" x="50" y="72" text-anchor="middle">Startpunkt</text>
+        <rect x="120" y="24" width="120" height="34" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+        <text class="svg-label" x="180" y="46" text-anchor="middle">Aktion</text>
+        <text class="svg-label-sm" x="180" y="72" text-anchor="middle">Aktion / Funktion</text>
+        <line x1="300" y1="41" x2="380" y2="41" stroke="#16242E" stroke-width="1.5" marker-end="url(#u-arr)"/>
+        <text class="svg-label-sm" x="340" y="72" text-anchor="middle">Steuerungsfluss</text>
+        <polygon points="470,24 500,42 470,60 440,42" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
+        <text class="svg-label-sm" x="470" y="72" text-anchor="middle">Entscheidung</text>
+        <polygon points="50,120 80,138 50,156 20,138" fill="#E4F1EF" stroke="#15786E" stroke-width="1.5"/>
+        <text class="svg-label-sm" x="50" y="172" text-anchor="middle">Vereinigung</text>
+        <rect x="140" y="118" width="100" height="8" fill="#16242E"/>
+        <text class="svg-label-sm" x="190" y="150" text-anchor="middle">Gabelung</text>
+        <text class="svg-label-sm" x="190" y="164" text-anchor="middle">(parallel)</text>
+        <circle cx="340" cy="138" r="11" fill="#fff" stroke="#16242E" stroke-width="2"/>
+        <circle cx="340" cy="138" r="5" fill="#16242E"/>
+        <text class="svg-label-sm" x="340" y="172" text-anchor="middle">Endpunkt</text>
+        <circle cx="470" cy="138" r="11" fill="#fff" stroke="#16242E" stroke-width="1.5"/>
+        <line x1="462" y1="130" x2="478" y2="146" stroke="#16242E" stroke-width="1.5"/>
+        <line x1="478" y1="130" x2="462" y2="146" stroke="#16242E" stroke-width="1.5"/>
+        <text class="svg-label-sm" x="470" y="172" text-anchor="middle">Fluss-Ende</text>
+        <defs><marker id="u-arr" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#16242E"/></marker></defs>
+      </svg>
+      <figcaption>Grundsymbole: Start, Aktion, Fluss, Entscheidung, Vereinigung, Gabelung, Endpunkt, Fluss-Ende.</figcaption>
+    </figure></div>
+    <div class="gal-item"><figure class="diagram">
+      <svg viewBox="0 0 360 760" role="img" aria-label="Aktivitätsdiagramm Online-Ticketkauf">
+        <defs><marker id="t-arr" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#16242E"/></marker></defs>
+        <circle cx="180" cy="22" r="10" fill="#16242E"/>
+        <line x1="180" y1="32" x2="180" y2="48" stroke="#16242E" stroke-width="1.5" marker-end="url(#t-arr)"/>
+        <rect x="90" y="50" width="180" height="34" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+        <text class="svg-label" x="180" y="72" text-anchor="middle">Webseite besuchen</text>
+        <line x1="180" y1="84" x2="180" y2="100" stroke="#16242E" stroke-width="1.5" marker-end="url(#t-arr)"/>
+        <rect x="90" y="102" width="180" height="34" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+        <text class="svg-label" x="180" y="124" text-anchor="middle">Ticketbereich suchen</text>
+        <line x1="180" y1="136" x2="180" y2="152" stroke="#16242E" stroke-width="1.5" marker-end="url(#t-arr)"/>
+        <rect x="90" y="154" width="180" height="34" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+        <text class="svg-label" x="180" y="176" text-anchor="middle">Event auswählen</text>
+        <line x1="180" y1="188" x2="180" y2="204" stroke="#16242E" stroke-width="1.5" marker-end="url(#t-arr)"/>
+        <rect x="90" y="206" width="180" height="34" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+        <text class="svg-label" x="180" y="228" text-anchor="middle">Ticket in Warenkorb</text>
+        <line x1="180" y1="240" x2="180" y2="256" stroke="#16242E" stroke-width="1.5" marker-end="url(#t-arr)"/>
+        <rect x="90" y="258" width="180" height="34" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+        <text class="svg-label" x="180" y="280" text-anchor="middle">Zur Kasse gehen</text>
+        <line x1="180" y1="292" x2="180" y2="312" stroke="#16242E" stroke-width="1.5" marker-end="url(#t-arr)"/>
+        <polygon points="180,314 218,346 180,378 142,346" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
+        <text class="svg-label-sm" x="180" y="343" text-anchor="middle">Konto</text>
+        <text class="svg-label-sm" x="180" y="355" text-anchor="middle">vorhanden?</text>
+        <line x1="142" y1="346" x2="60" y2="346" stroke="#16242E" stroke-width="1.5"/>
+        <line x1="60" y1="346" x2="60" y2="400" stroke="#16242E" stroke-width="1.5" marker-end="url(#t-arr)"/>
+        <text class="svg-label-sm" x="98" y="338" text-anchor="middle" fill="#B23E1F">[nein]</text>
+        <rect x="10" y="402" width="100" height="34" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+        <text class="svg-label" x="60" y="424" text-anchor="middle">Registrieren</text>
+        <line x1="218" y1="346" x2="300" y2="346" stroke="#16242E" stroke-width="1.5"/>
+        <line x1="300" y1="346" x2="300" y2="400" stroke="#16242E" stroke-width="1.5" marker-end="url(#t-arr)"/>
+        <text class="svg-label-sm" x="262" y="338" text-anchor="middle" fill="#15786E">[ja]</text>
+        <rect x="250" y="402" width="100" height="34" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+        <text class="svg-label" x="300" y="424" text-anchor="middle">Anmelden</text>
+        <line x1="60" y1="436" x2="60" y2="470" stroke="#16242E" stroke-width="1.5"/>
+        <line x1="300" y1="436" x2="300" y2="470" stroke="#16242E" stroke-width="1.5"/>
+        <polygon points="180,452 210,470 180,488 150,470" fill="#E4F1EF" stroke="#15786E" stroke-width="1.5"/>
+        <line x1="60" y1="470" x2="151" y2="470" stroke="#16242E" stroke-width="1.5"/>
+        <line x1="300" y1="470" x2="209" y2="470" stroke="#16242E" stroke-width="1.5"/>
+        <line x1="180" y1="488" x2="180" y2="504" stroke="#16242E" stroke-width="1.5" marker-end="url(#t-arr)"/>
+        <rect x="90" y="506" width="180" height="34" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+        <text class="svg-label" x="180" y="528" text-anchor="middle">Zahlungsdaten eingeben</text>
+        <line x1="180" y1="540" x2="180" y2="556" stroke="#16242E" stroke-width="1.5" marker-end="url(#t-arr)"/>
+        <rect x="90" y="558" width="180" height="34" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+        <text class="svg-label" x="180" y="580" text-anchor="middle">Bestellung bestätigen</text>
+        <line x1="180" y1="592" x2="180" y2="608" stroke="#16242E" stroke-width="1.5" marker-end="url(#t-arr)"/>
+        <rect x="90" y="610" width="180" height="34" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+        <text class="svg-label" x="180" y="632" text-anchor="middle">Bestätigungs-Email</text>
+        <line x1="180" y1="644" x2="180" y2="690" stroke="#16242E" stroke-width="1.5" marker-end="url(#t-arr)"/>
+        <circle cx="180" cy="702" r="11" fill="#fff" stroke="#16242E" stroke-width="2"/>
+        <circle cx="180" cy="702" r="5" fill="#16242E"/>
+      </svg>
+      <figcaption>Ticketkauf als Aktivitätsdiagramm — mit Entscheidung &amp; Vereinigung.</figcaption>
+    </figure></div>
+  </div>
+
+</div></main>
+<footer class="foot"><div class="wrap"><span class="mono">AEuP C# · Lernseite</span> · Konzepte wiederholen</div></footer>
+</body>
+</html>

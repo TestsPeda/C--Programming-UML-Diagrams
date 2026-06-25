@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>03 · UML-Aktivitätsdiagramm — AEuP C#</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/code.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="mark">AEuP·C#</span><b>SA-Vorbereitung</b></a>
+  <nav class="topnav">
+    <a href="01-grundlagen.html">01 Grundlagen</a>
+    <a href="02-arrays.html">02 Arrays</a>
+    <a href="03-uml-aktivitaetsdiagramm.html" class="current">03 UML</a>
+    <a href="lernseite.html">Lernen</a>
+  </nav>
+  <div class="spacer"></div>
+  <span class="scorechip" id="scorechip">Auto-Fragen: 0/0 richtig</span>
+</header>
+<main><div class="wrap">
+
+  <section class="hero">
+    <p class="eyebrow">Anwendungsentwicklung mit C#</p>
+    <div class="hero-num"><span class="hash">#</span>03</div>
+    <h1>UML-Aktivitätsdiagramm</h1>
+    <p class="lede">Abläufe modellieren: Aktionen, Steuerungsfluss, Entscheidungen, Vereinigung, Gabelung und
+      Verantwortungsbereiche. Vom Text zur Grafik — und zurück zum Code.</p>
+    <div class="hero-meta">
+      <span class="pill"><b>12</b> Aufgaben</span>
+      <span class="pill"><b>2</b> Diagramme</span>
+      <span class="pill">MC · Multi-Select · Modellieren · Programmieren</span>
+    </div>
+  </section>
+
+  <div class="controls">
+    <button class="btn primary" id="show-all">Alle Lösungen einblenden</button>
+    <button class="btn" id="hide-all">Alle ausblenden</button>
+  </div>
+
+  <!-- ============ Abschnitt A ============ -->
+  <div class="sec-head"><span class="ix">A</span><h2>Notationselemente</h2></div>
+  <p class="sec-sub">Jedes Symbol hat eine feste Bedeutung — das ist die „Vokabel-Ebene" des Themas.</p>
+
+  <figure class="diagram">
+    <svg viewBox="0 0 560 200" role="img" aria-label="Legende der Notationselemente eines Aktivitätsdiagramms">
+      <!-- Start -->
+      <circle cx="50" cy="40" r="11" fill="#16242E"/>
+      <text class="svg-label-sm" x="50" y="72" text-anchor="middle">Startpunkt</text>
+      <!-- Aktion -->
+      <rect x="120" y="24" width="120" height="34" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+      <text class="svg-label" x="180" y="46" text-anchor="middle">Aktion</text>
+      <text class="svg-label-sm" x="180" y="72" text-anchor="middle">Aktion / Funktion</text>
+      <!-- Steuerungsfluss -->
+      <line x1="300" y1="41" x2="380" y2="41" stroke="#16242E" stroke-width="1.5" marker-end="url(#u-arr)"/>
+      <text class="svg-label-sm" x="340" y="72" text-anchor="middle">Steuerungsfluss</text>
+      <!-- Entscheidung -->
+      <polygon points="470,24 500,42 470,60 440,42" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
+      <text class="svg-label-sm" x="470" y="72" text-anchor="middle">Entscheidung</text>
+      <!-- Vereinigung / Merge -->
+      <polygon points="50,120 80,138 50,156 20,138" fill="#E4F1EF" stroke="#15786E" stroke-width="1.5"/>
+      <text class="svg-label-sm" x="50" y="172" text-anchor="middle">Vereinigung</text>
+      <!-- Gabelung bar -->
+      <rect x="140" y="118" width="100" height="8" fill="#16242E"/>
+      <text class="svg-label-sm" x="190" y="150" text-anchor="middle">Gabelung /</text>
+      <text class="svg-label-sm" x="190" y="164" text-anchor="middle">Synchronisation (parallel)</text>
+      <!-- Endpunkt -->
+      <circle cx="340" cy="138" r="11" fill="#fff" stroke="#16242E" stroke-width="2"/>
+      <circle cx="340" cy="138" r="5" fill="#16242E"/>
+      <text class="svg-label-sm" x="340" y="172" text-anchor="middle">Endpunkt</text>
+      <!-- Endpunkt Steuerungsfluss -->
+      <circle cx="470" cy="138" r="11" fill="#fff" stroke="#16242E" stroke-width="1.5"/>
+      <line x1="462" y1="130" x2="478" y2="146" stroke="#16242E" stroke-width="1.5"/>
+      <line x1="478" y1="130" x2="462" y2="146" stroke="#16242E" stroke-width="1.5"/>
+      <text class="svg-label-sm" x="470" y="172" text-anchor="middle">Fluss-Ende</text>
+      <defs>
+        <marker id="u-arr" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto">
+          <path d="M0,0 L7,3 L0,6 Z" fill="#16242E"/>
+        </marker>
+      </defs>
+    </svg>
+    <figcaption>Die Grundsymbole: Start ●, Aktion (Rechteck), Steuerungsfluss (Pfeil), Entscheidung/Vereinigung (Raute), Gabelung (Balken), Endpunkt ◉, Fluss-Ende ⊗.</figcaption>
+  </figure>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">01</span><span class="q-type">Multiple Choice</span><span class="q-pts">Auto</span></div>
+    <div class="q-body">
+      <p class="q-text">Womit wird eine einzelne <strong>Aktion</strong> in einem Aktivitätsdiagramm dargestellt?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt"><span class="tick"></span>mit einer Raute</li>
+        <li class="opt" data-correct="true"><span class="tick"></span>mit einem abgerundeten Rechteck</li>
+        <li class="opt"><span class="tick"></span>mit einem ausgefüllten Kreis</li>
+        <li class="opt"><span class="tick"></span>mit einem dicken Balken</li>
+      </ul>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Lösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span>
+      <p>Die Aktion — das zentrale Element — ist ein abgerundetes Rechteck mit dem Tätigkeitsnamen, z. B. „Summe berechnen".</p>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">02</span><span class="q-type">Multiple Choice</span><span class="q-pts">Auto</span></div>
+    <div class="q-body">
+      <p class="q-text">Wofür steht der <strong>ausgefüllte Kreis mit Ring</strong> (◉)?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt"><span class="tick"></span>Startpunkt</li>
+        <li class="opt" data-correct="true"><span class="tick"></span>Endpunkt der Aktivität</li>
+        <li class="opt"><span class="tick"></span>Entscheidungsknoten</li>
+        <li class="opt"><span class="tick"></span>eine parallele Gabelung</li>
+      </ul>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Lösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span>
+      <p>Der <em>ausgefüllte</em> Kreis ist der Startpunkt; der ausgefüllte Kreis <em>mit Ring</em> ist der Endpunkt der Aktivität.
+      Das durchgestrichene Kreissymbol ⊗ ist das Ende eines einzelnen (abzweigenden) Steuerungsflusses.</p>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">03</span><span class="q-type">Multiple Choice</span><span class="q-pts">Auto</span></div>
+    <div class="q-body">
+      <p class="q-text">Ein <strong>Entscheidungsknoten</strong> (Raute) hat …</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt" data-correct="true"><span class="tick"></span>einen Eingang und zwei oder mehr Ausgänge, die an Bedingungen geknüpft sind.</li>
+        <li class="opt"><span class="tick"></span>immer genau einen Eingang und einen Ausgang.</li>
+        <li class="opt"><span class="tick"></span>mehrere Eingänge, die parallel ausgeführt werden.</li>
+        <li class="opt"><span class="tick"></span>keine Bedingungen.</li>
+      </ul>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Lösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span>
+      <p>Der Entscheidungsknoten verzweigt einen Eingang in mehrere Ausgänge. Jeder Ausgangspfad trägt eine Bedingung
+      in eckigen Klammern, z. B. <code>[neuer Kunde]</code> / <code>[bestehender Kunde]</code>. Es wird stets nur <em>ein</em> Pfad genommen.</p>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">04</span><span class="q-type">Multi-Select</span><span class="q-pts">Auto</span></div>
+    <div class="q-body">
+      <p class="q-text">Welche Aussagen über Aktivitätsdiagramme sind <strong>richtig</strong>? (mehrere möglich)</p>
+      <ul class="q-options" data-multi="true">
+        <li class="opt" data-correct="true"><span class="tick"></span>Sie modellieren <em>dynamische</em> Abläufe (Reihenfolge von Aktionen).</li>
+        <li class="opt" data-correct="true"><span class="tick"></span>Verantwortungsbereiche (Swimlanes) zeigen, <em>wer</em> für welche Aktion zuständig ist.</li>
+        <li class="opt"><span class="tick"></span>Jede Aktivität darf nur genau einen Endpunkt haben.</li>
+        <li class="opt" data-correct="true"><span class="tick"></span>Eine Gabelung teilt den Fluss in parallele Teilflüsse auf.</li>
+        <li class="opt"><span class="tick"></span>Bedingungen am Entscheidungsknoten stehen in runden Klammern.</li>
+      </ul>
+    </div>
+    <div class="q-foot"><button class="q-check btn">Auswerten</button><button class="q-reveal" aria-expanded="false">Lösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span>
+      <p>Richtig: 1, 2, 4. Eine Aktivität darf <em>mehrere</em> End-/Flussende-Punkte haben, und Bedingungen stehen in
+      <em>eckigen</em> Klammern <code>[ ]</code>.</p>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">05</span><span class="q-type">Multiple Choice</span><span class="q-pts">Auto</span></div>
+    <div class="q-body">
+      <p class="q-text">Was ist der Unterschied zwischen <strong>Entscheidung</strong> (Verzweigung) und <strong>Gabelung</strong>?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt"><span class="tick"></span>Es gibt keinen Unterschied.</li>
+        <li class="opt" data-correct="true"><span class="tick"></span>Bei der Entscheidung wird <em>ein</em> Pfad (je Bedingung) genommen; bei der Gabelung laufen <em>alle</em> Teilflüsse parallel weiter.</li>
+        <li class="opt"><span class="tick"></span>Die Gabelung kennt Bedingungen, die Entscheidung nicht.</li>
+        <li class="opt"><span class="tick"></span>Die Entscheidung beendet die Aktivität.</li>
+      </ul>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Lösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span>
+      <p>Entscheidung (Raute) = <em>entweder/oder</em>, gesteuert durch Bedingungen. Gabelung (Balken) = <em>sowohl als auch</em>,
+      die Teilflüsse werden parallel abgearbeitet und später durch eine Synchronisation/Vereinigung wieder zusammengeführt.</p>
+    </div>
+  </article>
+
+  <!-- ============ Abschnitt B ============ -->
+  <div class="sec-head"><span class="ix">B</span><h2>Diagramm lesen &amp; erstellen: Online-Ticketkauf</h2></div>
+  <p class="sec-sub">Die Anleitung „Kauf eines Online-Tickets" als Aktivitätsdiagramm modelliert.</p>
+
+  <figure class="diagram">
+    <svg viewBox="0 0 360 760" role="img" aria-label="Aktivitätsdiagramm zum Online-Ticketkauf">
+      <defs>
+        <marker id="t-arr" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto">
+          <path d="M0,0 L7,3 L0,6 Z" fill="#16242E"/>
+        </marker>
+      </defs>
+      <!-- start -->
+      <circle cx="180" cy="22" r="10" fill="#16242E"/>
+      <line x1="180" y1="32" x2="180" y2="48" stroke="#16242E" stroke-width="1.5" marker-end="url(#t-arr)"/>
+      <!-- action helper via repeated groups -->
+      <!-- 1 -->
+      <rect x="90" y="50" width="180" height="34" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+      <text class="svg-label" x="180" y="72" text-anchor="middle">Webseite besuchen</text>
+      <line x1="180" y1="84" x2="180" y2="100" stroke="#16242E" stroke-width="1.5" marker-end="url(#t-arr)"/>
+      <!-- 2 -->
+      <rect x="90" y="102" width="180" height="34" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+      <text class="svg-label" x="180" y="124" text-anchor="middle">Ticketbereich suchen</text>
+      <line x1="180" y1="136" x2="180" y2="152" stroke="#16242E" stroke-width="1.5" marker-end="url(#t-arr)"/>
+      <!-- 3 -->
+      <rect x="90" y="154" width="180" height="34" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+      <text class="svg-label" x="180" y="176" text-anchor="middle">Event auswählen</text>
+      <line x1="180" y1="188" x2="180" y2="204" stroke="#16242E" stroke-width="1.5" marker-end="url(#t-arr)"/>
+      <!-- 4 -->
+      <rect x="90" y="206" width="180" height="34" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+      <text class="svg-label" x="180" y="228" text-anchor="middle">Ticket in Warenkorb</text>
+      <line x1="180" y1="240" x2="180" y2="256" stroke="#16242E" stroke-width="1.5" marker-end="url(#t-arr)"/>
+      <!-- 5 -->
+      <rect x="90" y="258" width="180" height="34" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+      <text class="svg-label" x="180" y="280" text-anchor="middle">Zur Kasse gehen</text>
+      <line x1="180" y1="292" x2="180" y2="312" stroke="#16242E" stroke-width="1.5" marker-end="url(#t-arr)"/>
+      <!-- decision: Konto vorhanden? -->
+      <polygon points="180,314 218,346 180,378 142,346" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
+      <text class="svg-label-sm" x="180" y="343" text-anchor="middle">Konto</text>
+      <text class="svg-label-sm" x="180" y="355" text-anchor="middle">vorhanden?</text>
+      <!-- left [nein] registrieren -->
+      <line x1="142" y1="346" x2="60" y2="346" stroke="#16242E" stroke-width="1.5"/>
+      <line x1="60" y1="346" x2="60" y2="400" stroke="#16242E" stroke-width="1.5" marker-end="url(#t-arr)"/>
+      <text class="svg-label-sm" x="98" y="338" text-anchor="middle" fill="#B23E1F">[nein]</text>
+      <rect x="10" y="402" width="100" height="34" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+      <text class="svg-label" x="60" y="424" text-anchor="middle">Registrieren</text>
+      <!-- right [ja] anmelden -->
+      <line x1="218" y1="346" x2="300" y2="346" stroke="#16242E" stroke-width="1.5"/>
+      <line x1="300" y1="346" x2="300" y2="400" stroke="#16242E" stroke-width="1.5" marker-end="url(#t-arr)"/>
+      <text class="svg-label-sm" x="262" y="338" text-anchor="middle" fill="#15786E">[ja]</text>
+      <rect x="250" y="402" width="100" height="34" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+      <text class="svg-label" x="300" y="424" text-anchor="middle">Anmelden</text>
+      <!-- merge -->
+      <line x1="60" y1="436" x2="60" y2="470" stroke="#16242E" stroke-width="1.5"/>
+      <line x1="300" y1="436" x2="300" y2="470" stroke="#16242E" stroke-width="1.5"/>
+      <polygon points="180,452 210,470 180,488 150,470" fill="#E4F1EF" stroke="#15786E" stroke-width="1.5"/>
+      <line x1="60" y1="470" x2="151" y2="470" stroke="#16242E" stroke-width="1.5"/>
+      <line x1="300" y1="470" x2="209" y2="470" stroke="#16242E" stroke-width="1.5"/>
+      <line x1="180" y1="488" x2="180" y2="504" stroke="#16242E" stroke-width="1.5" marker-end="url(#t-arr)"/>
+      <!-- 7 -->
+      <rect x="90" y="506" width="180" height="34" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+      <text class="svg-label" x="180" y="528" text-anchor="middle">Zahlungsdaten eingeben</text>
+      <line x1="180" y1="540" x2="180" y2="556" stroke="#16242E" stroke-width="1.5" marker-end="url(#t-arr)"/>
+      <!-- 8 -->
+      <rect x="90" y="558" width="180" height="34" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+      <text class="svg-label" x="180" y="580" text-anchor="middle">Bestellung bestätigen</text>
+      <line x1="180" y1="592" x2="180" y2="608" stroke="#16242E" stroke-width="1.5" marker-end="url(#t-arr)"/>
+      <!-- 9 -->
+      <rect x="90" y="610" width="180" height="34" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+      <text class="svg-label" x="180" y="632" text-anchor="middle">Bestätigungs-Email</text>
+      <line x1="180" y1="644" x2="180" y2="690" stroke="#16242E" stroke-width="1.5" marker-end="url(#t-arr)"/>
+      <!-- end -->
+      <circle cx="180" cy="702" r="11" fill="#fff" stroke="#16242E" stroke-width="2"/>
+      <circle cx="180" cy="702" r="5" fill="#16242E"/>
+    </svg>
+    <figcaption>Ticketkauf: Start → 5 Aktionen → Entscheidung „Konto vorhanden?" (Registrieren/Anmelden) → Vereinigung → Zahlung, Bestätigung, E-Mail → Ende.</figcaption>
+  </figure>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">06</span><span class="q-type">Multiple Choice</span><span class="q-pts">Auto</span></div>
+    <div class="q-body">
+      <p class="q-text">An welcher Stelle des Ticketkauf-Ablaufs ist ein <strong>Entscheidungsknoten</strong> sinnvoll?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt"><span class="tick"></span>beim Besuch der Webseite</li>
+        <li class="opt" data-correct="true"><span class="tick"></span>bei „Registrierung <em>oder</em> Anmeldung" (je nachdem, ob ein Konto besteht)</li>
+        <li class="opt"><span class="tick"></span>beim Erhalt der Bestätigungs-Email</li>
+        <li class="opt"><span class="tick"></span>beim Hinzufügen zum Warenkorb</li>
+      </ul>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Lösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span>
+      <p>„Registrierung <em>oder</em> Anmeldung" ist eine Entweder-oder-Situation → Entscheidungsknoten mit Bedingungen
+      <code>[neuer Kunde]</code> / <code>[bestehender Kunde]</code>, danach Vereinigung beider Pfade.</p>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">07</span><span class="q-type">Multiple Choice</span><span class="q-pts">Auto</span></div>
+    <div class="q-body">
+      <p class="q-text">Wie viele <strong>Startpunkte</strong> muss eine Aktivität mindestens haben?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt"><span class="tick"></span>keinen</li>
+        <li class="opt" data-correct="true"><span class="tick"></span>mindestens einen</li>
+        <li class="opt"><span class="tick"></span>genau zwei</li>
+        <li class="opt"><span class="tick"></span>so viele wie Aktionen</li>
+      </ul>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Lösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span>
+      <p>Jede Aktivität hat mindestens einen Start- und mindestens einen Endpunkt. Der Ablauf beginnt am ausgefüllten Kreis.</p>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">08</span><span class="q-type">Modellieren</span><span class="q-pts">manuell</span></div>
+    <div class="q-body">
+      <p class="q-text">Modellieren Sie als Aktivitätsdiagramm: <em>„Zahl einlesen. Ist die Zahl ungleich 0, den Kehrwert berechnen,
+        sonst eine Fehlermeldung ausgeben."</em> Beschreiben Sie die Elemente und ihre Reihenfolge.</p>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
+      <ol>
+        <li><strong>Startpunkt</strong> (●)</li>
+        <li>Aktion <em>„Zahl einlesen"</em></li>
+        <li><strong>Entscheidungsknoten</strong> mit Bedingung <code>[Zahl ungleich 0]</code> bzw. <code>[Zahl gleich 0]</code></li>
+        <li>Pfad <code>[ungleich 0]</code> → Aktion <em>„Kehrwert berechnen"</em></li>
+        <li>Pfad <code>[gleich 0]</code> → Aktion <em>„Fehlermeldung ausgeben"</em></li>
+        <li><strong>Vereinigung</strong> (Raute) beider Pfade</li>
+        <li><strong>Endpunkt</strong> (◉)</li>
+      </ol>
+      <p>Das entspricht 1:1 einer <code>if-else</code>-Verzweigung im Code.</p>
+    </div>
+  </article>
+
+  <!-- ============ Abschnitt C: Programmieren ============ -->
+  <div class="sec-head"><span class="ix">C</span><h2>Vom Diagramm zum Code</h2></div>
+  <p class="sec-sub">Ein Aktivitätsdiagramm lässt sich direkt in C#-Kontrollstrukturen übersetzen.</p>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">09</span><span class="q-type">Programmieren</span><span class="q-pts">Selbsttest</span></div>
+    <div class="q-body">
+      <p class="q-text"><strong>Diagramm → Code.</strong> Setzen Sie den Entscheidungsteil des Ticketkaufs in C# um:
+        Frage den Benutzer, ob er bereits ein Konto hat (<code>j/n</code>). Bei „j" gib „Anmelden …" aus, sonst „Registrieren …".
+        Danach in beiden Fällen „Zahlungsdaten eingeben" ausgeben (Vereinigung der Pfade).</p>
+      <textarea class="code-input" rows="12" placeholder="// Dein C#-Code …" data-task="diagramm-zu-code"></textarea>
+    </div>
+    <div class="q-foot">
+      <button class="q-copyprompt">KI-Bewertungs-Prompt kopieren</button>
+      <button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button>
+    </div>
+    <p class="code-hint">Tipp: Code oben eintippen, dann „KI-Bewertungs-Prompt kopieren" → in ChatGPT/Claude einfügen für Feedback. Die Seite selbst führt keinen Code aus.</p>
+    <template class="prompt-tpl">Du bist Informatik-Lehrkraft und bewertest C#-Code eines Berufsschülers (Fach AEuP, Thema UML-Aktivitätsdiagramm -> Code).
+
+Aufgabe: Den Entscheidungsteil eines Aktivitätsdiagramms (Online-Ticketkauf) in C# umsetzen. Den Benutzer fragen, ob er bereits ein Konto hat (j/n). Bei "j": "Anmelden ..." ausgeben, sonst "Registrieren ...". Danach in BEIDEN Fällen "Zahlungsdaten eingeben" ausgeben (das entspricht der Vereinigung der beiden Pfade).
+
+Bewerte den folgenden Code anhand dieser Kriterien und gib konkretes, freundliches Feedback samt Verbesserungen:
+- Eingabe (j/n) eingelesen
+- if-else (Entscheidungsknoten) korrekt umgesetzt
+- bei "j" Anmelden, sonst Registrieren ausgegeben
+- die gemeinsame Folgeaktion "Zahlungsdaten eingeben" steht NACH der if-else (Vereinigung) und wird in beiden Fällen erreicht
+- sinnvolle Variablennamen/Kommentare
+- Bezug Diagramm <-> Code erkennbar
+
+Hier ist mein Code:
+```csharp
+{{CODE}}
+```
+Sag mir zuerst, ob das Programm die Aufgabe erfüllt, dann liste konkrete Verbesserungen auf.</template>
+    <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
+<pre><code>using System;
+
+Console.Write("Konto vorhanden? (j/n): ");
+string antwort = Console.ReadLine();
+
+// Entscheidungsknoten -> if-else
+if (antwort == "j")
+    Console.WriteLine("Anmelden ...");      // [ja]-Pfad
+else
+    Console.WriteLine("Registrieren ...");  // [nein]-Pfad
+
+// Vereinigung: gemeinsame Folgeaktion in BEIDEN Fällen
+Console.WriteLine("Zahlungsdaten eingeben");</code></pre>
+      <span class="rubric-label">Bewertungs-Checkliste</span>
+      <ul class="rubric">
+        <li>Eingabe <code>j/n</code> eingelesen</li>
+        <li><code>if-else</code> bildet den Entscheidungsknoten ab</li>
+        <li>„Anmelden" bei j, „Registrieren" bei n</li>
+        <li>„Zahlungsdaten eingeben" steht <em>nach</em> dem <code>if-else</code> (Vereinigung) → läuft in beiden Pfaden</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">10</span><span class="q-type">Multiple Choice</span><span class="q-pts">Auto</span></div>
+    <div class="q-body">
+      <p class="q-text">Eine <strong>Vereinigung</strong> (Merge) nach einer Verzweigung entspricht im Code …</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt" data-correct="true"><span class="tick"></span>der gemeinsamen Anweisung <em>nach</em> dem <code>if-else</code>-Block.</li>
+        <li class="opt"><span class="tick"></span>einer zusätzlichen Schleife.</li>
+        <li class="opt"><span class="tick"></span>dem Ende des Programms.</li>
+        <li class="opt"><span class="tick"></span>einem zweiten <code>if</code> innerhalb des ersten.</li>
+      </ul>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Lösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span>
+      <p>Nach der Vereinigung läuft <em>ein</em> gemeinsamer Fluss weiter — im Code die erste Anweisung, die <em>hinter</em> dem
+      <code>if-else</code> steht und damit unabhängig vom gewählten Pfad ausgeführt wird.</p>
+    </div>
+  </article>
+
+  <!-- ============ Vertiefung ============ -->
+  <div class="sec-head"><span class="ix">🔬</span><h2>🔬 [Vertiefung]</h2></div>
+  <p class="sec-sub">Weiterführende Notation und Abgrenzung zu anderen Diagrammen.</p>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">11</span><span class="q-type">Multiple Choice</span><span class="q-pts">Auto</span></div>
+    <div class="q-body">
+      <p class="q-text">Was kennzeichnet ein <strong>Verantwortungsbereich</strong> (Swimlane) im Aktivitätsdiagramm?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt"><span class="tick"></span>eine parallele Abarbeitung von Aktionen</li>
+        <li class="opt" data-correct="true"><span class="tick"></span>eine vertikale/horizontale Einteilung, die zeigt, <em>wer</em> (welche Rolle) eine Aktion ausführt</li>
+        <li class="opt"><span class="tick"></span>das Ende eines Steuerungsflusses</li>
+        <li class="opt"><span class="tick"></span>eine Bedingung am Entscheidungsknoten</li>
+      </ul>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Lösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span>
+      <p>Swimlanes teilen das Diagramm in benannte Bereiche (z. B. „Sachbearbeiter" / „Lagermitarbeiter"). Jede Aktion liegt in
+      dem Bereich, dessen Rolle für sie verantwortlich ist.</p>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">12</span><span class="q-type">Multiple Choice</span><span class="q-pts">Auto</span></div>
+    <div class="q-body">
+      <p class="q-text">Aktivitätsdiagramm, PAP (Programmablaufplan) und Struktogramm haben gemeinsam, dass sie …</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt" data-correct="true"><span class="tick"></span>Abläufe/Algorithmen grafisch darstellen (nur mit unterschiedlicher Notation).</li>
+        <li class="opt"><span class="tick"></span>ausschließlich Klassen und ihre Attribute zeigen.</li>
+        <li class="opt"><span class="tick"></span>nur in C# funktionieren.</li>
+        <li class="opt"><span class="tick"></span>keine Verzweigungen darstellen können.</li>
+      </ul>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Lösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span>
+      <p>Alle drei beschreiben Abläufe grafisch. Das Struktogramm (Nassi-Shneiderman) nutzt verschachtelte Blöcke, der PAP
+      Sinnbilder mit Pfeilen, das Aktivitätsdiagramm die UML-Notation — inhaltlich lassen sie sich ineinander überführen.</p>
+    </div>
+  </article>
+
+  <nav class="pager">
+    <a class="prev" href="02-arrays.html"><span>Vorheriges Thema</span><b>← 02 · Arrays</b></a>
+    <a class="next" href="lernseite.html"><span>Weiter</span><b>Konzepte wiederholen →</b></a>
+  </nav>
+
+</div></main>
+<footer class="foot"><div class="wrap"><span class="mono">AEuP C# · Thema 03 — UML-Aktivitätsdiagramm</span> · Kerninhalt</div></footer>
+<script src="assets/quiz.js"></script>
+<script src="assets/code.js"></script>
+</body>
+</html>

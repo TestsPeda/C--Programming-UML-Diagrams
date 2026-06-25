@@ -1,0 +1,59 @@
+/* =========================================================================
+   Hybrid-Code-Komponente · Selbsttest-Website
+   Ergänzt style.css um Eingabefeld, KI-Prompt-Button und Code-Musterlösungen.
+   Statisch — keine Server-Auswertung; Bewertung via Musterlösung/Checkliste
+   bzw. extern per kopierbarem KI-Prompt.
+   ========================================================================= */
+
+/* Code-Eingabefeld */
+.code-input {
+  display: block; width: 100%; margin: 4px 0 12px;
+  font-family: var(--font-mono); font-size: .9rem; line-height: 1.5;
+  color: var(--ink); background: var(--surface-2);
+  border: 1px solid var(--line-strong); border-radius: var(--radius);
+  padding: 12px 14px; resize: vertical; min-height: 160px;
+  tab-size: 4; -moz-tab-size: 4;
+}
+.code-input:focus { outline: 2px solid var(--accent); outline-offset: 1px; background: var(--surface); }
+.code-input::placeholder { color: var(--muted); opacity: .8; }
+
+/* KI-Prompt-Button (orange, wie .btn.primary, aber eigenständig) */
+.q-copyprompt {
+  font-family: var(--font-mono); font-size: .82rem; cursor: pointer;
+  background: var(--accent); color: #fff; border: 1px solid var(--accent);
+  border-radius: var(--radius); padding: 7px 14px;
+  transition: background .12s, border-color .12s;
+}
+.q-copyprompt:hover { background: var(--accent-deep); border-color: var(--accent-deep); }
+.q-copyprompt.copied { background: var(--accent-2); border-color: var(--accent-2); }
+
+/* kurzer Hinweistext unter den Code-Buttons */
+.code-hint {
+  font-family: var(--font-mono); font-size: .72rem; color: var(--muted);
+  margin: 0 22px 14px; padding: 0;
+}
+@media (max-width: 620px) { .code-hint { margin-left: 16px; margin-right: 16px; } }
+
+/* Code-Blöcke in Musterlösungen */
+.q-solution pre {
+  margin: 8px 0 12px; padding: 12px 14px; overflow-x: auto;
+  background: #102027; border: 1px solid #0b171d; border-radius: var(--radius);
+}
+.q-solution pre code {
+  font-family: var(--font-mono); font-size: .86rem; line-height: 1.55;
+  color: #E4F1EF; background: transparent; border: 0; padding: 0; white-space: pre;
+}
+
+/* Bewertungs-Checkliste in der Musterlösung */
+.rubric { list-style: none; margin: 10px 0 0; padding: 0; }
+.rubric li {
+  position: relative; padding: 3px 0 3px 26px; margin: 0; font-size: .92rem;
+}
+.rubric li::before {
+  content: "\2610"; position: absolute; left: 0; top: 1px;
+  font-family: var(--font-mono); color: var(--accent-2); font-size: 1.05rem;
+}
+.rubric-label {
+  font-family: var(--font-mono); font-size: .68rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--accent-2); font-weight: 700; display: block; margin: 12px 0 6px;
+}

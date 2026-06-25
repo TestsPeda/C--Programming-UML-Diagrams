@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>02 · Arrays — AEuP C#</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/code.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="mark">AEuP·C#</span><b>SA-Vorbereitung</b></a>
+  <nav class="topnav">
+    <a href="01-grundlagen.html">01 Grundlagen</a>
+    <a href="02-arrays.html" class="current">02 Arrays</a>
+    <a href="03-uml-aktivitaetsdiagramm.html">03 UML</a>
+    <a href="lernseite.html">Lernen</a>
+  </nav>
+  <div class="spacer"></div>
+  <span class="scorechip" id="scorechip">Auto-Fragen: 0/0 richtig</span>
+</header>
+<main><div class="wrap">
+
+  <section class="hero">
+    <p class="eyebrow">Anwendungsentwicklung mit C#</p>
+    <div class="hero-num"><span class="hash">#</span>02</div>
+    <h1>Arrays</h1>
+    <p class="lede">Mehrere Werte unter einem Namen: eindimensionale Arrays (Listen), mehrdimensionale Arrays (Tabellen),
+      Zugriff über Indizes und das Abfragen der Länge. Mit der SA-Aufgabe „Chaos-Lager".</p>
+    <div class="hero-meta">
+      <span class="pill"><b>13</b> Aufgaben</span>
+      <span class="pill"><b>2</b> Diagramme</span>
+      <span class="pill">MC · Multi-Select · Rechnen · Programmieren</span>
+    </div>
+  </section>
+
+  <div class="controls">
+    <button class="btn primary" id="show-all">Alle Lösungen einblenden</button>
+    <button class="btn" id="hide-all">Alle ausblenden</button>
+  </div>
+
+  <!-- ============ Abschnitt A ============ -->
+  <div class="sec-head"><span class="ix">A</span><h2>Eindimensionale Arrays</h2></div>
+  <p class="sec-sub">Ein Array ist eine nummerierte Reihe von Speicherplätzen gleichen Typs — die Zählung beginnt bei 0.</p>
+
+  <figure class="diagram">
+    <svg viewBox="0 0 520 130" role="img" aria-label="Eindimensionales Array mit Indizes 0 bis 5">
+      <text class="svg-title" x="10" y="20">int[] lotto = new int[6];</text>
+      <g>
+        <rect x="10"  y="40" width="80" height="44" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+        <rect x="90"  y="40" width="80" height="44" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+        <rect x="170" y="40" width="80" height="44" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+        <rect x="250" y="40" width="80" height="44" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+        <rect x="330" y="40" width="80" height="44" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+        <rect x="410" y="40" width="80" height="44" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+        <text class="svg-label" x="50"  y="68" text-anchor="middle">7</text>
+        <text class="svg-label" x="130" y="68" text-anchor="middle">12</text>
+        <text class="svg-label" x="210" y="68" text-anchor="middle">23</text>
+        <text class="svg-label" x="290" y="68" text-anchor="middle">31</text>
+        <text class="svg-label" x="370" y="68" text-anchor="middle">42</text>
+        <text class="svg-label" x="450" y="68" text-anchor="middle">49</text>
+        <text class="svg-label-sm" x="50"  y="102" text-anchor="middle">[0]</text>
+        <text class="svg-label-sm" x="130" y="102" text-anchor="middle">[1]</text>
+        <text class="svg-label-sm" x="210" y="102" text-anchor="middle">[2]</text>
+        <text class="svg-label-sm" x="290" y="102" text-anchor="middle">[3]</text>
+        <text class="svg-label-sm" x="370" y="102" text-anchor="middle">[4]</text>
+        <text class="svg-label-sm" x="450" y="102" text-anchor="middle">[5]</text>
+      </g>
+      <text class="svg-label-sm" x="450" y="122" text-anchor="middle" fill="#DD5430">Länge = 6, letzter Index = 5</text>
+    </svg>
+    <figcaption>6 Speicherplätze, Indizes 0–5. <code>lotto.Length</code> ist 6, der letzte gültige Index ist <code>Length - 1 = 5</code>.</figcaption>
+  </figure>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">01</span><span class="q-type">Multiple Choice</span><span class="q-pts">Auto</span></div>
+    <div class="q-body">
+      <p class="q-text">Welchen Index hat das <strong>erste</strong> Element eines C#-Arrays?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt"><span class="tick"></span><code>1</code></li>
+        <li class="opt" data-correct="true"><span class="tick"></span><code>0</code></li>
+        <li class="opt"><span class="tick"></span><code>-1</code></li>
+        <li class="opt"><span class="tick"></span>frei wählbar</li>
+      </ul>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Lösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span>
+      <p>Arrays sind <strong>0-basiert</strong>: Das erste Element steht bei Index <code>0</code>, das letzte bei <code>Length - 1</code>.</p>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">02</span><span class="q-type">Multiple Choice</span><span class="q-pts">Auto</span></div>
+    <div class="q-body">
+      <p class="q-text">Wie deklariert man ein Array für 6 Lottozahlen (<code>int</code>) korrekt?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt"><span class="tick"></span><code>int lotto = new int[6];</code></li>
+        <li class="opt" data-correct="true"><span class="tick"></span><code>int[] lotto = new int[6];</code></li>
+        <li class="opt"><span class="tick"></span><code>int[6] lotto = new int;</code></li>
+        <li class="opt"><span class="tick"></span><code>array&lt;int&gt; lotto = 6;</code></li>
+      </ul>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Lösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span>
+      <p>Schema: <code>Typ[] name = new Typ[Anzahl];</code>. Die eckigen Klammern hinter dem Typ kennzeichnen ein Array;
+      die Größe steht hinter <code>new</code>. Alternativ mit Initialisierung: <code>int[] lotto = {7, 12, 23, 31, 42, 49};</code>.</p>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">03</span><span class="q-type">Multiple Choice</span><span class="q-pts">Auto</span></div>
+    <div class="q-body">
+      <p class="q-text">Das Array <code>int[] lotto</code> hat 6 Elemente. Welcher Zugriff führt zu einer
+        <code>IndexOutOfRangeException</code>?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt"><span class="tick"></span><code>lotto[0]</code></li>
+        <li class="opt"><span class="tick"></span><code>lotto[5]</code></li>
+        <li class="opt" data-correct="true"><span class="tick"></span><code>lotto[6]</code></li>
+        <li class="opt"><span class="tick"></span><code>lotto[lotto.Length - 1]</code></li>
+      </ul>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Lösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span>
+      <p>Gültige Indizes sind <code>0</code> bis <code>5</code> (= <code>Length - 1</code>). <code>lotto[6]</code> liegt außerhalb → Laufzeitfehler.
+      <span class="tag-mistake">Klassiker</span> Verwechslung von Anzahl (6) und letztem Index (5).</p>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">04</span><span class="q-type">Multiple Choice</span><span class="q-pts">Auto</span></div>
+    <div class="q-body">
+      <p class="q-text">Mit welcher Schleife durchläuft man ein eindimensionales Array über seine Indizes von Anfang bis Ende?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt" data-correct="true"><span class="tick"></span><code>for (int i = 0; i &lt; lotto.Length; i++)</code></li>
+        <li class="opt"><span class="tick"></span><code>for (int i = 1; i &lt;= lotto.Length; i++)</code></li>
+        <li class="opt"><span class="tick"></span><code>for (int i = 0; i &lt;= lotto.Length; i++)</code></li>
+        <li class="opt"><span class="tick"></span><code>for (int i = lotto.Length; i &gt; 0; i--)</code></li>
+      </ul>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Lösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span>
+      <p>Start bei <code>0</code>, Bedingung <code>i &lt; Length</code> (nicht <code>&lt;=</code>!), Schritt <code>i++</code>.
+      Mit <code>&lt;=</code> würde man auf Index <code>Length</code> zugreifen → <code>IndexOutOfRangeException</code>.
+      Alternativ ohne Index: <code>foreach (int zahl in lotto)</code>.</p>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">05</span><span class="q-type">Multi-Select</span><span class="q-pts">Auto</span></div>
+    <div class="q-body">
+      <p class="q-text">Welche Aussagen über eindimensionale Arrays sind <strong>richtig</strong>? (mehrere möglich)</p>
+      <ul class="q-options" data-multi="true">
+        <li class="opt" data-correct="true"><span class="tick"></span>Alle Elemente haben denselben Datentyp.</li>
+        <li class="opt" data-correct="true"><span class="tick"></span><code>Length</code> liefert die Anzahl der Elemente.</li>
+        <li class="opt"><span class="tick"></span>Die Größe eines Arrays lässt sich nach <code>new</code> beliebig vergrößern.</li>
+        <li class="opt" data-correct="true"><span class="tick"></span>Ein <code>int</code>-Array wird standardmäßig mit <code>0</code> initialisiert.</li>
+        <li class="opt"><span class="tick"></span>Der erste Index ist <code>1</code>.</li>
+      </ul>
+    </div>
+    <div class="q-foot"><button class="q-check btn">Auswerten</button><button class="q-reveal" aria-expanded="false">Lösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span>
+      <p>Richtig: 1, 2, 4. Die Größe ist nach <code>new</code> fest (für variable Größe gibt es <code>List&lt;T&gt;</code>),
+      und der erste Index ist <code>0</code>.</p>
+    </div>
+  </article>
+
+  <!-- ============ Abschnitt B ============ -->
+  <div class="sec-head"><span class="ix">B</span><h2>Mehrdimensionale Arrays</h2></div>
+  <p class="sec-sub">Eine Tabelle mit Zeilen und Spalten — z. B. ein Kinosaal oder ein Lagerregal.</p>
+
+  <figure class="diagram">
+    <svg viewBox="0 0 420 230" role="img" aria-label="Zweidimensionales Array als Gitter aus Zeilen und Spalten">
+      <text class="svg-title" x="10" y="20">int[,] saal = new int[3, 4];   // 3 Zeilen, 4 Spalten</text>
+      <!-- column headers -->
+      <text class="svg-label-sm" x="120" y="46" text-anchor="middle">[,0]</text>
+      <text class="svg-label-sm" x="190" y="46" text-anchor="middle">[,1]</text>
+      <text class="svg-label-sm" x="260" y="46" text-anchor="middle">[,2]</text>
+      <text class="svg-label-sm" x="330" y="46" text-anchor="middle">[,3]</text>
+      <!-- rows -->
+      <g stroke="#15786E" stroke-width="1.5" fill="#fff">
+        <rect x="85" y="55"  width="70" height="40"/><rect x="155" y="55"  width="70" height="40"/><rect x="225" y="55"  width="70" height="40"/><rect x="295" y="55"  width="70" height="40"/>
+        <rect x="85" y="95"  width="70" height="40"/><rect x="155" y="95"  width="70" height="40"/><rect x="225" y="95"  width="70" height="40"/><rect x="295" y="95"  width="70" height="40"/>
+        <rect x="85" y="135" width="70" height="40"/><rect x="155" y="135" width="70" height="40"/><rect x="225" y="135" width="70" height="40"/><rect x="295" y="135" width="70" height="40"/>
+      </g>
+      <text class="svg-label-sm" x="60" y="80"  text-anchor="middle">[0,]</text>
+      <text class="svg-label-sm" x="60" y="120" text-anchor="middle">[1,]</text>
+      <text class="svg-label-sm" x="60" y="160" text-anchor="middle">[2,]</text>
+      <!-- highlight cell [1,2] -->
+      <rect x="225" y="95" width="70" height="40" fill="#FBEAE3" stroke="#DD5430" stroke-width="2"/>
+      <text class="svg-label" x="260" y="120" text-anchor="middle" fill="#B23E1F">saal[1,2]</text>
+      <text class="svg-label-sm" x="210" y="205" text-anchor="middle" fill="#DD5430">Zugriff: saal[zeile, spalte] — beide 0-basiert</text>
+    </svg>
+    <figcaption>2D-Array: <code>saal[1,2]</code> = 2. Zeile, 3. Spalte (Indizes 0-basiert). <code>GetLength(0)</code> = Zeilen, <code>GetLength(1)</code> = Spalten.</figcaption>
+  </figure>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">06</span><span class="q-type">Multiple Choice</span><span class="q-pts">Auto</span></div>
+    <div class="q-body">
+      <p class="q-text">Wie deklariert man ein zweidimensionales <code>string</code>-Array mit 3 Zeilen und 4 Spalten?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt"><span class="tick"></span><code>string[] lager = new string[3][4];</code></li>
+        <li class="opt" data-correct="true"><span class="tick"></span><code>string[,] lager = new string[3, 4];</code></li>
+        <li class="opt"><span class="tick"></span><code>string[3,4] lager;</code></li>
+        <li class="opt"><span class="tick"></span><code>string lager = new string[3, 4];</code></li>
+      </ul>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Lösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span>
+      <p>Bei einem rechteckigen 2D-Array steht ein <strong>Komma</strong> in den Klammern: <code>string[,]</code> und <code>new string[3, 4]</code>.
+      Die Schreibweise <code>[3][4]</code> wäre ein „jagged array" (Array aus Arrays) — anderes Konzept.</p>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">07</span><span class="q-type">Multiple Choice</span><span class="q-pts">Auto</span></div>
+    <div class="q-body">
+      <p class="q-text">Ein Kinosaal ist als <code>int[,] saal = new int[10, 15];</code> angelegt. Wie viele Plätze hat der Saal insgesamt?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt"><span class="tick"></span>25</li>
+        <li class="opt"><span class="tick"></span>10</li>
+        <li class="opt" data-correct="true"><span class="tick"></span>150</li>
+        <li class="opt"><span class="tick"></span>15</li>
+      </ul>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Lösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span>
+      <p>Plätze = Zeilen × Spalten = 10 × 15 = <strong>150</strong>. <code>saal.Length</code> liefert hier die Gesamtzahl 150,
+      <code>saal.GetLength(0)</code> = 10 (Zeilen), <code>saal.GetLength(1)</code> = 15 (Spalten).</p>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">08</span><span class="q-type">Multiple Choice</span><span class="q-pts">Auto</span></div>
+    <div class="q-body">
+      <p class="q-text">Mit welchem Befehl ermittelt man die <strong>Anzahl der Spalten</strong> eines 2D-Arrays <code>lager</code>?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt"><span class="tick"></span><code>lager.Length</code></li>
+        <li class="opt"><span class="tick"></span><code>lager.GetLength(0)</code></li>
+        <li class="opt" data-correct="true"><span class="tick"></span><code>lager.GetLength(1)</code></li>
+        <li class="opt"><span class="tick"></span><code>lager.Columns</code></li>
+      </ul>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Lösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span>
+      <p><code>GetLength(0)</code> = 1. Dimension (Zeilen), <code>GetLength(1)</code> = 2. Dimension (Spalten).
+      <code>Length</code> liefert dagegen die Gesamtzahl aller Elemente.</p>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">09</span><span class="q-type calc">Zuordnung</span><span class="q-pts">manuell</span></div>
+    <div class="q-body">
+      <p class="q-text">Der Benutzer gibt im Chaos-Lager <strong>Zeile 2, Spalte 3</strong> (1-basiert, wie der Mensch zählt) ein.
+        Welcher Array-Index gehört dazu, und warum?</p>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
+      <div class="step">Eingabe (Mensch):  Zeile = 2, Spalte = 3   // 1-basiert
+Array-Index:       lager[2 - 1, 3 - 1] = lager[1, 2]   // 0-basiert</div>
+      <p>Da Arrays bei 0 beginnen, der Mensch aber bei 1 zählt, zieht man von jeder Eingabe <code>1</code> ab.
+      Das ist die zentrale Indexumrechnung der Sheldon-Aufgabe.</p>
+    </div>
+  </article>
+
+  <!-- ============ Abschnitt C: Programmieraufgabe ============ -->
+  <div class="sec-head"><span class="ix">C</span><h2>SA-Aufgabe: Chaos-Lager</h2></div>
+  <p class="sec-sub">Die mehrdimensionale Array-Aufgabe „Mit Amazon durchs Chaos-Lager" als vollständige Programmieraufgabe.</p>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">10</span><span class="q-type">Programmieren</span><span class="q-pts">Selbsttest</span></div>
+    <div class="q-body">
+      <p class="q-text"><strong>Chaos-Lager.</strong> Erfassen Sie die Produkte eines Lagers (3 Zeilen × 4 Spalten) in einem mehrdimensionalen Array.
+        Der Benutzer gibt eine Zeile (1–3) und Spalte (1–4) ein; das Programm gibt das zugehörige Produkt aus.
+        <em>Für Schnelle:</em> Wird ein Produkt aus der ersten Zeile gewählt, soll zusätzlich „Produkte im Angebot" erscheinen.</p>
+      <textarea class="code-input" rows="14" placeholder="// Dein C#-Code …" data-task="chaos-lager"></textarea>
+    </div>
+    <div class="q-foot">
+      <button class="q-copyprompt">KI-Bewertungs-Prompt kopieren</button>
+      <button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button>
+    </div>
+    <p class="code-hint">Tipp: Code oben eintippen, dann „KI-Bewertungs-Prompt kopieren" → in ChatGPT/Claude einfügen für Feedback. Die Seite selbst führt keinen Code aus.</p>
+    <template class="prompt-tpl">Du bist Informatik-Lehrkraft und bewertest C#-Code eines Berufsschülers (Fach AEuP, Thema mehrdimensionale Arrays, SA-Aufgabe "Chaos-Lager").
+
+Aufgabe: Produkte eines Lagers (3 Zeilen x 4 Spalten) in einem zweidimensionalen Array erfassen. Der Benutzer gibt Zeile (1-3) und Spalte (1-4) ein; das Programm gibt das zugehörige Produkt aus. Für Schnelle: Bei einem Produkt aus der ersten Zeile zusätzlich "Produkte im Angebot" ausgeben.
+
+Bewerte den folgenden Code anhand dieser Kriterien und gib konkretes, freundliches Feedback samt Verbesserungen:
+- zweidimensionales Array string[,] korrekt deklariert UND mit Produkten befüllt (3x4)
+- Zeile und Spalte vom Benutzer eingelesen und nach int konvertiert
+- Indexumrechnung: vom 1-basierten Eingabewert wird 1 abgezogen (lager[zeile-1, spalte-1])
+- korrektes Produkt wird ausgegeben
+- Für-Schnelle-Bonus: erste Zeile (Eingabe zeile == 1) -> "Produkte im Angebot"
+- (optional) Gültigkeitsprüfung der Eingabe (1-3 bzw. 1-4)
+- strukturierte Darstellung und sinnvolle Kommentare
+
+Hier ist mein Code:
+```csharp
+{{CODE}}
+```
+Sag mir zuerst, ob das Programm die Aufgabe erfüllt, dann liste konkrete Verbesserungen auf.</template>
+    <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
+<pre><code>using System;
+
+// Chaos-Lager: 3 Zeilen x 4 Spalten
+string[,] lager = new string[3, 4]
+{
+    { "Laptop",   "Drucker", "PC",     "Tablet" },
+    { "MP3-Player","iPhone", "Galaxy", "-"      },
+    { "Smart-TV", "Router",  "-",      "-"      }
+};
+
+// Eingabe (1-basiert, wie der Mensch zählt)
+Console.Write("Zeile (1-3): ");
+int zeile = Convert.ToInt32(Console.ReadLine());
+Console.Write("Spalte (1-4): ");
+int spalte = Convert.ToInt32(Console.ReadLine());
+
+// Indexumrechnung: Array ist 0-basiert -> minus 1
+string produkt = lager[zeile - 1, spalte - 1];
+Console.WriteLine($"Produkt: {produkt}");
+
+// Für Schnelle: erste Zeile = Angebot
+if (zeile == 1)
+    Console.WriteLine("Produkte im Angebot");</code></pre>
+      <span class="rubric-label">Bewertungs-Checkliste</span>
+      <ul class="rubric">
+        <li>2D-Array <code>string[,]</code> korrekt deklariert &amp; mit 3×4 Produkten befüllt</li>
+        <li>Zeile (1–3) und Spalte (1–4) eingelesen und nach <code>int</code> konvertiert</li>
+        <li>Indexumrechnung <code>lager[zeile-1, spalte-1]</code> korrekt</li>
+        <li>zugehöriges Produkt korrekt ausgegeben</li>
+        <li>Für-Schnelle: erste Zeile → „Produkte im Angebot"</li>
+        <li>strukturierte Darstellung &amp; sinnvolle Kommentare</li>
+      </ul>
+      <p class="note"><span class="lbl">Hinweis</span> Robuster wäre zusätzlich eine Prüfung, ob <code>zeile</code> in 1–3 und <code>spalte</code> in 1–4 liegen, sonst droht eine <code>IndexOutOfRangeException</code>.</p>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">11</span><span class="q-type">Multiple Choice</span><span class="q-pts">Auto</span></div>
+    <div class="q-body">
+      <p class="q-text">Im Chaos-Lager gibt der Benutzer Zeile <code>1</code> und Spalte <code>1</code> ein. Welcher Array-Zugriff liefert das richtige Produkt?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt"><span class="tick"></span><code>lager[1, 1]</code></li>
+        <li class="opt" data-correct="true"><span class="tick"></span><code>lager[0, 0]</code></li>
+        <li class="opt"><span class="tick"></span><code>lager[1][1]</code></li>
+        <li class="opt"><span class="tick"></span><code>lager(0, 0)</code></li>
+      </ul>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Lösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span>
+      <p>Eingabe 1/1 (1-basiert) → Index <code>[0, 0]</code> (0-basiert). Bei 2D-Arrays mit Komma-Syntax: <code>lager[zeile, spalte]</code>,
+      nicht <code>lager[..][..]</code>.</p>
+    </div>
+  </article>
+
+  <!-- ============ Vertiefung ============ -->
+  <div class="sec-head"><span class="ix">🔬</span><h2>🔬 [Vertiefung]</h2></div>
+  <p class="sec-sub">Weiterführendes rund um Arrays — über den Kern-Prüfungsstoff hinaus.</p>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">12</span><span class="q-type">Multiple Choice</span><span class="q-pts">Auto</span></div>
+    <div class="q-body">
+      <p class="q-text">Was ist ein <strong>jagged array</strong> (<code>int[][]</code>) im Unterschied zum rechteckigen <code>int[,]</code>?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt"><span class="tick"></span>Beides ist identisch, nur andere Schreibweise.</li>
+        <li class="opt" data-correct="true"><span class="tick"></span>Ein „Array aus Arrays", dessen Zeilen <em>unterschiedlich lang</em> sein dürfen.</li>
+        <li class="opt"><span class="tick"></span>Ein Array, das nur Zahlen speichern kann.</li>
+        <li class="opt"><span class="tick"></span>Ein Array ohne Index.</li>
+      </ul>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Lösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span>
+      <p>Das jagged array <code>int[][]</code> ist ein Array, dessen Elemente selbst Arrays sind — jede „Zeile" kann eine andere Länge haben.
+      Das rechteckige <code>int[,]</code> ist dagegen immer ein festes Gitter Zeilen × Spalten.</p>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">13</span><span class="q-type">Szenario</span><span class="q-pts">manuell</span></div>
+    <div class="q-body">
+      <p class="q-text">Wie durchläuft man <em>alle</em> Plätze eines 2D-Saals <code>int[,] saal</code> und zählt die belegten (Wert <code>1</code>)?
+        Skizzieren Sie die verschachtelte Schleife.</p>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
+      <div class="step">int belegt = 0;
+for (int z = 0; z &lt; saal.GetLength(0); z++)       // Zeilen
+    for (int s = 0; s &lt; saal.GetLength(1); s++)   // Spalten
+        if (saal[z, s] == 1)
+            belegt++;</div>
+      <p>Die äußere Schleife läuft über die Zeilen (<code>GetLength(0)</code>), die innere über die Spalten (<code>GetLength(1)</code>).
+      So besucht man jeden der Zeilen×Spalten-Plätze genau einmal.</p>
+    </div>
+  </article>
+
+  <nav class="pager">
+    <a class="prev" href="01-grundlagen.html"><span>Vorheriges Thema</span><b>← 01 · Grundlagen</b></a>
+    <a class="next" href="03-uml-aktivitaetsdiagramm.html"><span>Nächstes Thema</span><b>03 · UML →</b></a>
+  </nav>
+
+</div></main>
+<footer class="foot"><div class="wrap"><span class="mono">AEuP C# · Thema 02 — Arrays</span> · Kerninhalt</div></footer>
+<script src="assets/quiz.js"></script>
+<script src="assets/code.js"></script>
+</body>
+</html>

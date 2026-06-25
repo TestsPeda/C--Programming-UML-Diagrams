@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>01 · Grundlagen — AEuP C#</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/code.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="mark">AEuP·C#</span><b>SA-Vorbereitung</b></a>
+  <nav class="topnav">
+    <a href="01-grundlagen.html" class="current">01 Grundlagen</a>
+    <a href="02-arrays.html">02 Arrays</a>
+    <a href="03-uml-aktivitaetsdiagramm.html">03 UML</a>
+    <a href="lernseite.html">Lernen</a>
+  </nav>
+  <div class="spacer"></div>
+  <span class="scorechip" id="scorechip">Auto-Fragen: 0/0 richtig</span>
+</header>
+<main><div class="wrap">
+
+  <section class="hero">
+    <p class="eyebrow">Anwendungsentwicklung mit C#</p>
+    <div class="hero-num"><span class="hash">#</span>01</div>
+    <h1>Grundlagen</h1>
+    <p class="lede">Datentypen &amp; Variablen, Typkonvertierung und Ein-/Ausgabe, Operatoren sowie Verzweigungen
+      (<code>if</code>/<code>switch</code>) und Schleifen. Das Fundament jeder C#-Konsolenanwendung.</p>
+    <div class="hero-meta">
+      <span class="pill"><b>15</b> Aufgaben</span>
+      <span class="pill"><b>1</b> Diagramm</span>
+      <span class="pill">MC · Multi-Select · Rechnen · Programmieren</span>
+    </div>
+  </section>
+
+  <div class="controls">
+    <button class="btn primary" id="show-all">Alle Lösungen einblenden</button>
+    <button class="btn" id="hide-all">Alle ausblenden</button>
+  </div>
+
+  <!-- ============ Abschnitt A ============ -->
+  <div class="sec-head"><span class="ix">A</span><h2>Datentypen &amp; Variablen</h2></div>
+  <p class="sec-sub">Welcher Typ speichert welche Werte — und wie deklariert man eine Variable korrekt.</p>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">01</span><span class="q-type">Multiple Choice</span><span class="q-pts">Auto</span></div>
+    <div class="q-body">
+      <p class="q-text">Welcher Datentyp eignet sich am besten für einen <strong>Geldbetrag</strong> wie die Futterkosten im Tierheim?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt"><span class="tick"></span><code>int</code></li>
+        <li class="opt"><span class="tick"></span><code>double</code></li>
+        <li class="opt" data-correct="true"><span class="tick"></span><code>decimal</code></li>
+        <li class="opt"><span class="tick"></span><code>string</code></li>
+      </ul>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Lösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span>
+      <p><code>decimal</code> rechnet dezimal-genau (keine Rundungsfehler) und ist daher für Geldbeträge vorgesehen.
+      Literale erhalten das Suffix <code>m</code>, z. B. <code>decimal kosten = 2.7m;</code>.
+      <span class="tag-mistake">Verwechslung</span><code>double</code> ist binäre Gleitkomma-Arithmetik → Rundungsfehler bei Geld.</p>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">02</span><span class="q-type">Multiple Choice</span><span class="q-pts">Auto</span></div>
+    <div class="q-body">
+      <p class="q-text">Wie wird eine ganzzahlige Variable <code>alter</code> mit dem Wert 18 korrekt deklariert und initialisiert?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt"><span class="tick"></span><code>int alter == 18;</code></li>
+        <li class="opt" data-correct="true"><span class="tick"></span><code>int alter = 18;</code></li>
+        <li class="opt"><span class="tick"></span><code>alter int = 18;</code></li>
+        <li class="opt"><span class="tick"></span><code>int alter := 18;</code></li>
+      </ul>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Lösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span>
+      <p>Schema: <code>&lt;Typ&gt; &lt;Name&gt; = &lt;Wert&gt;;</code>. Das einfache <code>=</code> ist der Zuweisungsoperator.
+      <span class="tag-mistake">Verwechslung</span><code>==</code> ist der Vergleichsoperator, nicht für Zuweisungen.</p>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">03</span><span class="q-type">Multi-Select</span><span class="q-pts">Auto</span></div>
+    <div class="q-body">
+      <p class="q-text">Welche Aussagen über C#-Datentypen sind <strong>richtig</strong>? (mehrere möglich)</p>
+      <ul class="q-options" data-multi="true">
+        <li class="opt" data-correct="true"><span class="tick"></span><code>char</code> speichert genau <em>ein</em> Zeichen und steht in einfachen Anführungszeichen: <code>'A'</code>.</li>
+        <li class="opt" data-correct="true"><span class="tick"></span><code>string</code> ist eine Zeichenkette in doppelten Anführungszeichen: <code>"Hallo"</code>.</li>
+        <li class="opt"><span class="tick"></span><code>bool</code> kann die Werte <code>true</code>, <code>false</code> oder <code>null</code> annehmen.</li>
+        <li class="opt" data-correct="true"><span class="tick"></span><code>int</code> speichert ganze Zahlen ohne Nachkommastellen.</li>
+        <li class="opt"><span class="tick"></span><code>double</code> ist für exakte Geldbeträge die beste Wahl.</li>
+      </ul>
+    </div>
+    <div class="q-foot"><button class="q-check btn">Auswerten</button><button class="q-reveal" aria-expanded="false">Lösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span>
+      <p>Richtig sind 1, 2 und 4. <code>bool</code> kennt nur <code>true</code>/<code>false</code> (kein <code>null</code> beim normalen <code>bool</code>),
+      und für Geld nimmt man <code>decimal</code>, nicht <code>double</code>.</p>
+    </div>
+  </article>
+
+  <!-- ============ Abschnitt B ============ -->
+  <div class="sec-head"><span class="ix">B</span><h2>Typkonvertierung &amp; Ein-/Ausgabe</h2></div>
+  <p class="sec-sub">Konsoleneingaben sind immer Text — und müssen vor dem Rechnen umgewandelt werden.</p>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">04</span><span class="q-type">Multiple Choice</span><span class="q-pts">Auto</span></div>
+    <div class="q-body">
+      <p class="q-text">Welchen Datentyp liefert <code>Console.ReadLine()</code> zurück?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt"><span class="tick"></span><code>int</code></li>
+        <li class="opt" data-correct="true"><span class="tick"></span><code>string</code></li>
+        <li class="opt"><span class="tick"></span><code>double</code></li>
+        <li class="opt"><span class="tick"></span>den jeweils passenden Typ automatisch</li>
+      </ul>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Lösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span>
+      <p><code>Console.ReadLine()</code> liefert immer einen <code>string</code>. Vor dem Rechnen muss man explizit konvertieren,
+      z. B. <code>int zahl = Convert.ToInt32(Console.ReadLine());</code>.</p>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">05</span><span class="q-type">Multiple Choice</span><span class="q-pts">Auto</span></div>
+    <div class="q-body">
+      <p class="q-text">Welche Umwandlung ist eine <strong>implizite</strong> Typkonvertierung (passiert automatisch, ohne Datenverlust)?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt" data-correct="true"><span class="tick"></span><code>int</code> → <code>double</code></li>
+        <li class="opt"><span class="tick"></span><code>double</code> → <code>int</code></li>
+        <li class="opt"><span class="tick"></span><code>string</code> → <code>int</code></li>
+        <li class="opt"><span class="tick"></span><code>decimal</code> → <code>int</code></li>
+      </ul>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Lösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span>
+      <p>Von <code>int</code> nach <code>double</code> geht implizit, weil der größere Typ jeden <code>int</code>-Wert aufnehmen kann (Erweiterung).
+      Umgekehrt (Verkleinerung) droht Datenverlust → explizit per Cast <code>(int)</code> oder <code>Convert.ToInt32(...)</code>.
+      <code>string → int</code> ist nie implizit (Parsen nötig).</p>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">06</span><span class="q-type calc">Rechnen</span><span class="q-pts">manuell</span></div>
+    <div class="q-body">
+      <p class="q-text">Gegeben: <code>double futtermenge = gewicht * 0.015;</code> mit <code>gewicht = 20.0</code> (kg).
+        Wie viel Futter ergibt sich, und wie würden Sie das Ergebnis auf 2 Nachkommastellen gerundet ausgeben?</p>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
+      <div class="step">futtermenge = 20.0 * 0.015 = 0.3   // kg</div>
+      <p>Gerundete Ausgabe:</p>
+      <div class="step">Console.WriteLine($"Futter: {Math.Round(futtermenge, 2)} kg");</div>
+      <p><code>Math.Round(wert, 2)</code> rundet kaufmännisch auf 2 Stellen. Mit String-Interpolation (<code>$"..."</code>)
+      werden Variablen in <code>{ }</code> direkt eingesetzt.</p>
+    </div>
+  </article>
+
+  <!-- ============ Abschnitt C ============ -->
+  <div class="sec-head"><span class="ix">C</span><h2>Operatoren</h2></div>
+  <p class="sec-sub">Arithmetik, Vergleich und Logik — inklusive der typischen Stolperfalle Ganzzahldivision.</p>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">07</span><span class="q-type">Multiple Choice</span><span class="q-pts">Auto</span></div>
+    <div class="q-body">
+      <p class="q-text">Was ergibt der Ausdruck <code>7 / 2</code> in C#, wenn beide Operanden <code>int</code> sind?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt"><span class="tick"></span><code>3.5</code></li>
+        <li class="opt" data-correct="true"><span class="tick"></span><code>3</code></li>
+        <li class="opt"><span class="tick"></span><code>4</code></li>
+        <li class="opt"><span class="tick"></span>Fehler beim Kompilieren</li>
+      </ul>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Lösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span>
+      <p>Bei zwei <code>int</code>-Operanden führt C# eine <strong>Ganzzahldivision</strong> aus: Die Nachkommastellen werden abgeschnitten (nicht gerundet) → <code>3</code>.
+      Für <code>3.5</code> muss mindestens ein Operand <code>double</code> sein, z. B. <code>7.0 / 2</code>.</p>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">08</span><span class="q-type calc">Rechnen</span><span class="q-pts">manuell</span></div>
+    <div class="q-body">
+      <p class="q-text">Bestimmen Sie die Ergebnisse: <code>17 % 5</code>, <code>17 / 5</code> (int) und den booleschen Wert von
+        <code>(17 % 5 == 2) &amp;&amp; (17 &gt; 10)</code>.</p>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
+      <div class="step">17 % 5  = 2     // Modulo: Rest der Division
+17 / 5  = 3     // Ganzzahldivision: 5 passt 3-mal in 17
+(17 % 5 == 2) && (17 > 10)
+= (2 == 2) && (17 > 10)
+= true && true
+= true</div>
+      <p>Der Modulo-Operator <code>%</code> liefert den Rest. <code>&amp;&amp;</code> ist nur <code>true</code>, wenn beide Seiten <code>true</code> sind.</p>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">09</span><span class="q-type">Multiple Choice</span><span class="q-pts">Auto</span></div>
+    <div class="q-body">
+      <p class="q-text">Mit welchem Ausdruck prüfen Sie, ob eine Zahl <code>z</code> ein <strong>Vielfaches von 3</strong> ist?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt"><span class="tick"></span><code>z / 3 == 0</code></li>
+        <li class="opt" data-correct="true"><span class="tick"></span><code>z % 3 == 0</code></li>
+        <li class="opt"><span class="tick"></span><code>z % 3 == 1</code></li>
+        <li class="opt"><span class="tick"></span><code>z * 3 == 0</code></li>
+      </ul>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Lösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span>
+      <p>Teilbarkeit prüft man mit dem Rest: <code>z % 3 == 0</code> bedeutet „bei Division durch 3 bleibt kein Rest" → Vielfaches von 3.</p>
+    </div>
+  </article>
+
+  <!-- ============ Abschnitt D ============ -->
+  <div class="sec-head"><span class="ix">D</span><h2>Verzweigungen &amp; Schleifen</h2></div>
+  <p class="sec-sub"><code>if</code>/<code>switch</code> steuern Entscheidungen, Schleifen wiederholen Aktionen.</p>
+
+  <figure class="diagram">
+    <svg viewBox="0 0 460 250" role="img" aria-label="Ablauf einer if-else-Verzweigung">
+      <!-- start -->
+      <circle cx="60" cy="40" r="9" fill="#16242E"/>
+      <line x1="60" y1="49" x2="60" y2="78" stroke="#B9C7D2" stroke-width="1.5" marker-end="url(#g-arr)"/>
+      <!-- decision -->
+      <polygon points="60,80 95,110 60,140 25,110" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
+      <text class="svg-label-sm" x="60" y="108" text-anchor="middle">zahl %</text>
+      <text class="svg-label-sm" x="60" y="120" text-anchor="middle">2 == 0?</text>
+      <!-- true branch -->
+      <line x1="95" y1="110" x2="180" y2="110" stroke="#B9C7D2" stroke-width="1.5" marker-end="url(#g-arr)"/>
+      <text class="svg-label-sm" x="120" y="103" text-anchor="middle">[ja]</text>
+      <rect x="180" y="92" width="120" height="36" rx="6" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+      <text class="svg-label" x="240" y="114" text-anchor="middle">"gerade"</text>
+      <!-- false branch -->
+      <line x1="60" y1="140" x2="60" y2="180" stroke="#B9C7D2" stroke-width="1.5" marker-end="url(#g-arr)"/>
+      <text class="svg-label-sm" x="78" y="165" text-anchor="middle">[nein]</text>
+      <rect x="10" y="180" width="120" height="36" rx="6" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+      <text class="svg-label" x="70" y="202" text-anchor="middle">"ungerade"</text>
+      <!-- merge -->
+      <polygon points="360,110 380,128 360,146 340,128" fill="#E4F1EF" stroke="#15786E" stroke-width="1.5"/>
+      <line x1="300" y1="110" x2="345" y2="124" stroke="#B9C7D2" stroke-width="1.5" marker-end="url(#g-arr)"/>
+      <line x1="130" y1="198" x2="360" y2="146" stroke="#B9C7D2" stroke-width="1.5" marker-end="url(#g-arr)"/>
+      <line x1="360" y1="146" x2="360" y2="200" stroke="#B9C7D2" stroke-width="1.5" marker-end="url(#g-arr)"/>
+      <circle cx="360" cy="210" r="9" fill="#fff" stroke="#16242E" stroke-width="2"/>
+      <circle cx="360" cy="210" r="4" fill="#16242E"/>
+      <defs>
+        <marker id="g-arr" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto">
+          <path d="M0,0 L7,3 L0,6 Z" fill="#8b97a3"/>
+        </marker>
+      </defs>
+    </svg>
+    <figcaption>if-else: eine Bedingung, zwei Pfade, danach wieder ein gemeinsamer Fluss.</figcaption>
+  </figure>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">10</span><span class="q-type">Multiple Choice</span><span class="q-pts">Auto</span></div>
+    <div class="q-body">
+      <p class="q-text">In einer <code>switch</code>-Anweisung — wozu dient das Schlüsselwort <code>break;</code> am Ende eines <code>case</code>?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt"><span class="tick"></span>Es beendet das gesamte Programm.</li>
+        <li class="opt" data-correct="true"><span class="tick"></span>Es verlässt den <code>switch</code>-Block, damit nicht in den nächsten <code>case</code> „durchgefallen" wird.</li>
+        <li class="opt"><span class="tick"></span>Es springt zurück zum Schleifenanfang.</li>
+        <li class="opt"><span class="tick"></span>Es ist optional und hat keine Wirkung.</li>
+      </ul>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Lösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span>
+      <p><code>break;</code> beendet den <code>switch</code> nach dem passenden <code>case</code>. Ohne <code>break</code> verlangt C# in der Regel
+      ein anderes Sprungziel — fehlt es, gibt es einen Compilerfehler. <code>default:</code> fängt alle übrigen Fälle ab.</p>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">11</span><span class="q-type">Multiple Choice</span><span class="q-pts">Auto</span></div>
+    <div class="q-body">
+      <p class="q-text">Welche Schleife ist die richtige Wahl, wenn die <strong>Anzahl der Wiederholungen vorab feststeht</strong>
+        (z. B. „zähle von 1 bis 100")?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt" data-correct="true"><span class="tick"></span><code>for</code>-Schleife</li>
+        <li class="opt"><span class="tick"></span><code>while</code>-Schleife</li>
+        <li class="opt"><span class="tick"></span><code>do-while</code>-Schleife</li>
+        <li class="opt"><span class="tick"></span><code>switch</code></li>
+      </ul>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Lösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span>
+      <p>Die <code>for</code>-Schleife bündelt Startwert, Bedingung und Schrittweite in einer Zeile —
+      ideal bei bekannter Wiederholungszahl: <code>for (int i = 1; i &lt;= 100; i++)</code>.
+      <code>while</code> passt besser, wenn die Abbruchbedingung von Eingaben abhängt (z. B. „bis richtig geraten").</p>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">12</span><span class="q-type">Multiple Choice</span><span class="q-pts">Auto</span></div>
+    <div class="q-body">
+      <p class="q-text">Was ist der Unterschied zwischen <code>while</code> und <code>do-while</code>?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt"><span class="tick"></span>Es gibt keinen Unterschied.</li>
+        <li class="opt" data-correct="true"><span class="tick"></span><code>do-while</code> prüft die Bedingung erst <em>am Ende</em> → der Schleifenkörper läuft mindestens einmal.</li>
+        <li class="opt"><span class="tick"></span><code>while</code> läuft immer mindestens einmal, <code>do-while</code> nie.</li>
+        <li class="opt"><span class="tick"></span><code>do-while</code> kann keine Bedingung enthalten.</li>
+      </ul>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Lösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span>
+      <p><code>while (Bedingung) { ... }</code> prüft <em>vor</em> dem ersten Durchlauf (kann also 0-mal laufen).
+      <code>do { ... } while (Bedingung);</code> prüft <em>nach</em> dem Durchlauf → mindestens 1 Durchlauf. Praktisch z. B. für Menüs.</p>
+    </div>
+  </article>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">13</span><span class="q-type">Szenario</span><span class="q-pts">manuell</span></div>
+    <div class="q-body">
+      <p class="q-text">Ein Menü soll mit <code>switch</code> und einer <code>while</code>-Schleife so lange angezeigt werden, bis der Benutzer „Beenden" wählt.
+        Skizzieren Sie die Programmstruktur (Pseudocode/Stichpunkte).</p>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
+      <div class="step">bool beenden = false;
+while (!beenden)
+{
+    // Menü ausgeben (1) Summe 1..100, (2) Beenden
+    // Eingabe lesen + nach int konvertieren
+    switch (auswahl)
+    {
+        case 1:  // Summe 1..100 berechnen (for-Schleife) und ausgeben
+                 break;
+        case 2:  beenden = true;            break;
+        default: // Fehlermeldung "ungültige Option"
+                 break;
+    }
+}</div>
+      <p>Kernidee: Die Schleife wiederholt das Menü, <code>switch</code> verzweigt nach Auswahl, eine <code>bool</code>-Steuervariable
+      (oder <code>break</code>/<code>return</code>) beendet die Schleife.</p>
+    </div>
+  </article>
+
+  <!-- coding task -->
+  <article class="q">
+    <div class="q-head"><span class="q-num">14</span><span class="q-type">Programmieren</span><span class="q-pts">Selbsttest</span></div>
+    <div class="q-body">
+      <p class="q-text"><strong>Zahlenraten.</strong> Schreiben Sie ein C#-Programm: Das Programm wählt eine Zufallszahl zwischen 1 und 20.
+        Der Benutzer rät so lange, bis er richtig liegt; nach jedem Tipp gibt das Programm „zu hoch" oder „zu niedrig" aus.
+        Am Ende wird die Anzahl der Versuche gemeldet.</p>
+      <textarea class="code-input" rows="12" placeholder="// Dein C#-Code …" data-task="zahlenraten"></textarea>
+    </div>
+    <div class="q-foot">
+      <button class="q-copyprompt">KI-Bewertungs-Prompt kopieren</button>
+      <button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button>
+    </div>
+    <p class="code-hint">Tipp: Code oben eintippen, dann „KI-Bewertungs-Prompt kopieren" → in ChatGPT/Claude einfügen für Feedback. Die Seite selbst führt keinen Code aus.</p>
+    <template class="prompt-tpl">Du bist Informatik-Lehrkraft und bewertest C#-Code eines Berufsschülers (Fach AEuP, Thema Grundlagen).
+
+Aufgabe: Konsolenprogramm "Zahlenraten" — das Programm wählt eine Zufallszahl zwischen 1 und 20. Der Benutzer rät wiederholt; nach jedem Tipp wird "zu hoch" oder "zu niedrig" ausgegeben. Bei Treffer: Erfolgsmeldung mit der Anzahl der Versuche, dann Ende.
+
+Bewerte den folgenden Code anhand dieser Kriterien und gib konkretes, freundliches Feedback samt Verbesserungen:
+- Zufallszahl korrekt mit Random und Next(1, 21) erzeugt (Obergrenze exklusiv!)
+- Schleife (while/do-while) läuft, bis richtig geraten wurde
+- Eingabe als string gelesen und nach int konvertiert (Convert.ToInt32 / int.Parse)
+- Vergleich liefert korrektes "zu hoch"/"zu niedrig"-Feedback
+- Versuchszähler korrekt hochgezählt und am Ende ausgegeben
+- sinnvolle Variablennamen und Kommentare
+- (optional) Robustheit bei Fehleingaben
+
+Hier ist mein Code:
+```csharp
+{{CODE}}
+```
+Sag mir zuerst, ob das Programm die Aufgabe erfüllt, dann liste konkrete Verbesserungen auf.</template>
+    <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
+<pre><code>using System;
+
+int zahl = new Random().Next(1, 21);  // 1..20 (21 exklusiv)
+int versuche = 0;
+int tipp;
+
+Console.WriteLine("Errate die Zahl zwischen 1 und 20!");
+do
+{
+    Console.Write("Dein Tipp: ");
+    tipp = Convert.ToInt32(Console.ReadLine());
+    versuche++;
+
+    if (tipp &lt; zahl)
+        Console.WriteLine("Die Zahl ist zu niedrig.");
+    else if (tipp &gt; zahl)
+        Console.WriteLine("Die Zahl ist zu hoch.");
+}
+while (tipp != zahl);
+
+Console.WriteLine($"Richtig! Du hast die Zahl in {versuche} Versuchen erraten.");</code></pre>
+      <span class="rubric-label">Bewertungs-Checkliste</span>
+      <ul class="rubric">
+        <li><code>Random().Next(1, 21)</code> → Zufallszahl 1–20 (Obergrenze exklusiv)</li>
+        <li>Schleife läuft, bis <code>tipp == zahl</code></li>
+        <li>Eingabe gelesen und nach <code>int</code> konvertiert</li>
+        <li>Feedback „zu hoch" / „zu niedrig" korrekt</li>
+        <li>Versuchszähler hochgezählt und am Ende ausgegeben</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- ============ Vertiefung ============ -->
+  <div class="sec-head"><span class="ix">🔬</span><h2>🔬 [Vertiefung]</h2></div>
+  <p class="sec-sub">Über den Kernstoff hinaus — nützlich, aber nicht zwingend prüfungsrelevant.</p>
+
+  <article class="q">
+    <div class="q-head"><span class="q-num">15</span><span class="q-type">Multiple Choice</span><span class="q-pts">Auto</span></div>
+    <div class="q-body">
+      <p class="q-text">Was passiert bei <code>Convert.ToInt32("abc")</code> zur Laufzeit?</p>
+      <ul class="q-options" data-multi="false">
+        <li class="opt"><span class="tick"></span>Es ergibt <code>0</code>.</li>
+        <li class="opt" data-correct="true"><span class="tick"></span>Es wird eine <code>FormatException</code> geworfen (Programmabsturz, wenn nicht abgefangen).</li>
+        <li class="opt"><span class="tick"></span>Es ergibt <code>null</code>.</li>
+        <li class="opt"><span class="tick"></span>Der Text wird Zeichen für Zeichen addiert.</li>
+      </ul>
+    </div>
+    <div class="q-foot"><button class="q-reveal" aria-expanded="false">Lösung anzeigen</button></div>
+    <div class="q-solution" hidden><span class="sol-label">Lösung</span>
+      <p>Nicht-numerischer Text lässt sich nicht konvertieren → <code>FormatException</code>. Robuster ist
+      <code>int.TryParse(text, out int wert)</code>: liefert <code>true/false</code> statt abzustürzen.</p>
+    </div>
+  </article>
+
+  <nav class="pager">
+    <a class="prev" aria-disabled="true"><span>Vorheriges</span><b>—</b></a>
+    <a class="next" href="02-arrays.html"><span>Nächstes Thema</span><b>02 · Arrays →</b></a>
+  </nav>
+
+</div></main>
+<footer class="foot"><div class="wrap"><span class="mono">AEuP C# · Thema 01 — Grundlagen</span> · Kerninhalt</div></footer>
+<script src="assets/quiz.js"></script>
+<script src="assets/code.js"></script>
+</body>
+</html>
