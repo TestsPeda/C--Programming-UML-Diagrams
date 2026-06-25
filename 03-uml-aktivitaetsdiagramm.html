@@ -988,6 +988,119 @@ else
         </svg>
         <figcaption>PDF 3: Ohne Bonität führt der Ablauf über die Vorkasse-Kette; nach der Auftragsannahme laufen Verladung/Transport und Rechnung/Zahlung parallel, danach folgt die Zahlungskontrolle.</figcaption>
       </figure>
+
+      <div class="note" style="margin-top:18px">
+        <span class="lbl">Alternative Lösung – mit Verantwortungsbereichen (Swimlanes Kunde / Reederei)</span>
+        <p style="margin:.4em 0 0">Dieselbe Aufgabe lässt sich auch mit zwei Swimlanes für <em>Kunde</em> und <em>Reederei</em> modellieren —
+        sinnvoll, weil die Aufgabenstellung Rollen nennt.</p>
+      </div>
+      <figure class="diagram" style="background:#fff">
+        <svg viewBox="0 0 680 940" role="img" aria-label="PDF 3 Alternative Aktivitätsdiagramm LaLuSe GmbH mit Swimlanes Kunde und Reederei">
+          <defs><marker id="pdf3b-arr" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#16242E"/></marker></defs>
+          <!-- swimlanes -->
+          <line x1="340" y1="0" x2="340" y2="940" stroke="#B9C7D2" stroke-width="1.5"/>
+          <line x1="0" y1="32" x2="680" y2="32" stroke="#B9C7D2" stroke-width="1.5"/>
+          <text class="svg-title" x="170" y="22" text-anchor="middle">Kunde</text>
+          <text class="svg-title" x="510" y="22" text-anchor="middle">Reederei</text>
+          <!-- start (Kunde) -->
+          <circle cx="175" cy="52" r="9" fill="#16242E"/>
+          <line x1="175" y1="61" x2="175" y2="70" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3b-arr)"/>
+          <!-- K: Kundenanfrage senden -->
+          <rect x="60" y="72" width="230" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="175" y="92" text-anchor="middle">Kundenanfrage senden</text>
+          <line x1="290" y1="88" x2="400" y2="88" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3b-arr)"/>
+          <!-- R: Angebot erstellen -->
+          <rect x="400" y="72" width="230" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="515" y="92" text-anchor="middle">Angebot erstellen/verschicken</text>
+          <!-- R -> K: Kundenauftrag erteilen -->
+          <line x1="515" y1="104" x2="515" y2="148" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="515" y1="148" x2="290" y2="148" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3b-arr)"/>
+          <rect x="60" y="132" width="230" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="175" y="152" text-anchor="middle">Kundenauftrag erteilen</text>
+          <!-- K -> R: Bonität prüfen (Entscheidung) -->
+          <line x1="175" y1="164" x2="175" y2="200" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="175" y1="200" x2="470" y2="200" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3b-arr)"/>
+          <polygon points="515,170 560,200 515,230 470,200" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="515" y="197" text-anchor="middle">Bonität</text>
+          <text class="svg-label-sm" x="515" y="209" text-anchor="middle">vorhanden?</text>
+          <!-- [ja]: runter zur Vereinigung -->
+          <line x1="515" y1="230" x2="515" y2="556" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3b-arr)"/>
+          <text class="svg-label-sm" x="538" y="250" text-anchor="middle" fill="#15786E">[ja]</text>
+          <!-- [nein]: R verlangt Vorkasse -> K -->
+          <line x1="560" y1="200" x2="600" y2="200" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="600" y1="200" x2="600" y2="252" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3b-arr)"/>
+          <text class="svg-label-sm" x="582" y="192" text-anchor="middle" fill="#B23E1F">[nein]</text>
+          <rect x="500" y="254" width="130" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="565" y="274" text-anchor="middle">Vorkasse verlangen</text>
+          <!-- R Vorkasse verlangen -> K: Vorkasse leisten? -->
+          <line x1="500" y1="270" x2="220" y2="270" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3b-arr)"/>
+          <polygon points="175,270 220,300 175,330 130,300" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="175" y="297" text-anchor="middle">Vorkasse</text>
+          <text class="svg-label-sm" x="175" y="309" text-anchor="middle">leisten?</text>
+          <!-- K [nein] -> Abbruch -->
+          <line x1="130" y1="300" x2="95" y2="300" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3b-arr)"/>
+          <text class="svg-label-sm" x="112" y="292" text-anchor="middle" fill="#B23E1F">[nein]</text>
+          <circle cx="81" cy="300" r="10" fill="#fff" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="74" y1="293" x2="88" y2="307" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="88" y1="293" x2="74" y2="307" stroke="#16242E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="81" y="326" text-anchor="middle">Abbruch</text>
+          <!-- K [ja] -> R Vereinigung -->
+          <line x1="175" y1="330" x2="175" y2="576" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="175" y1="576" x2="470" y2="576" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3b-arr)"/>
+          <text class="svg-label-sm" x="197" y="346" text-anchor="middle" fill="#15786E">[ja]</text>
+          <!-- R Vereinigung -->
+          <polygon points="515,556 537,576 515,596 493,576" fill="#E4F1EF" stroke="#15786E" stroke-width="1.5"/>
+          <line x1="515" y1="596" x2="515" y2="616" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3b-arr)"/>
+          <rect x="400" y="618" width="230" height="32" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="515" y="638" text-anchor="middle">Auftrag annehmen</text>
+          <line x1="515" y1="650" x2="515" y2="668" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3b-arr)"/>
+          <!-- fork (R) -->
+          <rect x="405" y="668" width="220" height="6" fill="#16242E"/>
+          <line x1="460" y1="674" x2="460" y2="692" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3b-arr)"/>
+          <line x1="570" y1="674" x2="570" y2="692" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3b-arr)"/>
+          <rect x="405" y="694" width="110" height="36" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="460" y="709" text-anchor="middle">Verladung +</text>
+          <text class="svg-label-sm" x="460" y="722" text-anchor="middle">Transport</text>
+          <rect x="520" y="694" width="105" height="36" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="572" y="709" text-anchor="middle">Rechnung +</text>
+          <text class="svg-label-sm" x="572" y="722" text-anchor="middle">Zahlung</text>
+          <line x1="460" y1="730" x2="460" y2="748" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3b-arr)"/>
+          <line x1="570" y1="730" x2="570" y2="748" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3b-arr)"/>
+          <!-- join (R) -->
+          <rect x="405" y="748" width="220" height="6" fill="#16242E"/>
+          <line x1="515" y1="754" x2="515" y2="772" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3b-arr)"/>
+          <!-- D Zahlung vollständig? -->
+          <polygon points="515,772 560,802 515,832 470,802" fill="#FBEAE3" stroke="#DD5430" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="515" y="799" text-anchor="middle">Zahlung</text>
+          <text class="svg-label-sm" x="515" y="811" text-anchor="middle">vollständig?</text>
+          <!-- [ja] Auslieferung freigeben -> Ende -->
+          <line x1="470" y1="802" x2="454" y2="802" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="454" y1="802" x2="454" y2="844" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3b-arr)"/>
+          <text class="svg-label-sm" x="436" y="794" text-anchor="middle" fill="#15786E">[ja]</text>
+          <rect x="400" y="846" width="110" height="36" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="455" y="861" text-anchor="middle">Auslieferung</text>
+          <text class="svg-label-sm" x="455" y="874" text-anchor="middle">freigeben</text>
+          <line x1="455" y1="882" x2="455" y2="898" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3b-arr)"/>
+          <circle cx="455" cy="910" r="10" fill="#fff" stroke="#16242E" stroke-width="2"/>
+          <circle cx="455" cy="910" r="5" fill="#16242E"/>
+          <!-- [nein] Ware halten -> Ende -->
+          <line x1="560" y1="802" x2="576" y2="802" stroke="#16242E" stroke-width="1.5"/>
+          <line x1="576" y1="802" x2="576" y2="844" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3b-arr)"/>
+          <text class="svg-label-sm" x="596" y="794" text-anchor="middle" fill="#B23E1F">[nein]</text>
+          <rect x="521" y="846" width="104" height="36" rx="8" fill="#fff" stroke="#15786E" stroke-width="1.5"/>
+          <text class="svg-label-sm" x="573" y="867" text-anchor="middle">Ware halten</text>
+          <line x1="573" y1="882" x2="573" y2="898" stroke="#16242E" stroke-width="1.5" marker-end="url(#pdf3b-arr)"/>
+          <circle cx="573" cy="910" r="10" fill="#fff" stroke="#16242E" stroke-width="2"/>
+          <circle cx="573" cy="910" r="5" fill="#16242E"/>
+        </svg>
+        <figcaption>Alternative: gleicher Ablauf, zusätzlich nach Verantwortungsbereichen Kunde/Reederei aufgeteilt.</figcaption>
+      </figure>
+      <p><strong>Warum das ebenfalls funktioniert:</strong> Der <em>Steuerungsfluss</em> ist identisch zur Lösung oben —
+      gleiche Reihenfolge der Aktionen, dieselben Entscheidungen (Bonität, Vorkasse, Zahlung) und dieselbe Gabelung mit
+      Synchronisation. Die Swimlanes fügen nur die zusätzliche Information hinzu, <em>wer</em> jede Aktion ausführt: Der
+      <strong>Kunde</strong> stellt die Anfrage, erteilt den Auftrag und entscheidet über die Vorkasse; die
+      <strong>Reederei</strong> erstellt das Angebot, prüft die Bonität und wickelt Auftrag, Versand und Zahlungskontrolle ab.
+      Da die UML beide Darstellungen zulässt und sich der Ablauf semantisch nicht ändert, ist auch diese Modellierung korrekt.</p>
     </div>
   </article>
 
