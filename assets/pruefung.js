@@ -94,9 +94,10 @@
     var pct = total ? Math.round(ok / total * 100) : 0;
     box.hidden = false;
     box.innerHTML =
-      "<strong>Ergebnis:</strong> " + ok + " / " + total + " richtig (" + pct + " %) · " +
+      "<strong>Auswahlteil:</strong> " + ok + " / " + total + " richtig (" + pct + " %) · " +
       "Zeit: " + fmt(used) + (auto ? " · <em>Zeit abgelaufen</em>" : "") +
-      "<br>Die Musterlösungen sind jetzt unter den Fragen sichtbar.";
+      "<br>Die Musterlösungen sind jetzt unter den Fragen sichtbar." +
+      "<br><strong>Offener Teil (13 P):</strong> mit „… zur KI-Bewertung kopieren" bewerten lassen und die Punkte addieren.";
     box.scrollIntoView({ behavior: "smooth", block: "center" });
   }
 
@@ -124,8 +125,61 @@
     });
   }
 
+  /* ---- Offener Teil: Reveal-Toggle + Sammel-Prompt für die KI-Bewertung ---- */
+  function copyText(text, btn) {
+    function flash(msg) {
+      var orig = btn.getAttribute("data-label") || btn.textContent;
+      btn.setAttribute("data-label", orig);
+      btn.textContent = msg; btn.classList.add("copied");
+      setTimeout(function () { btn.textContent = btn.getAttribute("data-label"); btn.classList.remove("copied"); }, 1800);
+    }
+    function fallback() {
+      var ta = document.createElement("textarea");
+      ta.value = text; ta.style.position = "absolute"; ta.style.left = "-9999px";
+      document.body.appendChild(ta); ta.select();
+      var ok = false; try { ok = document.execCommand("copy"); } catch (e) {}
+      document.body.removeChild(ta); return ok;
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { flash("✓ kopiert"); },
+        function () { flash(fallback() ? "✓ kopiert" : "Kopieren fehlgeschlagen"); });
+    } else { flash(fallback() ? "✓ kopiert" : "Kopieren fehlgeschlagen"); }
+  }
+
+  function buildOpenPrompt() {
+    var blocks = [];
+    document.querySelectorAll(".open-q").forEach(function (q, i) {
+      var tpl = q.querySelector("template.prompt-tpl");
+      var input = q.querySelector(".code-input");
+      var t = tpl ? tpl.innerHTML : "";
+      var code = input ? input.value : "";
+      if (!code.trim()) code = "(keine Eingabe)";
+      blocks.push("=== Aufgabe " + (i + 1) + " ===\n" + t.replace(/\{\{CODE\}\}/g, code).trim());
+    });
+    return "Du bist Informatik-Lehrkraft. Bewerte den offenen Teil meiner Probe-SA (Fach AEuP, C#) " +
+      "und vergib pro Aufgabe Punkte streng nach den jeweils genannten Kriterien. Nenne je Aufgabe " +
+      "die erreichten Punkte mit kurzer Begründung und am Ende die Gesamtpunktzahl des offenen Teils.\n\n" +
+      blocks.join("\n\n");
+  }
+
+  function initOpen() {
+    document.querySelectorAll(".open-q .q-reveal").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var q = btn.closest(".q");
+        var sol = q ? q.querySelector(".q-solution") : null;
+        if (!sol) return;
+        sol.hidden = !sol.hidden;
+        btn.setAttribute("aria-expanded", sol.hidden ? "false" : "true");
+        btn.textContent = sol.hidden ? "Musterlösung anzeigen" : "Musterlösung ausblenden";
+      });
+    });
+    var co = document.getElementById("copy-open");
+    if (co) co.addEventListener("click", function () { copyText(buildOpenPrompt(), co); });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     initSelect();
+    initOpen();
     var el = document.getElementById("timer");
     if (el) el.textContent = fmt(remaining);
     timerId = setInterval(tick, 1000);

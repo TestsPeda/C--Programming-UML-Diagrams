@@ -26,8 +26,9 @@
   <section class="hero">
     <p class="eyebrow">Prüfungssimulation</p>
     <h1>Probe-SA</h1>
-    <p class="lede">15 Fragen quer über alle drei Themen, 30 Minuten Zeit. Antworten auswählen, am Ende <strong>abgeben</strong> —
-      dann erscheinen Punktzahl, Zeit und alle Lösungen. Deine Ergebnisse werden lokal gespeichert.</p>
+    <p class="lede">Zwei Teile, 30 Minuten Zeit: ein <strong>Auswahlteil</strong> (15 Fragen, <strong>15 P</strong>, automatisch ausgewertet)
+      und ein <strong>offener Teil</strong> (Programmieren &amp; Diagramm, <strong>13 P</strong>, von einer KI bewertet) — gesamt <strong>28 Punkte</strong>.
+      Auswahlteil am Ende <strong>abgeben</strong>; für den offenen Teil den KI-Bewertungs-Prompt kopieren. Ergebnisse werden lokal gespeichert.</p>
   </section>
 
   <div class="exam-bar">
@@ -237,16 +238,105 @@
     <div class="q-solution" hidden><span class="sol-label">Lösung</span><p>Die erste Anweisung <em>hinter</em> dem <code>if-else</code> — läuft unabhängig vom Pfad.</p></div>
   </article>
 
+  <!-- ===== Offener Teil (KI-bewertet) ===== -->
+  <div class="sec-head"><span class="ix">+</span><h2>Offener Teil — wird von einer KI bewertet</h2></div>
+  <p class="sec-sub">Diese Aufgaben werden <strong>nicht</strong> automatisch ausgewertet. Löse sie (Code eintippen bzw. Diagramm auf Papier zeichnen),
+    kopiere dann den KI-Bewertungs-Prompt — einzeln oder gesammelt — und lass eine KI die Punkte vergeben. Max. <strong>13 Punkte</strong>.</p>
+
+  <div class="controls">
+    <button class="btn primary" id="copy-open" type="button">Gesamten offenen Teil zur KI-Bewertung kopieren</button>
+  </div>
+
+  <article class="q open-q">
+    <div class="q-head"><span class="q-num">P1</span><span class="q-type">Programmieren</span><span class="q-src">Verzweigung</span><span class="q-pts">4 P · KI</span></div>
+    <div class="q-body">
+      <p class="q-text">Schreiben Sie ein Programm: Lesen Sie den Bestellwert ein. Liegt er <strong>unter 100,00 €</strong>, addieren Sie
+        eine Versandpauschale von 6,50 €; ab 100,00 € keine Versandkosten. Geben Sie den Gesamtbetrag aus.</p>
+      <textarea class="code-input" rows="9" placeholder="// Dein C#-Code …" data-task="sa-bestellung"></textarea>
+    </div>
+    <div class="q-foot"><button class="q-copyprompt">KI-Prompt kopieren</button><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <template class="prompt-tpl">Aufgabe (4 Punkte): Bestellwert einlesen; unter 100,00 EUR Versandpauschale 6,50 EUR addieren, ab 100,00 EUR keine; Gesamtbetrag ausgeben. Vergib 0-4 Punkte: 1P Eingabe + Konvertierung (double), 1P if mit Schwelle 100, 1P Versand nur unter 100 addiert, 1P korrekte Ausgabe. Mein Code:
+```csharp
+{{CODE}}
+```</template>
+    <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
+<pre><code>using System;
+
+Console.Write("Bestellwert in EUR: ");
+double wert = Convert.ToDouble(Console.ReadLine());
+
+double gesamt = wert;
+if (wert &lt; 100.0)
+    gesamt = wert + 6.5;
+
+Console.WriteLine($"Gesamtbetrag: {gesamt} EUR");</code></pre>
+    </div>
+  </article>
+
+  <article class="q open-q">
+    <div class="q-head"><span class="q-num">P2</span><span class="q-type">Programmieren</span><span class="q-src">Arrays 2D</span><span class="q-pts">4 P · KI</span></div>
+    <div class="q-body">
+      <p class="q-text">Legen Sie ein zweidimensionales Array <code>int[2,3]</code> mit beliebigen Werten an. Geben Sie das Element in
+        <strong>Zeile 2, Spalte 1</strong> (so wie der Mensch zählt, 1-basiert) auf der Konsole aus.</p>
+      <textarea class="code-input" rows="10" placeholder="// Dein C#-Code …" data-task="sa-2darray"></textarea>
+    </div>
+    <div class="q-foot"><button class="q-copyprompt">KI-Prompt kopieren</button><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <template class="prompt-tpl">Aufgabe (4 Punkte): zweidimensionales Array int[2,3] mit Werten anlegen und das Element in Zeile 2, Spalte 1 (1-basiert) ausgeben. Vergib 0-4 Punkte: 1P int[,] korrekt deklariert, 1P mit Werten befüllt, 1P Indexumrechnung 1-basiert -> [1,0], 1P korrekte Ausgabe. Mein Code:
+```csharp
+{{CODE}}
+```</template>
+    <div class="q-solution" hidden><span class="sol-label">Musterlösung</span>
+<pre><code>using System;
+
+int[,] werte = new int[2, 3]
+{
+    { 5, 8, 3 },
+    { 7, 1, 9 }
+};
+
+// Zeile 2, Spalte 1 (1-basiert) -> Index [1, 0]
+Console.WriteLine(werte[1, 0]);   // 7</code></pre>
+    </div>
+  </article>
+
+  <article class="q open-q">
+    <div class="q-head"><span class="q-num">P3</span><span class="q-type">Diagramm zeichnen</span><span class="q-src">UML</span><span class="q-pts">5 P · KI</span></div>
+    <div class="q-body">
+      <p class="q-text"><strong>Auf Papier zeichnen.</strong> Erstellen Sie ein UML-Aktivitätsdiagramm für den Login:
+        Der Benutzer gibt ein Passwort ein. Ist es falsch, wird erneut gefragt — höchstens <strong>3 Versuche</strong>.
+        Nach dem 3. Fehlversuch wird das Konto gesperrt (Ende). Bei richtigem Passwort wird die Startseite angezeigt.</p>
+      <p class="q-text" style="font-size:.92rem;color:var(--muted)">Beschreiben Sie Ihr gezeichnetes Diagramm unten (Elemente + Reihenfolge) — oder hängen Sie der KI ein Foto des Blattes an.</p>
+      <textarea class="code-input" rows="7" placeholder="z. B. Start → Aktion 'Passwort eingeben' → Entscheidung 'korrekt?' → ..." data-task="sa-uml"></textarea>
+    </div>
+    <div class="q-foot"><button class="q-copyprompt">KI-Prompt kopieren</button><button class="q-reveal" aria-expanded="false">Musterlösung anzeigen</button></div>
+    <template class="prompt-tpl">Aufgabe (5 Punkte): UML-Aktivitätsdiagramm Login. Passwort eingeben; bei falsch erneut, max. 3 Versuche; nach 3 Fehlversuchen Konto sperren (Ende); bei richtig Startseite anzeigen. Ich habe das Diagramm auf Papier gezeichnet; hier meine Beschreibung (oder ein angehängtes Foto). Vergib 0-5 Punkte: 1P Start- und Endknoten korrekt, 1P Aktionen als abgerundete Rechtecke in richtiger Reihenfolge, 1P Entscheidung 'Passwort korrekt?' mit Bedingungen, 1P Schleife/Rückführung mit Versuchszählung (max. 3), 1P Konto sperren als eigener Abschluss (Flussende/Ende). Meine Beschreibung:
+{{CODE}}</template>
+    <div class="q-solution" hidden><span class="sol-label">Musterlösung (Elemente)</span>
+      <ol>
+        <li><strong>Startpunkt</strong> ● → Aktion <em>„Passwort eingeben"</em></li>
+        <li><strong>Entscheidung</strong> <em>„Passwort korrekt?"</em> mit <code>[ja]</code> / <code>[nein]</code></li>
+        <li><code>[ja]</code> → Aktion <em>„Startseite anzeigen"</em> → <strong>Endpunkt</strong> ◉</li>
+        <li><code>[nein]</code> → <strong>Entscheidung</strong> <em>„3. Versuch?"</em></li>
+        <li><code>[nein]</code> (noch Versuche) → <strong>Rückführung</strong> (Schleife) zu „Passwort eingeben"</li>
+        <li><code>[ja]</code> (3. Fehlversuch) → Aktion <em>„Konto sperren"</em> → <strong>Endpunkt</strong> ◉ (bzw. Flussende ⊗)</li>
+      </ol>
+      <p>Entspricht dem Muster von Aufgabe 12 (Geldautomat) auf der UML-Seite: Schleife + verschachtelte Entscheidung + Abschluss.</p>
+    </div>
+  </article>
+
   <div id="history" hidden></div>
 
   <div class="note">
-    <span class="lbl">Hinweis</span>
-    <p style="margin:.4em 0 0">Diese Probe-SA wertet nur die 15 Auswahlfragen automatisch aus. Für die offenen Aufgaben
-    (Programmieren, Diagramme zeichnen) übe mit den Themenseiten und der Druckansicht.</p>
+    <span class="lbl">So funktioniert die Bewertung</span>
+    <p style="margin:.4em 0 0">Der <strong>Auswahlteil</strong> (15 P) wird beim Abgeben automatisch ausgewertet. Der
+    <strong>offene Teil</strong> (13 P) wird nicht vom Programm bewertet: Kopiere den KI-Bewertungs-Prompt (je Aufgabe oder
+    gesammelt) und lasse eine KI (z. B. ChatGPT/Claude) die Punkte nach den angegebenen Kriterien vergeben.
+    Gesamtpunktzahl = Auswahlteil + offener Teil (max. 28 P).</p>
   </div>
 
 </div></main>
-<footer class="foot"><div class="wrap"><span class="mono">AEuP C# · Probe-SA</span> · 15 Fragen · 30 Minuten</div></footer>
+<footer class="foot"><div class="wrap"><span class="mono">AEuP C# · Probe-SA</span> · Auswahlteil 15 P + offener Teil 13 P · 30 Minuten</div></footer>
+<script src="assets/code.js"></script>
 <script src="assets/pruefung.js"></script>
 </body>
 </html>
