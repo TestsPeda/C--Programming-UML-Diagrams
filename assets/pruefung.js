@@ -10,6 +10,96 @@
   var timerId = null;
   var submitted = false;
   var RESULT_KEY = "aeup:probe-sa:results";
+  var OPEN_TASKS = [
+    { id: "open-p1", label: "P1 Programmieren", max: 4 },
+    { id: "open-p2", label: "P2 Arrays 2D", max: 4 },
+    { id: "open-p3", label: "P3 UML", max: 5 }
+  ];
+
+  function readNumber(value) {
+    if (typeof value === "string") value = value.replace(",", ".");
+    var n = parseFloat(value);
+    return Number.isFinite(n) ? n : 0;
+  }
+
+  function clampScore(value, max) {
+    var n = readNumber(value);
+    var cap = readNumber(max);
+    if (cap < 0) cap = 0;
+    return Math.min(Math.max(n, 0), cap);
+  }
+
+  function roundPoints(value) {
+    return Math.round(value * 100) / 100;
+  }
+
+  function formatPoints(value) {
+    var n = roundPoints(readNumber(value));
+    if (Math.abs(n - Math.round(n)) < 0.001) return String(Math.round(n));
+    return String(n).replace(".", ",");
+  }
+
+  function formatPercent(value) {
+    var n = roundPoints(readNumber(value));
+    if (Math.abs(n - Math.round(n)) < 0.001) return String(Math.round(n));
+    return n.toFixed(2).replace(/0+$/, "").replace(/\.$/, "").replace(".", ",");
+  }
+
+  function getIhkGrade(percent) {
+    var pct = clampScore(percent, 100);
+    if (pct >= 92) return { grade: 1, label: "sehr gut", range: "92 bis 100 %" };
+    if (pct >= 81) return { grade: 2, label: "gut", range: "81 bis unter 92 %" };
+    if (pct >= 67) return { grade: 3, label: "befriedigend", range: "67 bis unter 81 %" };
+    if (pct >= 50) return { grade: 4, label: "ausreichend", range: "50 bis unter 67 %" };
+    if (pct >= 30) return { grade: 5, label: "mangelhaft", range: "30 bis unter 50 %" };
+    return { grade: 6, label: "ungenügend", range: "0 bis unter 30 %" };
+  }
+
+  function calculateExamResult(choiceScore, choiceMax, openScore, openMax) {
+    var cMax = readNumber(choiceMax);
+    var oMax = readNumber(openMax);
+    var choice = roundPoints(clampScore(choiceScore, cMax));
+    var open = roundPoints(clampScore(openScore, oMax));
+    var totalMax = roundPoints(cMax + oMax);
+    var totalScore = roundPoints(choice + open);
+    var pct = totalMax ? roundPoints(totalScore / totalMax * 100) : 0;
+    var grade = getIhkGrade(pct);
+    return {
+      choiceScore: choice,
+      choiceMax: cMax,
+      openScore: open,
+      openMax: oMax,
+      totalScore: totalScore,
+      totalMax: totalMax,
+      percentage: pct,
+      grade: grade.grade,
+      gradeLabel: grade.label
+    };
+  }
+
+  function buildScaleHtml(activeGrade) {
+    var rows = [
+      { grade: 1, range: "92-100 %" },
+      { grade: 2, range: "81-&lt;92 %" },
+      { grade: 3, range: "67-&lt;81 %" },
+      { grade: 4, range: "50-&lt;67 %" },
+      { grade: 5, range: "30-&lt;50 %" },
+      { grade: 6, range: "0-&lt;30 %" }
+    ];
+    return "<div class='ihk-scale' aria-label='IHK-Regensburg-Notenschluessel'>" +
+      rows.map(function (r) {
+        return "<span" + (r.grade === activeGrade ? " class='active'" : "") + ">Note " +
+          r.grade + " · " + r.range + "</span>";
+      }).join("") +
+      "</div>";
+  }
+
+  if (typeof window !== "undefined") {
+    window.ProbeSaScoring = {
+      getIhkGrade: getIhkGrade,
+      calculateExamResult: calculateExamResult
+    };
+  }
 
   function saveResult(res) {
     var arr;
@@ -88,6 +178,57 @@
     if (sb) { sb.disabled = true; sb.textContent = "Abgegeben"; }
   }
 
+  function renderOpenScorePanel() {
+    var fields = OPEN_TASKS.map(function (task) {
+      return "<label class='open-score-field' for='" + task.id + "'>" +
+        "<span>" + task.label + "</span>" +
+        "<input id='" + task.id + "' class='open-score-input' type='number' inputmode='decimal' " +
+        "min='0' max='" + task.max + "' step='0.5' value='0' data-max='" + task.max + "'>" +
+        "<small>/ " + task.max + " P</small>" +
+      "</label>";
+    }).join("");
+    return "<div class='open-score-panel'>" +
+      "<span class='rubric-label'>Offenen Teil addieren</span>" +
+      "<p class='score-help'>Trage nach der KI-Bewertung die Punkte der offenen Aufgaben ein. Gesamtpunktzahl, Prozentzahl und Note werden direkt nach IHK-Regensburg-Schl&uuml;ssel berechnet.</p>" +
+      "<div class='open-score-grid'>" + fields + "</div>" +
+      "<div id='final-score-summary' class='final-score-summary' aria-live='polite'></div>" +
+    "</div>";
+  }
+
+  function readOpenScoreTotal() {
+    var open = 0;
+    document.querySelectorAll(".open-score-input").forEach(function (input) {
+      open += clampScore(input.value, input.getAttribute("data-max"));
+    });
+    return roundPoints(open);
+  }
+
+  function updateFinalScore(choiceScore, choiceTotal) {
+    var summary = document.getElementById("final-score-summary");
+    if (!summary) return;
+    var result = calculateExamResult(choiceScore, choiceTotal, readOpenScoreTotal(), 13);
+    var gradeInfo = getIhkGrade(result.percentage);
+    summary.innerHTML =
+      "<div class='final-score-main'>" +
+        "<span><b>Gesamt:</b> " + formatPoints(result.totalScore) + " / " + formatPoints(result.totalMax) + " P</span>" +
+        "<span><b>Prozent:</b> " + formatPercent(result.percentage) + " %</span>" +
+        "<span><b>Note:</b> " + result.grade + " (" + result.gradeLabel + ")</span>" +
+      "</div>" +
+      "<p class='score-help'>Abgleich: " + formatPercent(result.percentage) + " % liegt im IHK-Bereich <strong>" + gradeInfo.range + "</strong>.</p>" +
+      buildScaleHtml(result.grade);
+  }
+
+  function initOpenScorePanel(choiceScore, choiceTotal) {
+    document.querySelectorAll(".open-score-input").forEach(function (input) {
+      input.addEventListener("input", function () { updateFinalScore(choiceScore, choiceTotal); });
+      input.addEventListener("blur", function () {
+        input.value = formatPoints(clampScore(input.value, input.getAttribute("data-max")));
+        updateFinalScore(choiceScore, choiceTotal);
+      });
+    });
+    updateFinalScore(choiceScore, choiceTotal);
+  }
+
   function showResult(ok, total, used, auto) {
     var box = document.getElementById("result");
     if (!box) return;
@@ -97,7 +238,9 @@
       "<strong>Auswahlteil:</strong> " + ok + " / " + total + " richtig (" + pct + " %) · " +
       "Zeit: " + fmt(used) + (auto ? " · <em>Zeit abgelaufen</em>" : "") +
       "<br>Die Musterlösungen sind jetzt unter den Fragen sichtbar." +
-      "<br><strong>Offener Teil (13 P):</strong> per KI-Bewertungs-Prompt bewerten lassen und die Punkte addieren.";
+      "<br><strong>Offener Teil (13 P):</strong> per KI-Bewertungs-Prompt bewerten lassen und die Punkte unten eintragen." +
+      renderOpenScorePanel();
+    initOpenScorePanel(ok, total);
     box.scrollIntoView({ behavior: "smooth", block: "center" });
   }
 

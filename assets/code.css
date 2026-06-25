@@ -89,3 +89,61 @@
   font-family: var(--font-mono); font-size: .68rem; letter-spacing: .14em; text-transform: uppercase;
   color: var(--accent-2); font-weight: 700; display: block; margin: 12px 0 6px;
 }
+
+/* Gesamtauswertung fuer die Probe-SA */
+.open-score-panel {
+  margin-top: 14px; padding-top: 14px; border-top: 1px solid #BFE0DB;
+}
+.score-help {
+  margin: 6px 0 10px; color: var(--muted); font-size: .92rem;
+}
+.open-score-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 10px; margin: 10px 0 12px;
+}
+.open-score-field {
+  display: grid; grid-template-columns: 1fr 76px auto; align-items: center; gap: 8px;
+  min-height: 44px; padding: 8px 10px;
+  background: var(--surface); border: 1px solid #BFE0DB; border-radius: var(--radius);
+}
+.open-score-field span {
+  font-family: var(--font-mono); font-size: .78rem; color: var(--ink);
+}
+.open-score-field input {
+  width: 76px; height: 32px;
+  font-family: var(--font-mono); font-size: .9rem; color: var(--ink);
+  border: 1px solid var(--line-strong); border-radius: var(--radius);
+  padding: 4px 7px; background: var(--surface-2);
+}
+.open-score-field input:focus {
+  outline: 2px solid var(--accent); outline-offset: 1px; background: var(--surface);
+}
+.open-score-field small {
+  font-family: var(--font-mono); font-size: .72rem; color: var(--muted); white-space: nowrap;
+}
+.final-score-summary {
+  margin-top: 12px; padding: 12px 14px;
+  background: var(--surface); border: 1px solid #BFE0DB; border-radius: var(--radius);
+}
+.final-score-main {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 8px; align-items: center;
+}
+.final-score-main span {
+  font-family: var(--font-mono); font-size: .9rem;
+}
+.ihk-scale {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px;
+}
+.ihk-scale span {
+  font-family: var(--font-mono); font-size: .7rem; color: var(--muted);
+  border: 1px solid var(--line); border-radius: 999px; padding: 3px 8px;
+  background: var(--surface-2);
+}
+.ihk-scale span.active {
+  color: #fff; background: var(--accent-2); border-color: var(--accent-2);
+}
+@media (max-width: 520px) {
+  .open-score-field { grid-template-columns: 1fr 70px auto; }
+  .open-score-field input { width: 70px; }
+}
