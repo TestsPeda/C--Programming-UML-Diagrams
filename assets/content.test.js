@@ -36,9 +36,9 @@ assert.match(openArticleByNumber(pruefung, "P3"), /<svg[\s\S]*Passwort[\s\S]*Kon
   "PDF 2",
   "PDF 3",
   "PDF 4",
-  "Global Medi AG",
-  "LaLuSe GmbH",
-  "Visite und Patientendaten"
+  "Großhandelsbetrieb",
+  "Speditionsunternehmen",
+  "Stationsvisite in einer Klinik"
 ].forEach((text) => assert.ok(uml.includes(text), `UML page contains ${text}`));
 
 assert.ok((uml.match(/<svg /g) || []).length >= 9, "UML page has SVG diagrams for the added solutions");

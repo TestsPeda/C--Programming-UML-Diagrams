@@ -10,8 +10,8 @@ Statische Lern-/Selbsttest-Website zur Vorbereitung auf die Schulaufgabe im Fach
 2. **Arrays** — ein- und mehrdimensionale Arrays, Index & Länge, SA-Aufgabe „Chaos-Lager"
 3. **UML-Aktivitätsdiagramm** — Notation, Entscheidung/Vereinigung, Ticketkauf modellieren, Diagramm → Code
 
-Umfang: **57 Aufgaben** (davon **18 Programmieraufgaben** aus den Übungs-Arbeitsblättern, nach Quelle getaggt),
-**7 Diagramme**, zwei UML-Zeichenaufgaben mit togglebarer Musterlösung sowie eine **Probe-SA** mit Timer.
+Umfang: **57 Aufgaben** (davon **18 Programmieraufgaben**), **7 Diagramme**, zwei UML-Zeichenaufgaben
+mit togglebarer Musterlösung sowie eine **Probe-SA** mit Timer.
 
 ## Nutzung
 
@@ -46,8 +46,3 @@ Die Seite ist live erreichbar unter
 3. Die `.nojekyll`-Datei sorgt dafür, dass der `assets/`-Ordner nicht von Jekyll gefiltert wird.
 
 Keine externen Abhängigkeiten (keine CDNs/Fonts/Skripte) — funktioniert auch offline.
-
-## Hinweis
-
-Lernmaterial, KI-gestützt erstellt aus den Unterrichtsunterlagen des Workspace (Arbeitsblätter, SA-Übungen).
-Ohne Gewähr auf Vollständigkeit/Richtigkeit — im Zweifel gelten die Original-Unterlagen und die Lehrkraft.

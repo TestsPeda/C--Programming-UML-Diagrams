@@ -29,16 +29,16 @@ vm.runInContext(source, sandbox, { filename: scriptPath });
 const scoring = sandbox.window.ProbeSaScoring;
 
 assert.ok(scoring, "ProbeSaScoring API is exposed for tests");
-assert.equal(scoring.getIhkGrade(92).grade, 1);
-assert.equal(scoring.getIhkGrade(91.99).grade, 2);
-assert.equal(scoring.getIhkGrade(81).grade, 2);
-assert.equal(scoring.getIhkGrade(80.99).grade, 3);
-assert.equal(scoring.getIhkGrade(67).grade, 3);
-assert.equal(scoring.getIhkGrade(66.99).grade, 4);
-assert.equal(scoring.getIhkGrade(50).grade, 4);
-assert.equal(scoring.getIhkGrade(49.99).grade, 5);
-assert.equal(scoring.getIhkGrade(30).grade, 5);
-assert.equal(scoring.getIhkGrade(29.99).grade, 6);
+assert.equal(scoring.getGrade(92).grade, 1);
+assert.equal(scoring.getGrade(91.99).grade, 2);
+assert.equal(scoring.getGrade(81).grade, 2);
+assert.equal(scoring.getGrade(80.99).grade, 3);
+assert.equal(scoring.getGrade(67).grade, 3);
+assert.equal(scoring.getGrade(66.99).grade, 4);
+assert.equal(scoring.getGrade(50).grade, 4);
+assert.equal(scoring.getGrade(49.99).grade, 5);
+assert.equal(scoring.getGrade(30).grade, 5);
+assert.equal(scoring.getGrade(29.99).grade, 6);
 
 assert.deepEqual(JSON.parse(JSON.stringify(scoring.calculateExamResult(15, 15, 20, 20))), {
   choiceScore: 15,

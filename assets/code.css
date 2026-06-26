@@ -132,15 +132,15 @@
 .final-score-main span {
   font-family: var(--font-mono); font-size: .9rem;
 }
-.ihk-scale {
+.grade-scale {
   display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px;
 }
-.ihk-scale span {
+.grade-scale span {
   font-family: var(--font-mono); font-size: .7rem; color: var(--muted);
   border: 1px solid var(--line); border-radius: 999px; padding: 3px 8px;
   background: var(--surface-2);
 }
-.ihk-scale span.active {
+.grade-scale span.active {
   color: #fff; background: var(--accent-2); border-color: var(--accent-2);
 }
 @media (max-width: 520px) {
